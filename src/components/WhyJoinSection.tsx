@@ -91,7 +91,7 @@ export default function WhyJoinSection() {
         <div className="mb-16">
           
                   {/* Marquees infinitos - 3 filas */}
-        <div className="space-y-4 -mx-8">
+        <div className="space-y-4 overflow-hidden">
           {/* Fila 1 - Marquee */}
           <div className="overflow-hidden">
             <div className="flex animate-marquee">

@@ -33,7 +33,7 @@ export default function SectionHero({
 
   return (
     <section 
-      className="relative h-[90vh] w-full flex items-center"
+      className="relative h-[90vh] w-full flex items-center overflow-hidden"
       aria-label="Hero section"
     >
       {/* Background Image */}
