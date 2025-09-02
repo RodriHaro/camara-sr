@@ -23,7 +23,7 @@ export default function VisionCards({ cards }: VisionCardsProps) {
               Nuestra Visión
             </h2>
             <p className="text-lg text-white/80 text-center mb-16 max-w-4xl mx-auto">
-              Nuestra Visión Compartida al Centenario de nuestra Institución es:
+              Compartida al Centenario de nuestra Institución es:
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

@@ -7,6 +7,7 @@ interface SectionHeroProps {
   backgroundImageAlt?: string;
   showInstitucionalBadge?: boolean;
   highlightWord?: string;
+  customGradient?: string;
 }
 
 export default function SectionHero({ 
@@ -15,7 +16,8 @@ export default function SectionHero({
   backgroundImage, 
   backgroundImageAlt = '',
   showInstitucionalBadge = false,
-  highlightWord = ''
+  highlightWord = '',
+  customGradient
 }: SectionHeroProps) {
   // Función para dividir el título y resaltar la palabra específica
   const renderTitle = (title: string, highlightWord: string) => {
@@ -51,7 +53,7 @@ export default function SectionHero({
       />
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/99 via-blue-950/98 via-blue-900/90 to-black/40" />
+      <div className={`absolute inset-0 ${customGradient || 'bg-gradient-to-r from-slate-950/99 via-blue-950/98 via-blue-900/90 to-black/40'}`} />
       
       {/* Content */}
       <div className="relative z-10 w-full px-4">

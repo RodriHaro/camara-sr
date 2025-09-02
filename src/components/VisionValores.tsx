@@ -126,13 +126,13 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                 
                 {/* Imagen */}
                 <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-md">
+                  <div className="relative w-full max-w-lg">
                     <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-2">
                       <Image
                         src={imageSrc}
                         alt={imageAlt}
-                        width={400}
-                        height={300}
+                        width={500}
+                        height={400}
                         className="rounded-2xl w-full h-full object-cover"
                         unoptimized
                       />

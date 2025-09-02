@@ -52,33 +52,19 @@ export default function VisionMisionValoresPage() {
       {/* Hero Section */}
       <SectionHero
         title="Nuestra misión, visión y valores"
-        subtitle="Descubre los principios que guían nuestro compromiso con el desarrollo empresarial de San Rafael y la región."
-        backgroundImage="/img/vision-hero.jpg"
+        subtitle="Representar a las empresas de la región, impulsar y defender sus actividades, promoviendo el desarrollo sustentable de la comunidad"
+        backgroundImage="/images/heros/rotonda-1-1.png"
         backgroundImageAlt="Imagen representativa de la visión institucional de la Cámara de Comercio"
         showInstitucionalBadge={true}
         highlightWord="misión"
+        customGradient="bg-gradient-to-r from-slate-950/99 via-30% via-blue-950/98 via-45% via-blue-900/90 to-65% to-transparent"
       />
-
-      {/* Sección de Misión */}
-      <section className="py-20">
-        <SectionContainer>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#091b3f] text-center mb-16">
-            Nuestra Misión
-          </h2>
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xl text-gray-700 leading-relaxed">
-              Nuestra Misión es representar a las empresas de la región, impulsar y defender sus actividades, 
-              promoviendo el desarrollo sustentable de la comunidad.
-            </p>
-          </div>
-        </SectionContainer>
-      </section>
 
       {/* Sección de Visión y Valores Combinadas */}
       <VisionValores
         visionCards={visionCards}
         valores={valores}
-        imageSrc="/img/valores.jpg"
+        imageSrc="/images/institucional/valores.avif"
         imageAlt="Imagen representativa de los valores institucionales"
       />
     </>
