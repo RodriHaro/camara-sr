@@ -30,7 +30,7 @@ export default function BeneficiosHero() {
       <div className="relative z-10 max-w-2xl px-6 py-12 md:ml-16 text-white flex flex-col gap-4" style={{ position: 'absolute', bottom: '0', left: '0', marginBottom: '2rem' }}>
         <span className="text-xs uppercase tracking-widest font-semibold opacity-80">Cámara de Comercio</span>
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-2 drop-shadow-lg">
-          Beneficios que van más allá del ahorro
+          Empresas que nos acompañan al almuerzo de las fuerzas vivas
         </h1>
         <p className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md">
           Conectamos empresas, impulsamos el crecimiento y fortalecemos el tejido empresarial de San Rafael. Juntos, transformamos desafíos en oportunidades de desarrollo.

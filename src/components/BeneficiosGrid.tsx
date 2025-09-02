@@ -17,35 +17,27 @@ interface Beneficio {
 // Mapeo de logos para cada beneficio
 const LOGOS_MAPPING: { [key: string]: string } = {
   "Resto Soft": "/beneficios/resto.jpg",
-  "CTNET": "/beneficios/ctenet.png",
+  "CTNET": "/beneficios/ctnet.png",
   "Red Brillante": "/beneficios/red_brillante_2.jpg",
   "Primera Intervención": "/beneficios/primera_intervencion_2.jpg",
   "ICA Instituto de Capacitación Aeronáutica": "/beneficios/ica_aviones.jpg",
   "Universidad Siglo 21": "/beneficios/universidad_siglo_21.jpg",
   "Mellis Pizza": "/beneficios/Los-Mellis.jpg",
-  "Moscú Café Bar": "/beneficios/moscu-bar.jpg",
-  "Nápoles": "/beneficios/Napoles-3.jpg",
-  "Emedos M2": "/beneficios/M2.jpg",
-  "El Costurero": "/beneficios/el-costurero.jpg",
   "Del Centro": "/beneficios/Del-Centro-RTO.jpg",
   "Amancay": "/beneficios/amancay.png",
   "Mattevi": "/beneficios/mattevi.jpg",
-  "Cristian Reche Interiores": "/beneficios/Reche.jpg",
   "Blend Espacios Verdes": "/beneficios/Blend.jpg",
-  "Grand Estate": "/beneficios/grand.jpg",
-  "Farmacia del Ángel": "/beneficios/FARMACIA-ANGEL.jpg",
-  "Farmacia España": "/beneficios/farmacia_espana.jpg",
-  "Aura Centro Integral": "/beneficios/Aura.jpg",
   "Micreze": "/beneficios/Micreze.jpg",
   "Nordpont": "/beneficios/Nordpont.jpg",
   "Previnsan": "/beneficios/previsan.jpg",
   "Grupo Alvarez": "/beneficios/grupo_alvarez_2.jpg",
-  "Bayton": "/beneficios/bayton.jpg",
   "Iselin Envíos": "/beneficios/Iselin-Envios.jpg",
-  "ANSES": "/beneficios/anses.jpg",
   "Andreani Postal": "/beneficios/andreani.jpg",
   "ID Legal": "/beneficios/id_legal.jpg",
   "Banco Comafi": "/beneficios/comafi.jpg",
+  "Sumo": "/beneficios/sumo.jpg",
+  "Viejo Bodegón": "/beneficios/viejo-bodegon.jpg",
+  "Fundación Educativa Santísima Trinidad": "/beneficios/fesat.png"
 };
 
 // Datos reales de beneficios
@@ -54,7 +46,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 1,
     nombre: "Resto Soft",
-    descuento: "10% de descuento en efectivo o transferencia",
+    descuento: "10 % de descuento en efectivo o transferencia en servicios contratados, instalación inicial y/o soporte mensual para licencias nuevas. Contactarse al 261-4729704.",
     direccion: "",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Resto Soft"],
@@ -62,7 +54,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 2,
     nombre: "CTNET",
-    descuento: "50% de descuento por los primeros tres meses, en el servicio de Internet FTTH CTNET PREMIUM",
+    descuento: "50 % de descuento por los primeros tres meses, en el servicio de internet FTTH CTNET PREMIUM. Contactarse al 260-4050789.",
     direccion: "Cmte. José A. Salas 200",
     rubro: "servicios",
     logo: LOGOS_MAPPING["CTNET"],
@@ -70,7 +62,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 3,
     nombre: "Red Brillante",
-    descuento: "15% de descuento en todos los artículos. Retiro solo en el local, y con pago en efectivo o QR",
+    descuento: "15 % de descuento solo con retiro en local (pago en efectivo o QR). Av. Pedro Vargas 1.731.",
     direccion: "Av. Pedro Vargas 1731",
     rubro: "casa",
     logo: LOGOS_MAPPING["Red Brillante"],
@@ -80,7 +72,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 4,
     nombre: "Primera Intervención",
-    descuento: "25% de descuento en todos los cursos",
+    descuento: "20 % de descuento. Contactar al 2613726854.",
     direccion: "",
     rubro: "capacitacion",
     logo: LOGOS_MAPPING["Primera Intervención"],
@@ -88,7 +80,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 5,
     nombre: "ICA Instituto de Capacitación Aeronáutica",
-    descuento: "15% de descuento en las cuotas de todos los cursos",
+    descuento: "15 % de descuento en las cuotas de todos los cursos aeronáuticos y de comercio exterior. Contactarse al 260-4692747.",
     direccion: "",
     rubro: "capacitacion",
     logo: LOGOS_MAPPING["ICA Instituto de Capacitación Aeronáutica"],
@@ -96,7 +88,7 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 6,
     nombre: "Universidad Siglo 21",
-    descuento: "10% de descuento, abonando en efectivo",
+    descuento: "10 % de descuento en efectivo. Contactar al 2604653017.",
     direccion: "",
     rubro: "capacitacion",
     logo: LOGOS_MAPPING["Universidad Siglo 21"],
@@ -104,74 +96,59 @@ const BENEFICIOS_MOCK: Beneficio[] = [
   {
     id: 7,
     nombre: "Fundación Educativa Santísima Trinidad",
-    descuento: "10% de descuento, abonando en efectivo",
+    descuento: "10 % de descuento en efectivo. Contactarse al 260-4400290.",
     direccion: "San Lorenzo 231",
     rubro: "capacitacion",
+    logo: LOGOS_MAPPING["Fundación Educativa Santísima Trinidad"],
   },
 
   // Restó
   {
     id: 8,
     nombre: "Mellis Pizza",
-    descuento: "10% de descuento en efectivo o transferencia",
+    descuento: "10 % de descuento solo pago en efectivo. Day y Castelli.",
     direccion: "Ricardo Day y Castelli",
     rubro: "resto",
     logo: LOGOS_MAPPING["Mellis Pizza"],
   },
   {
     id: 9,
-    nombre: "Moscú Café Bar",
-    descuento: "15% de descuento en el restaurante, todos los días",
-    direccion: "Dr. Carlos Pellegrini 153",
+    nombre: "Sumo",
+    descuento: "10 % de descuento todos los mediodías, y en la noche, de domingo a miércoles. Contactarse al 260-4550000.",
+    direccion: "San Rafael",
     rubro: "resto",
-    logo: LOGOS_MAPPING["Moscú Café Bar"],
+    logo: LOGOS_MAPPING["Sumo"],
+  },
+  {
+    id: 10,
+    nombre: "Viejo Bodegón",
+    descuento: "10 % de descuento todos los mediodías, y en la noche, de domingo a miércoles. Contactarse al 260-4550000.",
+    direccion: "Av. San Martín 123",
+    rubro: "resto",
+    logo: LOGOS_MAPPING["Viejo Bodegón"],
   },
 
   // Moda
   {
-    id: 10,
-    nombre: "Nápoles",
-    descuento: "15% descuento en toda la tienda",
-    direccion: "Chile 33",
-    rubro: "moda",
-    logo: LOGOS_MAPPING["Nápoles"],
-  },
-  {
     id: 11,
-    nombre: "Emedos M2",
-    descuento: "20% de descuento en toda la tienda",
-    direccion: "Av. Hipólito Yrigoyen 198",
-    rubro: "moda",
-    logo: LOGOS_MAPPING["Emedos M2"],
-  },
-  {
-    id: 12,
-    nombre: "El Costurero",
-    descuento: "10% de descuento en toda la tienda",
-    direccion: "Av. Hipólito Yrigoyen 884",
-    rubro: "moda",
-    logo: LOGOS_MAPPING["El Costurero"],
-  },
-  {
-    id: 13,
     nombre: "Del Centro",
-    descuento: "10% de descuento, abonando en efectivo",
+    descuento: "10 % de descuento en efectivo. Contactarse al 260-4825109.",
     direccion: "Av. Mitre 2091",
     rubro: "auto",
     logo: LOGOS_MAPPING["Del Centro"],
   },
   {
-    id: 14,
+    id: 12,
     nombre: "Amancay",
-    descuento: "13% de descuento, abonando en efectivo (no acumulable con otras promociones)",
+    descuento: "13 % de descuento en efectivo (no acumulable con otras promociones). Contactarse al 260-4394430 o dirigirse a Av. Hipólito Yrigoyen 53.",
     direccion: "Av. Hipólito Yrigoyen 53",
     rubro: "casa",
     logo: LOGOS_MAPPING["Amancay"],
   },
   {
-    id: 15,
+    id: 13,
     nombre: "Mattevi",
-    descuento: "8% de descuento en efectivo, para todos los productos",
+    descuento: "8 % de descuento en todos los productos. Contactarse al 2604-375902.",
     direccion: "Av. Bartolomé Mitre 1438, San Rafael",
     rubro: "casa",
     logo: LOGOS_MAPPING["Mattevi"],
@@ -179,63 +156,19 @@ const BENEFICIOS_MOCK: Beneficio[] = [
 
   // Casa
   {
-    id: 16,
-    nombre: "Cristian Reche Interiores",
-    descuento: "20% de descuento, abonando en efectivo",
-    direccion: "Av. Libertador 932",
-    rubro: "casa",
-    logo: LOGOS_MAPPING["Cristian Reche Interiores"],
-  },
-  {
-    id: 17,
+    id: 14,
     nombre: "Blend Espacios Verdes",
-    descuento: "10% de descuento en todos los productos",
+    descuento: "10 % de descuento en productos, solo en efectivo. Contactarse al 260-4009458.",
     direccion: "Coronel H. Plaza 417",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Blend Espacios Verdes"],
   },
 
-  // Vinos y Bodegas
-  {
-    id: 18,
-    nombre: "Grand Estate",
-    descuento: "30% de descuento en vinos (venta directa en la bodega, de lunes a viernes de 09.00 a 16.00)",
-    direccion: "Juan José Castelli 1331",
-    rubro: "vinos",
-    logo: LOGOS_MAPPING["Grand Estate"],
-  },
-
-  // Salud
-  {
-    id: 19,
-    nombre: "Farmacia del Ángel",
-    descuento: "15% de descuento en perfumería y venta libre",
-    direccion: "Av. El Libertador 978",
-    rubro: "salud",
-    logo: LOGOS_MAPPING["Farmacia del Ángel"],
-  },
-  {
-    id: 20,
-    nombre: "Farmacia España",
-    descuento: "15% de descuento en perfumería y venta libre",
-    direccion: "Av. Bartolomé Mitre 724",
-    rubro: "salud",
-    logo: LOGOS_MAPPING["Farmacia España"],
-  },
-
   // Belleza
   {
-    id: 21,
-    nombre: "Aura Centro Integral",
-    descuento: "20% de descuento en pilates y yoga",
-    direccion: "República de Siria 966",
-    rubro: "belleza",
-    logo: LOGOS_MAPPING["Aura Centro Integral"],
-  },
-  {
-    id: 22,
+    id: 15,
     nombre: "Micreze",
-    descuento: "15% de descuento, abonando en efectivo",
+    descuento: "15 % de descuento efectivo. Contactar al 260-4696600.",
     direccion: "20 de Junio 332",
     rubro: "casa",
     logo: LOGOS_MAPPING["Micreze"],
@@ -243,17 +176,17 @@ const BENEFICIOS_MOCK: Beneficio[] = [
 
   // Auto
   {
-    id: 23,
+    id: 16,
     nombre: "Nordpont",
-    descuento: "10% de descuento",
+    descuento: "10 % de descuento. Contactarse al 260-4655829.",
     direccion: "Tel: 260-4655829",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Nordpont"],
   },
   {
-    id: 24,
+    id: 17,
     nombre: "Previnsan",
-    descuento: "15% de descuento en mantenimiento anual de extintores y 10% en venta y señalización industrial (efectivo)",
+    descuento: "15 % de descuento en mantenimiento anual de extintores y 10 % en venta de extintores y señalización industrial, solo en efectivo. Contactarse al 261-5558315.",
     direccion: "Av. Ing. Julio Balloffet 981",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Previnsan"],
@@ -261,57 +194,41 @@ const BENEFICIOS_MOCK: Beneficio[] = [
 
   // Servicios varios (los ponemos en "otros" pero podríamos crear una nueva categoría)
   {
-    id: 25,
+    id: 18,
     nombre: "Grupo Alvarez",
-    descuento: "20% descuento o 3 x 2 en publicidad",
+    descuento: "20 % de descuento o 3x2 en publicidad. Contactarse al 260-4697595.",
     direccion: "",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Grupo Alvarez"],
   },
   {
-    id: 26,
-    nombre: "Bayton",
-    descuento: "20% descuento en búsquedas de talento permanente",
-    direccion: "Bernardo de Irigoyen 130",
-    rubro: "capacitacion", // RRHH -> Capacitación
-    logo: LOGOS_MAPPING["Bayton"],
-  },
-  {
-    id: 27,
+    id: 19,
     nombre: "Iselin Envíos",
-    descuento: "40% de descuento en envíos de encomiendas",
+    descuento: "40 % de descuento sobre el valor del flete de encomiendas, solo efectivo. Contactarse al 260-4650494.",
     direccion: "Terminal Nestor Kirchner Local 18",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Iselin Envíos"],
   },
   {
-    id: 28,
-    nombre: "ANSES",
-    descuento: "Atención personalizada",
-    direccion: "",
-    rubro: "servicios",
-    logo: LOGOS_MAPPING["ANSES"],
-  },
-  {
-    id: 29,
+    id: 20,
     nombre: "Andreani Postal",
-    descuento: "30% de descuento. Contactarse al 260-4318944",
+    descuento: "30 % de descuento. Contactar al 2604318944.",
     direccion: "Chile 512",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Andreani Postal"],
   },
   {
-    id: 30,
+    id: 21,
     nombre: "ID Legal",
-    descuento: "20% de descuento en registros de marcas, abonando en efectivo o por transferencia",
+    descuento: "20 % de descuento en registros de marca. Solo efectivo o transferencia. Contactarse al 2625-673011.",
     direccion: "",
     rubro: "servicios",
     logo: LOGOS_MAPPING["ID Legal"],
   },
   {
-    id: 31,
+    id: 22,
     nombre: "Banco Comafi",
-    descuento: "Ofrece para sus nuevos clientes, la bonificación anual de la cuota de socio",
+    descuento: "ofrece para sus nuevos clientes, la bonificación anual de la cuota de socio. Para más información de las condiciones, contactarse al 2613424774.",
     direccion: "",
     rubro: "servicios",
     logo: LOGOS_MAPPING["Banco Comafi"],
@@ -408,9 +325,9 @@ export default function BeneficiosGrid({ selectedRubro = "todos" }: BeneficiosGr
               <div className="mb-4">
                 <div className="text-2xl font-bold text-[#091b3f] text-center">
                   {(() => {
-                    const match = beneficio.descuento.match(/\d+%/);
+                    const match = beneficio.descuento.match(/\d+\s*%/);
                     if (match) {
-                      return `${match[0]} DE DESCUENTO`;
+                      return `${match[0].replace(/\s+/, '')} DE DESCUENTO`;
                     }
                     return beneficio.descuento.length > 30 ? 'BENEFICIO ESPECIAL' : 'BENEFICIO';
                   })()}
@@ -418,7 +335,7 @@ export default function BeneficiosGrid({ selectedRubro = "todos" }: BeneficiosGr
               </div>
 
               {(() => {
-                const match = beneficio.descuento.match(/\d+%/);
+                const match = beneficio.descuento.match(/\d+\s*%/);
                 if (match) {
                   // Para descuentos con %, mostrar solo la parte adicional sin el porcentaje ni "descuento"
                   let descuentoText = beneficio.descuento.replace(match[0], '').trim();

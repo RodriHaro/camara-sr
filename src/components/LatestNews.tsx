@@ -22,6 +22,24 @@ const latestNewsData: NewsItem[] = [
     category: "Eventos",
     href: "/noticias/expo-san-rafael-2025-exito",
   },
+  {
+    id: "3",
+    title: "Convenio con Universidad Nacional de Cuyo",
+    excerpt: "Firmamos un importante acuerdo para promover la capacitación profesional y el desarrollo de emprendimientos innovadores.",
+    image: "/api/placeholder/600/400",
+    date: "8 Ago 2025",
+    category: "Capacitación",
+    href: "/noticias/convenio-universidad-cuyo",
+  },
+  {
+    id: "4",
+    title: "Programa de Financiamiento PYME",
+    excerpt: "Lanzamos un nuevo programa de créditos blandos para pequeñas y medianas empresas del departamento.",
+    image: "/api/placeholder/600/400",
+    date: "5 Ago 2025",
+    category: "Financiamiento",
+    href: "/noticias/programa-financiamiento-pyme",
+  },
 ];
 
 // Sección de últimas noticias para la página principal

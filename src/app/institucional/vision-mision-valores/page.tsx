@@ -1,6 +1,5 @@
 import SectionHero from '@/components/SectionHero';
-import VisionCards from '@/components/VisionCards';
-import ValoresList from '@/components/ValoresList';
+import VisionValores from '@/components/VisionValores';
 import SectionContainer from '@/components/SectionContainer';
 
 export default function VisionMisionValoresPage() {
@@ -75,11 +74,9 @@ export default function VisionMisionValoresPage() {
         </SectionContainer>
       </section>
 
-      {/* Sección de Visión */}
-      <VisionCards cards={visionCards} />
-
-      {/* Sección de Valores */}
-      <ValoresList
+      {/* Sección de Visión y Valores Combinadas */}
+      <VisionValores
+        visionCards={visionCards}
         valores={valores}
         imageSrc="/img/valores.jpg"
         imageAlt="Imagen representativa de los valores institucionales"

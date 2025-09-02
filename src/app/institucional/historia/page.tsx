@@ -20,7 +20,7 @@ export default function HistoriaPage() {
     },
     {
       title: "Evolución Institucional",
-      description: "Con el correr de los años se modificó el nombre por el de Cámara de Comercio, Industria y Agropecuaria de San Rafael, que es el que posee en la actualidad. La CCIA es el lugar de resonancia natural de los hechos acontecidos en la historia del departamento en los últimos 105 años; hemos protagonizado la gestación de muchos de sus proyectos y logros.",
+      description: "Con el correr de los años se modificó el nombre por el de Cámara de Comercio, Industria y Agropecuaria de San Rafael, que es el que posee en la actualidad. La CCIA es el lugar de resonancia natural de los hechos acontecidos en la historia del departamento en los últimos 106 años; hemos protagonizado la gestación de muchos de sus proyectos y logros.",
       imageSrc: "/images/institucional/camara-historia-3.jpg",
       imageAlt: "Imagen representativa del crecimiento institucional de la CCIA",
       imageFirst: false

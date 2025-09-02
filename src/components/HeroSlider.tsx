@@ -200,4 +200,12 @@ export const exampleSlides: HeroSlide[] = [
     excerpt: "Reconocimos a los socios que impulsan la innovación y el desarrollo local. ¡Conoce a los ganadores!",
     href: "#",
   },
+  {
+    image: "/images/heros/asamblea.avif",
+    date: "28 Jul 2025",
+    category: "Capacitación",
+    title: "Programa de Desarrollo Empresarial",
+    excerpt: "Nuevos cursos y talleres para fortalecer las competencias de nuestros empresarios asociados.",
+    href: "#",
+  },
 ];

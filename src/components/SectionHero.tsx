@@ -59,7 +59,7 @@ export default function SectionHero({
           <div className="text-left max-w-2xl">
             {showInstitucionalBadge && (
               <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-black/50 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
+                <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
                   Institucional
                 </span>
               </div>
