@@ -41,3 +41,6 @@ body {
 .animate-marquee-reverse-slow {
   animation: marquee-reverse 80s linear infinite;
 }
+
+/* Sanity Studio CSS */
+@import url('https://cdn.sanity.io/ui/v1.0.0/index.css');

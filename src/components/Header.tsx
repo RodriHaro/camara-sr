@@ -31,12 +31,21 @@ const NAV_ITEMS = [
           </svg>
         )
       },
+      { 
+        name: "Directorio", 
+        href: "/institucional/directorio",
+        icon: (
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+          </svg>
+        )
+      },
     ]
   },
   { name: "Noticias", href: "/noticias" },
   { name: "Almuerzo de las fuerzas vivas", href: "/almuerzo-fuerzas-vivas" },
   { name: "Beneficios", href: "/beneficios" },
-  { name: "Contacto", href: "/contacto" },
+  { name: "Hacete Socio", href: "/socios" },
 ];
 
 export default function Header() {
@@ -90,7 +99,7 @@ export default function Header() {
                     onMouseLeave={() => setDropdownOpen(false)}
                   >
                     <span
-                      className="text-white hover:text-yellow-400 font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 uppercase cursor-pointer"
+                      className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase cursor-pointer"
                       role="menuitem"
                       aria-label={item.name}
                       tabIndex={0}
@@ -139,7 +148,7 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-white hover:text-yellow-400 font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 uppercase"
+                    className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase"
                     role="menuitem"
                     aria-label={item.name}
                   >
@@ -153,7 +162,7 @@ export default function Header() {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden flex items-center text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="md:hidden flex items-center text-white focus:outline-none focus:ring-2 focus:ring-[#FF4757]"
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
@@ -189,7 +198,7 @@ export default function Header() {
                     <div>
                       <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
-                        className="w-full text-left text-white hover:text-yellow-400 py-2 px-3 rounded transition-colors duration-200 uppercase"
+                        className="w-full text-left text-white hover:text-[#FF4757] py-2 px-3 rounded transition-colors duration-200 uppercase"
                         role="menuitem"
                       >
                         {item.name}
@@ -200,7 +209,7 @@ export default function Header() {
                             <Link
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block text-gray-300 hover:text-yellow-400 py-1 px-3 rounded transition-colors duration-200"
+                              className="block text-gray-300 hover:text-[#FF4757] py-1 px-3 rounded transition-colors duration-200"
                               onClick={() => setMenuOpen(false)}
                             >
                               {dropdownItem.name}
@@ -212,7 +221,7 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block text-white hover:text-yellow-400 py-2 px-3 rounded transition-colors duration-200 uppercase"
+                      className="block text-white hover:text-[#FF4757] py-2 px-3 rounded transition-colors duration-200 uppercase"
                       role="menuitem"
                       onClick={() => setMenuOpen(false)}
                     >

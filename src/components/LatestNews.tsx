@@ -43,7 +43,14 @@ const latestNewsData: NewsItem[] = [
 ];
 
 // Sección de últimas noticias para la página principal
-export const LatestNews: React.FC = () => {
+interface LatestNewsProps {
+  featuredNews?: NewsItem[];
+}
+
+export const LatestNews: React.FC<LatestNewsProps> = ({ featuredNews }) => {
+  // Use provided featuredNews or fall back to example data
+  const newsToShow = featuredNews && featuredNews.length > 0 ? featuredNews : latestNewsData;
+
   return (
     <section className="py-16 bg-gray-50" aria-labelledby="latest-news-title">
       <div className="mx-auto px-4" style={{ maxWidth: '100rem' }}>
@@ -64,7 +71,7 @@ export const LatestNews: React.FC = () => {
         
         {/* Grid de cards grandes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {latestNewsData.map((news) => (
+          {newsToShow.slice(0, 4).map((news) => (
             <NewsCardLarge key={news.id} news={news} />
           ))}
         </div>

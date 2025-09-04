@@ -4,13 +4,24 @@ import { HeroSlider, exampleSlides } from "../components/HeroSlider";
 import { LatestNews } from "../components/LatestNews";
 import WhyJoinSection from "../components/WhyJoinSection";
 import Link from "next/link";
+import { getHomeSelections, getFallbackHomeData } from "../lib/sanity.service";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch home selections from Sanity
+  const homeData = await getHomeSelections()
+  
+  // Use Sanity data if available, otherwise fall back to example data
+  const heroSlides = homeData?.heroSlides && homeData.heroSlides.length > 0 
+    ? homeData.heroSlides 
+    : exampleSlides
+    
+  const featuredNews = homeData?.featuredNews || []
+
   return (
     <>
       <Header />
-      <HeroSlider slides={exampleSlides} />
-      <LatestNews />
+      <HeroSlider slides={heroSlides} />
+      <LatestNews featuredNews={featuredNews} />
       
       {/* Sección de Navegación Rápida Institucional */}
       <section className="py-16 bg-white overflow-hidden">

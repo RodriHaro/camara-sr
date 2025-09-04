@@ -29,7 +29,7 @@ export default function AlmuerzoHero() {
 
       <div className="relative z-10 max-w-2xl px-6 py-12 md:ml-16 text-white flex flex-col gap-4" style={{ position: 'absolute', bottom: '0', left: '0', marginBottom: '2rem' }}>
         <div className="mb-2">
-          <span className="inline-block px-4 py-2 bg-black/50 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
+          <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
             Evento Institucional
           </span>
         </div>

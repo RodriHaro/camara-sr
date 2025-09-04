@@ -1,21 +1,25 @@
-"use client";
-import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BeneficiosHero from "@/components/BeneficiosHero";
 import BeneficiosInfo from "@/components/BeneficiosInfo";
-import BeneficiosFilters from "@/components/BeneficiosFilters";
-import BeneficiosGrid from "@/components/BeneficiosGrid";
+import BeneficiosClientPage from "@/components/BeneficiosClientPage";
 import BeneficiosGrowth from "@/components/BeneficiosGrowth";
+import { getBeneficios, getRubrosWithCount } from "@/lib/sanity.service";
 
-// Nota: El metadata se maneja en layout.tsx para componentes "use client"
+// Nota: El metadata se maneja en layout.tsx
 
-export default function BeneficiosPage() {
-  const [selectedRubro, setSelectedRubro] = useState("todos");
+export default async function BeneficiosPage() {
+  // Fetch benefits and rubros from Sanity
+  const [beneficios, rubros] = await Promise.all([
+    getBeneficios(),
+    getRubrosWithCount()
+  ]);
 
-  const handleRubroChange = (rubro: string) => {
-    setSelectedRubro(rubro);
-  };
+  // Prepare rubros for the client component
+  const rubrosWithAll = [
+    { value: '', label: 'Todos', count: beneficios.length },
+    ...rubros
+  ];
 
   return (
     <>
@@ -24,20 +28,11 @@ export default function BeneficiosPage() {
         <BeneficiosHero />
         <BeneficiosInfo />
         
-        <section className="py-12 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <BeneficiosFilters 
-              selectedRubro={selectedRubro}
-              onRubroChange={handleRubroChange}
-            />
-          </div>
-        </section>
-
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <BeneficiosGrid selectedRubro={selectedRubro} />
-          </div>
-        </section>
+        {/* Pass data to client component for state management */}
+        <BeneficiosClientPage 
+          beneficios={beneficios}
+          rubros={rubrosWithAll}
+        />
 
         <BeneficiosGrowth />
       </main>

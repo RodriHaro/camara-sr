@@ -3,11 +3,11 @@ import Image from "next/image";
 
 export default function BeneficiosHero() {
   return (
-    <section className="relative overflow-hidden" style={{ height: "calc(100vh - 200px)" }}>
+    <section className="relative h-[90vh] w-full flex items-center overflow-hidden">
       {/* Imagen de fondo */}
       <div className="absolute inset-0">
         <Image
-          src="/images/heros/beneficios3.png"
+          src="/beneficios/beneficios-hero.avif"
           alt="Beneficios exclusivos"
           fill
           className="object-cover"
@@ -27,20 +27,36 @@ export default function BeneficiosHero() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-2xl px-6 py-12 md:ml-16 text-white flex flex-col gap-4" style={{ position: 'absolute', bottom: '0', left: '0', marginBottom: '2rem' }}>
-        <span className="text-xs uppercase tracking-widest font-semibold opacity-80">Cámara de Comercio</span>
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-2 drop-shadow-lg">
-          Empresas que nos acompañan al almuerzo de las fuerzas vivas
-        </h1>
-        <p className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md">
-          Conectamos empresas, impulsamos el crecimiento y fortalecemos el tejido empresarial de San Rafael. Juntos, transformamos desafíos en oportunidades de desarrollo.
-        </p>
+      <div className="relative z-10 w-full pl-6 md:pl-46">
+        <div className="max-w-7xl">
+          <div className="text-left max-w-2xl">
+            <span className="text-xs uppercase tracking-widest font-semibold opacity-80 text-white">Cámara de Comercio</span>
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-2 drop-shadow-lg text-white mt-4">
+              Empresas que nos acompañan al almuerzo de las fuerzas vivas
+            </h1>
+            <p className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md text-white">
+              Conectamos empresas, impulsamos el crecimiento y fortalecemos el tejido empresarial de San Rafael. Juntos, transformamos desafíos en oportunidades de desarrollo.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Flecha animada hacia abajo */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
         <div className="animate-bounce">
-          <div className="w-6 h-6 border-b-2 border-r-2 border-white transform rotate-45 drop-shadow-lg"></div>
+          <svg 
+            className="w-8 h-8 text-white opacity-80" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+            />
+          </svg>
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ export default function SectionHero({
     return (
       <>
         {parts[0]}
-        <span style={{ color: '#E1AD01' }}>{highlightWord}</span>
+        <span style={{ color: '#FF4757' }}>{highlightWord}</span>
         {parts[1]}
       </>
     );
@@ -45,19 +45,18 @@ export default function SectionHero({
         fill
         className="object-cover"
         style={{ 
-          objectPosition: '70% 50%',
-          transform: 'translateX(20%)'
+          objectPosition: '30% center'
         }}
         priority
         unoptimized
       />
       
       {/* Overlay */}
-      <div className={`absolute inset-0 ${customGradient || 'bg-gradient-to-r from-slate-950/99 via-blue-950/98 via-blue-900/90 to-black/40'}`} />
+      <div className={`absolute inset-0 ${customGradient || 'bg-gradient-to-r from-slate-950/99 via-blue-950/95 to-black/40'}`} />
       
       {/* Content */}
-      <div className="relative z-10 w-full px-4">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 w-full pl-6 md:pl-46">
+        <div className="max-w-7xl">
           <div className="text-left max-w-2xl">
             {showInstitucionalBadge && (
               <div className="mb-6">

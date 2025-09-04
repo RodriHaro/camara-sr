@@ -42,7 +42,7 @@ export default function HistoriaPage() {
       <SectionHero
         title="Nuestra Historia"
         subtitle="Más de un siglo de trayectoria impulsando el crecimiento económico de San Rafael, fortaleciendo el tejido empresarial y promoviendo la excelencia profesional para el desarrollo sostenible de nuestra región."
-        backgroundImage="/images/institucional/hero-historia.jpg"
+        backgroundImage="/images/institucional/hero-historia2.jpg"
         backgroundImageAlt="Imagen histórica representativa de la Cámara de Comercio de San Rafael"
         showInstitucionalBadge={true}
         highlightWord="Historia"

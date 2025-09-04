@@ -9,11 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^4.0.3",
+    "@sanity/client": "^7.11.0",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.6.1",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.12.7",
     "next": "15.4.6",
+    "next-sanity": "^10.0.15",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "sanity": "^4.6.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

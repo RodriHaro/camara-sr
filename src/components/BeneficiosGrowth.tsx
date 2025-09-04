@@ -81,9 +81,9 @@ export default function BeneficiosGrowth() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-lg mb-2">Comercio Internacional</h4>
+                    <h4 className="font-semibold text-lg mb-2">Capacitación y Networking</h4>
                     <p className="text-white text-opacity-90 text-sm leading-relaxed">
-                     Asesoramiento especializado para tu negocio.
+                      Eventos, talleres y conexiones empresariales estratégicas
                     </p>
                   </div>
                 </div>
