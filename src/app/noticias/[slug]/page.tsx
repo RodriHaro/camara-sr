@@ -1,6 +1,6 @@
 // SEO dinámico para cada noticia
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const newsData = await getNewsBySlug(slug);
   if (!newsData || !newsData.news) {
     return {
@@ -45,10 +45,10 @@ import { getNewsBySlug, getAllNewsSlugs } from "../../../lib/sanity.service";
 import { PortableText } from '@portabletext/react';
 import { NewsCard } from "../../../components/NewsCard";
 
-interface PageProps {
-  params: {
+type PageProps = {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static paths for all news articles
@@ -65,7 +65,7 @@ export async function generateStaticParams() {
 }
 
 export default async function NewsDetailPage({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const newsData = await getNewsBySlug(slug);
   
   if (!newsData) {
