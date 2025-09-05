@@ -1,3 +1,32 @@
+export const metadata = {
+  title: "Beneficios para Socios | Cámara de Comercio de San Rafael",
+  description: "Descubre todos los beneficios exclusivos para socios de la Cámara de Comercio de San Rafael: descuentos, asesoramiento, convenios y más para potenciar tu empresa.",
+  keywords: [
+    "beneficios socios",
+    "descuentos",
+    "cámara de comercio",
+    "san rafael",
+    "empresas",
+    "convenios",
+    "asesoramiento"
+  ],
+  openGraph: {
+    title: "Beneficios para Socios | Cámara de Comercio de San Rafael",
+    description: "Descubre todos los beneficios exclusivos para socios de la Cámara de Comercio de San Rafael: descuentos, asesoramiento, convenios y más para potenciar tu empresa.",
+    url: "https://camarasanrafael.com.ar/beneficios",
+    siteName: "Cámara de Comercio de San Rafael",
+    images: [
+      {
+        url: "/images/beneficios/beneficios-hero.avif",
+        width: 1200,
+        height: 630,
+        alt: "Beneficios para socios"
+      }
+    ],
+    locale: "es_AR",
+    type: "website"
+  }
+};
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BeneficiosHero from "@/components/BeneficiosHero";

@@ -1,3 +1,34 @@
+export const metadata = {
+  title: "Cámara de Comercio de San Rafael | Sitio Oficial",
+  description: "Bienvenido a la Cámara de Comercio, Industria y Agropecuaria de San Rafael. Información institucional, beneficios, eventos, noticias y contacto para empresas y la comunidad empresarial de Mendoza.",
+  keywords: [
+    "cámara de comercio san rafael",
+    "industria",
+    "agropecuaria",
+    "mendoza",
+    "empresas",
+    "beneficios",
+    "eventos",
+    "noticias",
+    "socios"
+  ],
+  openGraph: {
+    title: "Cámara de Comercio de San Rafael | Sitio Oficial",
+    description: "Bienvenido a la Cámara de Comercio, Industria y Agropecuaria de San Rafael. Información institucional, beneficios, eventos, noticias y contacto para empresas y la comunidad empresarial de Mendoza.",
+    url: "https://camarasanrafael.com.ar/",
+    siteName: "Cámara de Comercio de San Rafael",
+    images: [
+      {
+        url: "/images/institucional/asamblea-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "Cámara de Comercio de San Rafael"
+      }
+    ],
+    locale: "es_AR",
+    type: "website"
+  }
+};
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { HeroSlider, exampleSlides } from "../components/HeroSlider";

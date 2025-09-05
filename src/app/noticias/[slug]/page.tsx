@@ -1,3 +1,41 @@
+// SEO dinámico para cada noticia
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const newsData = await getNewsBySlug(slug);
+  if (!newsData || !newsData.news) {
+    return {
+      title: 'Noticia no encontrada | Cámara de Comercio de San Rafael',
+      description: 'La noticia solicitada no existe o fue eliminada.',
+    };
+  }
+  const { news } = newsData;
+  return {
+    title: `${news.title} | Noticias | Cámara de Comercio de San Rafael`,
+    description: news.excerpt || 'Noticia de la Cámara de Comercio de San Rafael.',
+    keywords: [
+      'noticias',
+      'cámara de comercio',
+      'san rafael',
+      news.category
+    ],
+    openGraph: {
+      title: `${news.title} | Noticias | Cámara de Comercio de San Rafael`,
+      description: news.excerpt || 'Noticia de la Cámara de Comercio de San Rafael.',
+      url: `https://camarasanrafael.com.ar/noticias/${slug}`,
+      siteName: 'Cámara de Comercio de San Rafael',
+      images: [
+        {
+          url: news.image || '/images/institucional/asamblea-1.webp',
+          width: 1200,
+          height: 630,
+          alt: news.title
+        }
+      ],
+      locale: 'es_AR',
+      type: 'article'
+    }
+  };
+}
 import React from "react";
 import { notFound } from "next/navigation";
 import Header from "../../../components/Header";

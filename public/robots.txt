@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://camarasanrafael.com.ar/sitemap.xml

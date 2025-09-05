@@ -1,3 +1,31 @@
+export const metadata = {
+  title: "Noticias | Cámara de Comercio de San Rafael",
+  description: "Mantente al día con las últimas noticias, novedades y comunicados de la Cámara de Comercio de San Rafael. Información relevante para empresas y la comunidad.",
+  keywords: [
+    "noticias",
+    "novedades",
+    "comunicados",
+    "cámara de comercio",
+    "san rafael",
+    "empresas"
+  ],
+  openGraph: {
+    title: "Noticias | Cámara de Comercio de San Rafael",
+    description: "Mantente al día con las últimas noticias, novedades y comunicados de la Cámara de Comercio de San Rafael. Información relevante para empresas y la comunidad.",
+    url: "https://camarasanrafael.com.ar/noticias",
+    siteName: "Cámara de Comercio de San Rafael",
+    images: [
+      {
+        url: "/images/institucional/asamblea-1.webp",
+        width: 1200,
+        height: 630,
+        alt: "Noticias Cámara de Comercio de San Rafael"
+      }
+    ],
+    locale: "es_AR",
+    type: "article"
+  }
+};
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";

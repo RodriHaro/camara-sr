@@ -1,3 +1,31 @@
+export const metadata = {
+  title: "Visión, Misión y Valores | Cámara de Comercio de San Rafael",
+  description: "Descubre la misión, visión y valores que guían a la Cámara de Comercio de San Rafael. Compromiso, confianza y desarrollo para la comunidad empresarial de Mendoza.",
+  keywords: [
+    "visión",
+    "misión",
+    "valores",
+    "cámara de comercio",
+    "san rafael",
+    "institucional"
+  ],
+  openGraph: {
+    title: "Visión, Misión y Valores | Cámara de Comercio de San Rafael",
+    description: "Descubre la misión, visión y valores que guían a la Cámara de Comercio de San Rafael. Compromiso, confianza y desarrollo para la comunidad empresarial de Mendoza.",
+    url: "https://camarasanrafael.com.ar/institucional/vision-mision-valores",
+    siteName: "Cámara de Comercio de San Rafael",
+    images: [
+      {
+        url: "/images/institucional/valores.avif",
+        width: 1200,
+        height: 630,
+        alt: "Visión, misión y valores"
+      }
+    ],
+    locale: "es_AR",
+    type: "article"
+  }
+};
 import SectionHero from '@/components/SectionHero';
 import VisionValores from '@/components/VisionValores';
 import SectionContainer from '@/components/SectionContainer';

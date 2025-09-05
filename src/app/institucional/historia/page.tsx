@@ -1,3 +1,30 @@
+export const metadata = {
+  title: "Historia | Cámara de Comercio de San Rafael",
+  description: "Conoce la historia y evolución de la Cámara de Comercio, Industria y Agropecuaria de San Rafael. Más de un siglo impulsando el desarrollo económico y empresarial de Mendoza.",
+  keywords: [
+    "historia cámara de comercio",
+    "san rafael",
+    "institucional",
+    "desarrollo empresarial",
+    "mendoza"
+  ],
+  openGraph: {
+    title: "Historia | Cámara de Comercio de San Rafael",
+    description: "Conoce la historia y evolución de la Cámara de Comercio, Industria y Agropecuaria de San Rafael. Más de un siglo impulsando el desarrollo económico y empresarial de Mendoza.",
+    url: "https://camarasanrafael.com.ar/institucional/historia",
+    siteName: "Cámara de Comercio de San Rafael",
+    images: [
+      {
+        url: "/images/institucional/hero-historia2.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Historia Cámara de Comercio de San Rafael"
+      }
+    ],
+    locale: "es_AR",
+    type: "article"
+  }
+};
 import SectionHero from '@/components/SectionHero';
 import HistoriaContent from '@/components/HistoriaContent';
 
