@@ -46,9 +46,9 @@ import { PortableText } from '@portabletext/react';
 import { NewsCard } from "../../../components/NewsCard";
 
 interface PageProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
 // Generate static paths for all news articles
@@ -65,7 +65,7 @@ export async function generateStaticParams() {
 }
 
 export default async function NewsDetailPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   const newsData = await getNewsBySlug(slug);
   
   if (!newsData) {
