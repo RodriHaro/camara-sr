@@ -15,21 +15,21 @@ export default function AlmuerzoReconocimientos() {
       empresa: "ROSIN ONG",
       categoria: "Joven Emprendedor 2024",
       descripcion: "Por su innovación y creatividad, generando nuevos negocios",
-      imagen: "/images/afv/rosin-ong.jpg"
+      imagen: "/images/afv/rosin-ong.webp"
     },
     {
       id: 3,
       empresa: "Los Gallegos Deportes",
       categoria: "Trayectoria Empresarial",
       descripcion: "Por su trayectoria y antigüedad en el medio (50 años), expandiéndose en el departamento",
-      imagen: "/images/afv/los-gallegos-deportes.jpg"
+      imagen: "/images/afv/los-gallegos-deportes.webp"
     },
     {
       id: 4,
       empresa: "Mauricio Marín",
       categoria: "Participación Institucional",
       descripcion: "Por su participación activa en la CCIA durante la actual gestión",
-      imagen: "/images/afv/mauricio-marin.jpg"
+      imagen: "/images/afv/mauricio-marin.webp"
     }
   ];
 
@@ -53,26 +53,30 @@ export default function AlmuerzoReconocimientos() {
               key={reconocimiento.id}
               className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
-              {/* Imagen */}
-              <div className="relative h-64">
+              {/* Imagen sin badge */}
+              <div className="relative h-64 mx-6 mt-6 mb-4">
                 <Image
                   src={reconocimiento.imagen}
                   alt={`${reconocimiento.empresa} - ${reconocimiento.categoria}`}
                   fill
-                  className="object-cover"
+                  className={`object-cover rounded-2xl ${
+                    reconocimiento.empresa === "Cereales El Diamante" 
+                      ? "object-[center_30%]" 
+                      : "object-top"
+                  }`}
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block px-3 py-1 bg-[#FF4757] text-white text-sm font-medium rounded-full">
-                    {reconocimiento.categoria}
-                  </span>
-                </div>
               </div>
 
               {/* Contenido */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-[#091b3f] mb-3">
-                  {reconocimiento.empresa}
-                </h3>
+              <div className="p-6 pt-2">
+                <div className="flex flex-col md:flex-row items-center md:items-center gap-3 mb-3">
+                  <h3 className="text-xl font-bold text-[#091b3f] text-center md:text-left w-full md:w-auto">
+                    {reconocimiento.empresa}
+                  </h3>
+                  <span className="inline-block px-3 py-1 bg-[#091b3f] text-white text-xs font-medium rounded-full text-center w-full md:w-auto">
+                    {reconocimiento.categoria}
+                  </span>
+                </div>
                 <p className="text-gray-600 leading-relaxed">
                   {reconocimiento.descripcion}
                 </p>

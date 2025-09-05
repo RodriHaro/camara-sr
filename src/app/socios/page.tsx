@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import SectionHero from '@/components/SectionHero';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import EmpresasAsociadas from '@/components/EmpresasAsociadas';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -45,7 +46,7 @@ const BENEFICIOS: Beneficio[] = [
 ];
 
 export default function SociosPage() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WPP_NUMBER || '5492604123456';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WPP_NUMBER || '5492604404500';
   const whatsappMessage = encodeURIComponent('Hola, quisiera asociarme a la Cámara de Comercio');
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -55,11 +56,12 @@ export default function SociosPage() {
       <main className="min-h-screen">
       {/* Hero Section */}
       <SectionHero
-        title="¿Por qué hacerte socio de la Cámara?"
+        title="Crecé junto a los líderes de San Rafael"
         subtitle="Sumate a nuestra comunidad empresarial y accede a beneficios únicos para hacer crecer tu negocio"
         backgroundImage="/images/institucional/asamblea.avif"
         backgroundImageAlt="Empresarios de San Rafael en asamblea de la Cámara de Comercio"
-        customGradient="bg-gradient-to-r from-slate-950/95 via-blue-950/90 via-blue-900/85 to-black/50"
+        customGradient="bg-gradient-to-r from-slate-900/90 via-blue-900/40 to-black/10"
+        showSociosBadge={true}
       />
 
       {/* Beneficios Section */}
@@ -132,8 +134,11 @@ export default function SociosPage() {
         </div>
       </section>
 
+      {/* Empresas Asociadas */}
+      <EmpresasAsociadas />
+
       {/* CTA Section */}
-      <section className="py-16 lg:py-20 bg-gradient-to-br from-[#091b3f] to-blue-900" aria-labelledby="cta-title">
+      <section className="py-16 lg:py-20 mb-24 lg:mb-32 bg-gradient-to-br from-slate-900 via-[#091b3f] to-slate-800" aria-labelledby="cta-title">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 
             id="cta-title"

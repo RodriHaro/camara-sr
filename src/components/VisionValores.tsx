@@ -20,31 +20,30 @@ interface VisionValoresProps {
 
 export default function VisionValores({ visionCards, valores, imageSrc, imageAlt }: VisionValoresProps) {
   return (
-    <section className="py-20">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '140rem' }}>
+    <section className="py-10 sm:py-16">
+      <div className="mx-auto px-2 sm:px-4 lg:px-8" style={{ maxWidth: '140rem' }}>
         {/* Contenedor azul oscuro con decoraciones de fondo */}
-        <div className="bg-[#0f172a] rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
+  <div className="bg-[#0f172a] rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 text-white relative overflow-hidden">
           {/* Decoración de fondo */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-32 translate-x-32"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full translate-y-24 -translate-x-24"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 sm:w-64 sm:h-64 bg-white opacity-10 rounded-full -translate-y-16 sm:-translate-y-32 translate-x-16 sm:translate-x-32"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 sm:w-48 sm:h-48 bg-white opacity-10 rounded-full translate-y-12 sm:translate-y-24 -translate-x-12 sm:-translate-x-24"></div>
           
           <div className="relative z-10">
             {/* Sección de Visión */}
-            <div className="mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+            <div className="mb-10 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-4 sm:mb-8 pt-4">
                 Nuestra Visión
               </h2>
-              <p className="text-lg text-white/80 text-center mb-16 max-w-4xl mx-auto">
+              <p className="text-base sm:text-lg text-white/80 text-center mb-8 sm:mb-16 max-w-2xl sm:max-w-4xl mx-auto">
                 Nuestra Visión Compartida al Centenario de nuestra Institución es:
               </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                 {visionCards.map((card, index) => (
                   <div 
                     key={index}
-                    className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 lg:p-8 hover:bg-white/15 transition-all duration-300 border border-white/20"
+                    className="bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:bg-white/15 transition-all duration-300 border border-white/20"
                   >
-                    <div className="mb-4 lg:mb-6 text-center">
+                    <div className="mb-3 sm:mb-4 lg:mb-6 text-center">
                       {card.title === "Ser Referentes" ? (
                         <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto text-[#FF4757]">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-full h-full fill-current">
@@ -91,30 +90,29 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
             </div>
 
             {/* Separador decorativo */}
-            <div className="flex justify-center mb-20">
-              <div className="w-24 h-px bg-[#FF4757]"></div>
+            <div className="flex justify-center mb-10 sm:mb-20">
+              <div className="w-16 sm:w-24 h-px bg-[#FF4757]"></div>
             </div>
 
             {/* Sección de Valores */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-16">
                 Nuestros Valores
               </h2>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
                 {/* Lista de Valores */}
-                <div className="space-y-6 relative">
+                <div className="space-y-4 sm:space-y-6 relative w-full">
                   {valores.map((valor, index) => {
                     const parts = valor.text.split(valor.boldWord);
                     return (
-                      <div key={index} className="flex items-start space-x-4 relative">
+                      <div key={index} className="flex items-start space-x-3 sm:space-x-4 relative">
                         {/* Flecha apuntando hacia el valor */}
                         <div className="flex-shrink-0 mt-1 text-[#FF4757]">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
                           </svg>
                         </div>
-                        <p className="text-lg text-white/90 leading-relaxed">
+                        <p className="text-base sm:text-lg text-white/90 leading-relaxed">
                           {parts[0]}
                           <strong className="font-bold text-[#FF4757]">{valor.boldWord}</strong>
                           {parts[1]}
@@ -123,17 +121,16 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                     );
                   })}
                 </div>
-                
                 {/* Imagen */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-lg">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-2">
+                <div className="flex justify-center lg:justify-end w-full mb-6 lg:mb-0">
+                  <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-1 sm:p-2">
                       <Image
                         src={imageSrc}
                         alt={imageAlt}
-                        width={500}
-                        height={400}
-                        className="rounded-2xl w-full h-full object-cover"
+                        width={480}
+                        height={360}
+                        className="rounded-xl sm:rounded-2xl w-full h-auto object-cover"
                         unoptimized
                       />
                     </div>

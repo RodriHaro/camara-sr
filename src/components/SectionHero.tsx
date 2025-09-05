@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { use, useEffect, useState } from 'react';
 
 interface SectionHeroProps {
   title: string;
@@ -6,6 +9,7 @@ interface SectionHeroProps {
   backgroundImage: string;
   backgroundImageAlt?: string;
   showInstitucionalBadge?: boolean;
+  showSociosBadge?: boolean;
   highlightWord?: string;
   customGradient?: string;
 }
@@ -16,6 +20,7 @@ export default function SectionHero({
   backgroundImage, 
   backgroundImageAlt = '',
   showInstitucionalBadge = false,
+  showSociosBadge = false,
   highlightWord = '',
   customGradient
 }: SectionHeroProps) {
@@ -33,6 +38,17 @@ export default function SectionHero({
     );
   };
 
+  // Hook para objectPosition responsive en cliente (más robusto)
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const objectPosition = windowWidth !== null && windowWidth <= 640 ? '64% center' : '60% center';
+
   return (
     <section 
       className="relative h-[90vh] w-full flex items-center overflow-hidden"
@@ -44,15 +60,31 @@ export default function SectionHero({
         alt={backgroundImageAlt}
         fill
         className="object-cover"
-        style={{ 
-          objectPosition: '30% center'
-        }}
+        style={{ objectPosition }}
         priority
         unoptimized
       />
       
       {/* Overlay */}
-      <div className={`absolute inset-0 ${customGradient || 'bg-gradient-to-r from-slate-950/99 via-blue-950/95 to-black/40'}`} />
+      <div
+        className={`absolute inset-0 pointer-events-none`}
+        style={{
+          background: windowWidth !== null && windowWidth <= 640
+            ? 'linear-gradient(to right, rgba(15,23,42,0.93) 0%, rgba(30,41,59,0.85) 60%, rgba(0,0,0,0.28) 100%)'
+            : undefined
+        }}
+      >
+        {windowWidth === null || windowWidth > 640 ? (
+            <div
+              className={customGradient || ''}
+              style={{
+                width: '100%',
+                height: '100%',
+                  background: 'linear-gradient(to right, rgba(15,23,42,1) 0%, rgba(30,41,59,0.88) 50%, rgba(30,41,59,0.32) 75%, rgba(0,0,0,0.10) 100%)'
+              }}
+            />
+        ) : null}
+      </div>
       
       {/* Content */}
       <div className="relative z-10 w-full pl-6 md:pl-46">
@@ -62,6 +94,13 @@ export default function SectionHero({
               <div className="mb-6">
                 <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
                   Institucional
+                </span>
+              </div>
+            )}
+            {showSociosBadge && (
+              <div className="mb-6">
+                <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
+                  Socios
                 </span>
               </div>
             )}

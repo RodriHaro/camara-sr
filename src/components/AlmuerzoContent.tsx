@@ -27,18 +27,27 @@ export default function AlmuerzoContent() {
               <div className="order-2 lg:order-1">
                 <div className="prose prose-lg text-white">
                   <p className="text-xl leading-relaxed mb-6 text-white text-opacity-90">
-                    La Cámara de Comercio, Industria y Agropecuaria de San Rafael desarrolló el jueves 24 de octubre 
-                    su tradicional Almuerzo de las Fuerzas Vivas en el Centro de Congresos y Exposiciones "Alfredo R. Bufano".
+                    Cada año, en octubre, desarrollamos el ya tradicional <strong className="text-white">Almuerzo de las Fuerzas Vivas</strong>, 
+                    evento que nuclea a cerca de <strong className="text-white">700 invitados</strong>, entre ellos destacados empresarios 
+                    nacionales, provinciales y regionales; funcionarios y legisladores de distintos niveles 
+                    gubernamentales, y autoridades militares, policiales y eclesiásticas.
                   </p>
                   <p className="text-lg leading-relaxed mb-6 text-white text-opacity-90">
-                    Participaron cerca de <strong className="text-white">700 personas</strong>, destacándose el gobernador, Lic. <strong className="text-white">Alfredo Cornejo</strong> junto a integrantes 
-                    de su Gabinete y ministros; el intendente, don <strong className="text-white">Omar Chafí Félix</strong>; mandatarios de distintos departamentos 
-                    de la provincia, representantes de los poderes Ejecutivo, Legislativo y Judicial; socios de la institución; 
-                    integrantes de distintas cámaras empresariales; autoridades militares, policiales y eclesiásticas, y periodistas.
+                    Año a año la fecha de realización varía y -en la medida de lo posible- se realiza en dos 
+                    días significativos para la historia de San Rafael: <strong className="text-white">el 2 de octubre</strong> (se conmemora 
+                    el traslado de las autoridades y organismos públicos de la Villa Cabecera -hoy Villa 25 de Mayo- 
+                    a la Colonia Francesa, actual ubicación de la ciudad) o <strong className="text-white">el 24 de octubre</strong>, Día del 
+                    Santo Patrono San Rafael Arcángel.
                   </p>
                   <p className="text-lg leading-relaxed mb-6 text-white text-opacity-90">
-                    El tradicional evento inició con la interpretación del Himno Nacional Argentino por parte de la 
-                    Banda de Música de la Policía de Mendoza <strong className="text-white">"Felipe Rodríguez Servín"</strong>.
+                    A lo largo de la historia, el Almuerzo de las Fuerzas Vivas se ha realizado en distintas 
+                    locaciones del departamento, entre ellas el <strong className="text-white">Predio Ferial Alto del Algarrobal</strong>, 
+                    propiedad de la entidad.
+                  </p>
+                  <p className="text-lg leading-relaxed mb-6 text-white text-opacity-90">
+                    Durante el evento, el Presidente de la institución brinda un discurso en el que plantea 
+                    problemáticas regionales y departamentales, y el Gobernador responde a los pedidos 
+                    con su propia alocución.
                   </p>
                   <div className="p-6 rounded-2xl shadow-lg bg-white/10" style={{backdropFilter: 'blur(2px)'}}>
                     <p className="text-lg font-semibold text-white">

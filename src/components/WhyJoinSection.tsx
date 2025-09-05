@@ -89,14 +89,13 @@ export default function WhyJoinSection() {
 
         {/* Empresas Socias */}
         <div className="mb-16">
-          
-                  {/* Marquees infinitos - 3 filas */}
-        <div className="space-y-4 overflow-hidden">
-          {/* Fila 1 - Marquee */}
-          <div className="overflow-hidden">
-            <div className="flex animate-marquee">
+          {/* Marquees infinitos - 3 filas */}
+          <div className="space-y-4 overflow-hidden max-w-full px-2">
+            {/* Fila 1 - Marquee */}
+            <div className="overflow-hidden max-w-full">
+              <div className="flex animate-marquee max-w-full">
               {memberLogos.slice(0, 11).map((company, index) => (
-                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -115,7 +114,7 @@ export default function WhyJoinSection() {
               ))}
               {/* Duplicar para efecto infinito */}
               {memberLogos.slice(0, 11).map((company, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -135,10 +134,10 @@ export default function WhyJoinSection() {
           </div>
 
           {/* Fila 2 - Marquee (dirección opuesta) */}
-          <div className="overflow-hidden">
-            <div className="flex animate-marquee-reverse">
+            <div className="overflow-hidden max-w-full">
+              <div className="flex animate-marquee-reverse max-w-full">
               {memberLogos.slice(11, 22).map((company, index) => (
-                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -157,7 +156,7 @@ export default function WhyJoinSection() {
               ))}
               {/* Duplicar para efecto infinito */}
               {memberLogos.slice(11, 22).map((company, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -176,10 +175,10 @@ export default function WhyJoinSection() {
           </div>
 
           {/* Fila 3 - Marquee */}
-          <div className="overflow-hidden">
-            <div className="flex animate-marquee">
+            <div className="overflow-hidden max-w-full">
+              <div className="flex animate-marquee max-w-full">
               {memberLogos.slice(22, 33).map((company, index) => (
-                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={index} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -196,7 +195,7 @@ export default function WhyJoinSection() {
               ))}
               {/* Duplicar para efecto infinito */}
               {memberLogos.slice(22, 33).map((company, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32">
+                <div key={`duplicate-${index}`} className="flex-shrink-0 mx-4 rounded-lg p-4 transition-all duration-300 flex items-center justify-center h-32 max-w-[110px] sm:max-w-none">
                   <Link href={company.url} target="_blank" rel="noopener noreferrer">
                     <div className="w-24 h-24 flex items-center justify-center bg-white rounded-full shadow-lg border border-[#091b3f] p-0.2">
                       <Image
@@ -225,27 +224,41 @@ export default function WhyJoinSection() {
 
 
         {/* Call to Action */}
-        <div className="text-center px-8">
-          <h3 className="text-2xl md:text-3xl font-bold text-[#091b3f] mb-6">
-            ¿Listo para formar parte?
-          </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Únete a la comunidad empresarial más importante de San Rafael y potencia el crecimiento de tu empresa
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contacto"
-              className="bg-[#091b3f] text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-200 inline-flex items-center justify-center"
-            >
-              Quiero ser socio
-              <span className="ml-2">→</span>
-            </Link>
-            <Link 
-              href="/beneficios"
-              className="border-2 border-[#091b3f] text-[#091b3f] px-8 py-4 rounded-lg font-semibold hover:bg-[#091b3f] hover:text-white transition-all duration-200 inline-flex items-center justify-center"
-            >
-              Ver todos los beneficios
-            </Link>
+        <div className="relative rounded-3xl mx-8 px-8 py-20 md:py-28 text-center overflow-hidden">
+          {/* Imagen de fondo */}
+          <div className="absolute inset-0">
+            <img 
+              src="/images/institucional/hero-historia2.jpg"
+              alt="Imagen histórica representativa de la Cámara de Comercio de San Rafael"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 70%' }}
+            />
+            {/* Overlay para legibilidad */}
+            <div className="absolute inset-0 bg-[#091b3f]/80"></div>
+          </div>
+          {/* Rectángulos decorativos reposicionados */}
+          <div className="relative z-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+              ¿Listo para formar parte?
+            </h3>
+            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              Únete a la comunidad empresarial más importante de San Rafael y potencia el crecimiento de tu empresa
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/contacto"
+                className="bg-[#FF4757] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#e13c4a] transition-colors duration-200 inline-flex items-center justify-center"
+              >
+                Quiero ser socio
+                <span className="ml-2">→</span>
+              </Link>
+              <Link 
+                href="/beneficios"
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:border-[#FF4757] hover:text-[#FF4757] transition-all duration-200 inline-flex items-center justify-center"
+              >
+                Ver todos los beneficios
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import AlmuerzoReconocimientos from "@/components/AlmuerzoReconocimientos";
 import AlmuerzoMomentosHistoricos from "@/components/AlmuerzoMomentosHistoricos";
 import AlmuerzoDiscurso from "@/components/AlmuerzoDiscurso";
 import AlmuerzoGaleria from "@/components/AlmuerzoGaleria";
+import AlmuerzoTransmision from "@/components/AlmuerzoTransmision";
 
 export default function AlmuerzoFuerzasVivasPage() {
   return (
@@ -28,6 +29,9 @@ export default function AlmuerzoFuerzasVivasPage() {
       
       {/* Galería de fotos */}
       <AlmuerzoGaleria />
+      
+      {/* Transmisión en vivo */}
+      <AlmuerzoTransmision />
       
       <Footer />
     </>

@@ -68,7 +68,7 @@ export default function Header() {
       aria-label="Cámara de Comercio de San Rafael - Navegación principal"
     >
       <nav
-        className="mx-auto flex items-center justify-between px-4 py-6"
+  className="mx-auto flex items-center justify-between px-4 py-7"
         style={{ maxWidth: '100rem' }}
         role="navigation"
         aria-label="Menú principal"
@@ -87,9 +87,9 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse" role="menubar">
+  {/* Desktop Menu */}
+  <div className="hidden xl:flex xl:w-auto xl:order-1 items-center">
+          <ul className="flex flex-col font-medium md:flex-row md:space-x-8 rtl:space-x-reverse items-center m-0 p-0" role="menubar">
             {NAV_ITEMS.map((item) => (
               <li key={item.name} role="none">
                 {item.hasDropdown ? (
@@ -157,12 +157,26 @@ export default function Header() {
                 )}
               </li>
             ))}
+            {/* Botón Contactanos Desktop */}
+            <li className="ml-2 flex items-center" style={{height: '100%'}} role="none">
+              <a
+                href="https://wa.me/5492604404500"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#FF4757] hover:bg-[#e13c4a] text-white font-bold px-5 py-2 rounded-lg shadow-md transition-colors duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FF4757] h-full"
+                role="menuitem"
+                aria-label="Contactanos por WhatsApp"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0012 0C5.37 0 0 5.37 0 12a11.93 11.93 0 001.64 6L0 24l6.37-1.67A12.09 12.09 0 0012 24c6.63 0 12-5.37 12-12a11.93 11.93 0 00-3.48-8.52zM12 22a9.93 9.93 0 01-5.1-1.4l-.36-.21-3.78 1 1-3.68-.24-.38A9.94 9.94 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.2-7.6c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-.97 2.43.03 1.43 1.03 2.81 1.18 3 .15.19 2.03 3.1 4.93 4.22.69.3 1.23.48 1.65.61.69.22 1.32.19 1.81.12.55-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z"/></svg>
+                Contactanos
+              </a>
+            </li>
           </ul>
         </div>
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden flex items-center text-white focus:outline-none focus:ring-2 focus:ring-[#FF4757]"
+          className="xl:hidden flex items-center text-white focus:outline-none focus:ring-2 focus:ring-[#FF4757]"
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
@@ -189,7 +203,7 @@ export default function Header() {
         {menuOpen && (
           <div
             id="mobile-menu"
-            className="absolute top-full left-0 w-full bg-[#091b3f] md:hidden z-40"
+            className="absolute top-full left-0 w-full bg-[#091b3f] xl:hidden z-40"
           >
             <ul className="flex flex-col p-4 space-y-2" role="menu">
               {NAV_ITEMS.map((item) => (
@@ -231,6 +245,20 @@ export default function Header() {
                 </li>
               ))}
             </ul>
+            {/* Botón Contactanos Mobile */}
+            <li className="mt-8 mb-10" role="none">
+              <a
+                href="https://wa.me/5492604404500"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#FF4757] hover:bg-[#e13c4a] text-white font-bold py-3 px-5 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FF4757]"
+                role="menuitem"
+                aria-label="Contactanos por WhatsApp"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0012 0C5.37 0 0 5.37 0 12a11.93 11.93 0 001.64 6L0 24l6.37-1.67A12.09 12.09 0 0012 24c6.63 0 12-5.37 12-12a11.93 11.93 0 00-3.48-8.52zM12 22a9.93 9.93 0 01-5.1-1.4l-.36-.21-3.78 1 1-3.68-.24-.38A9.94 9.94 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.2-7.6c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.28-1 1-.97 2.43.03 1.43 1.03 2.81 1.18 3 .15.19 2.03 3.1 4.93 4.22.69.3 1.23.48 1.65.61.69.22 1.32.19 1.81.12.55-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z"/></svg>
+                Contactanos
+              </a>
+            </li>
           </div>
         )}
       </nav>

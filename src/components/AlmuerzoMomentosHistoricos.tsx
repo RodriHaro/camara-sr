@@ -8,7 +8,7 @@ export default function AlmuerzoMomentosHistoricos() {
       titulo: "Federación de Cámaras del Sur",
       subtitulo: "Un hecho histórico para la región",
       descripcion: "Gabriel Brega, Ramiro Labay (Cámara de General Alvear) y Víctor Arce (Cámara de Malargüe) firmaron una Carta de Intención para la conformación de la Federación de Cámaras del Sur. Es la primera vez que las tres instituciones gremiales empresarias de la región trabajan mancomunadamente.",
-      imagen: "/images/afv/federacion-camaras-sur.jpg",
+      imagen: "/images/afv/federacion-camaras-sur.webp",
       personajes: ["Gabriel Brega", "Ramiro Labay", "Víctor Arce"]
     },
     {
@@ -16,7 +16,7 @@ export default function AlmuerzoMomentosHistoricos() {
       titulo: "Reconocimiento de Propiedad",
       subtitulo: "Formalización del terreno de la Aduana",
       descripcion: "Omar Félix, Gabriel Brega y Gerardo Garino (Presidente Fundación Ce.D.E.) firmaron el Acta de Reconocimiento de Propiedad Titular del terreno donde se emplazan las instalaciones de la Fundación en el Parque Industrial, avance significativo para el nodo logístico del oasis sur.",
-      imagen: "/images/afv/reconocimiento-propiedad.jpg",
+      imagen: "/images/afv/reconocimiento-propiedad.webp",
       personajes: ["Omar Félix", "Gabriel Brega", "Gerardo Garino"]
     },
     {
@@ -24,7 +24,7 @@ export default function AlmuerzoMomentosHistoricos() {
       titulo: "Reconocimiento Diario Los Andes",
       subtitulo: "Día del Santo Patrono San Rafael Arcángel",
       descripcion: "Autoridades del prestigioso medio entregaron una tapa impresa de un ejemplar de 1887 a la Municipalidad de San Rafael y la CCIA. Un momento emotivo que conecta la historia con el presente.",
-      imagen: "/images/afv/reconocimiento-los-andes.jpg",
+      imagen: "/images/afv/reconocimiento-los-andes.webp",
       personajes: ["Pablo Dellazoppa", "Florencia Afranllie", "Omar Félix", "Gabriel Brega"]
     }
   ];

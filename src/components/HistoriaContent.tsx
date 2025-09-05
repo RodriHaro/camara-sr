@@ -12,38 +12,37 @@ interface HistoriaContentProps {
 
 export default function HistoriaContent({ historyBlocks }: HistoriaContentProps) {
   return (
-    <section className="py-20">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '140rem' }}>
+    <section className="py-10 sm:py-16">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8" style={{ maxWidth: '140rem' }}>
         {/* Contenedor azul único con título, subtítulo y bloques de historia */}
-        <div className="bg-[#0f172a] rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
+        <div className="bg-[#0f172a] rounded-3xl p-4 sm:p-8 md:p-12 lg:p-16 text-white relative overflow-hidden">
           {/* Decoración de fondo */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-y-32 translate-x-32"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full translate-y-24 -translate-x-24"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 sm:w-64 sm:h-64 bg-white opacity-5 rounded-full -translate-y-16 sm:-translate-y-32 translate-x-16 sm:translate-x-32"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-48 sm:h-48 bg-white opacity-5 rounded-full translate-y-12 sm:translate-y-24 -translate-x-12 sm:-translate-x-24"></div>
           
           <div className="relative z-10">
             {/* Bloques de historia */}
-            <div className="space-y-32">
+            <div className="space-y-16 sm:space-y-24 md:space-y-32">
               {historyBlocks.map((block, index) => (
                 <div key={index} className={
                   index === 0 
-                    ? "grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto"
-                    : "grid md:grid-cols-2 gap-16 items-start max-w-7xl mx-auto"
+                    ? "grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center max-w-3xl md:max-w-7xl mx-auto"
+                    : "grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start max-w-3xl md:max-w-7xl mx-auto"
                 }>
                   
                   {index === 0 ? (
                     <>
                       {/* Primer bloque: Solo texto - Título centrado */}
-                      <div className="col-span-2 text-center mb-2">
-                        <h4 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                      <div className="col-span-1 md:col-span-2 text-center mb-2 px-2 pt-6 md:pt-10">
+                        <h4 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
                           {block.title}
                         </h4>
                       </div>
-                      
                       {/* Primer bloque: Solo texto - Descripción centrada debajo del título */}
-                      <div className="col-span-2 text-center">
-                        <div className="text-white text-opacity-90 leading-relaxed max-w-4xl mx-auto">
+                      <div className="col-span-1 md:col-span-2 text-center px-2">
+                        <div className="text-white text-opacity-90 leading-relaxed max-w-full md:max-w-4xl mx-auto">
                           <div 
-                            className="text-lg"
+                            className="text-base sm:text-lg"
                             dangerouslySetInnerHTML={{ __html: block.description }}
                           />
                         </div>
@@ -52,11 +51,11 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                   ) : index === 1 ? (
                     <>
                       {/* Segundo bloque: Título sobre imagen vertical izquierda */}
-                      <div className="relative flex flex-col items-center justify-start md:order-1 self-start">
-                        <h4 className="text-4xl md:text-5xl text-white text-center mb-4">
+                      <div className="relative flex flex-col items-center justify-start md:order-1 self-start px-2">
+                        <h4 className="text-2xl sm:text-3xl md:text-5xl text-white text-center mb-4">
                           <span className="font-bold">Fundación</span> <span className="font-normal">y</span> <span className="font-bold">Origen</span>
                         </h4>
-                        <div className="w-full max-w-2xl relative">
+                        <div className="w-full max-w-full md:max-w-2xl relative">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
                               src={block.imageSrc}
@@ -72,7 +71,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       
                       {/* Imagen horizontal derecha con descripción debajo */}
                       <div className="md:order-2">
-                        <div className="w-full max-w-2xl mb-6">
+                        <div className="w-full max-w-full md:max-w-2xl mb-6">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
                               src="/images/institucional/camara-historia-2.webp"
@@ -114,10 +113,10 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       </div>
                       
                       {/* Tercer bloque: Imagen y texto */}
-                      <div className={`flex items-center justify-center ${
+                      <div className={`flex flex-col items-center justify-center ${
                         block.imageFirst ? 'md:order-1' : 'md:order-2'
-                      }`}>
-                        <div className="w-full max-w-4xl">
+                      } px-2`}>
+                        <div className="w-full max-w-full md:max-w-4xl">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
                               src={block.imageSrc}
@@ -172,7 +171,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       </div>
                       
                       {/* Cuarto bloque: Descripción debajo de la imagen */}
-                      <div className="col-span-2 text-center">
+                      <div className="col-span-2 text-center pb-8 md:pb-12">
                         <div className="text-white text-opacity-90 leading-relaxed max-w-4xl mx-auto">
                           <div 
                             className="text-lg"
@@ -184,10 +183,10 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                   ) : (
                     <>
                       {/* Otros bloques: Imagen y texto */}
-                      <div className={`flex items-center justify-center ${
+                      <div className={`flex flex-col items-center justify-center ${
                         block.imageFirst ? 'md:order-1' : 'md:order-2'
-                      }`}>
-                        <div className="w-full max-w-2xl">
+                      } px-2`}>
+                        <div className="w-full max-w-full md:max-w-2xl">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
                               src={block.imageSrc}

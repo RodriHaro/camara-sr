@@ -18,9 +18,11 @@ export default async function Home() {
   const featuredNews = homeData?.featuredNews || []
 
   return (
-    <>
+    <div className="overflow-x-hidden w-full">
       <Header />
-      <HeroSlider slides={heroSlides} />
+      <div className="overflow-x-hidden w-full">
+        <HeroSlider slides={heroSlides} />
+      </div>
       <LatestNews featuredNews={featuredNews} />
       
       {/* Sección de Navegación Rápida Institucional */}
@@ -114,9 +116,151 @@ export default async function Home() {
         </div>
       </section>
       
+      {/* Sección de Eventos */}
+      <section className="py-16 bg-[#091b3f]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Contenido de texto a la izquierda */}
+            <div className="lg:col-span-2 space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  Almuerzo de las Fuerzas Vivas
+                </h2>
+              </div>
+              <div className="space-y-6">
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Nuestro encuentro anual más importante, donde reunimos a los principales líderes empresariales, políticos e institucionales de San Rafael para fortalecer los lazos y promover el desarrollo de nuestra región.
+                </p>
+                <Link 
+                  href="/almuerzo-fuerzas-vivas" 
+                  className="inline-flex items-center bg-white text-[#091b3f] px-8 py-4 rounded-lg font-semibold hover:bg-[#FF4757] hover:text-white transition-colors text-lg mx-auto lg:mx-0"
+                >
+                  Conocer Más sobre el Evento
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Imagen más grande a la derecha */}
+            <div className="lg:col-span-3 relative">
+              <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/images/afv/afv-hero.jpg" 
+                  alt="Almuerzo de las Fuerzas Vivas"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Sección de Empresas Asociadas */}
       <WhyJoinSection />
+      
+      {/* Sección de Contacto */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4">
+              Contactanos
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Estamos aquí para ayudarte. Encuentra toda nuestra información de contacto y ubicación
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Información de Contacto */}
+            <div className="space-y-8">
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-[#091b3f] mb-6">Información de Contacto</h3>
+                
+                {/* Dirección */}
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#091b3f] mb-1">Dirección</h4>
+                    <p className="text-gray-600">
+                      Av. El Libertador 78<br />
+                      San Rafael, Mendoza<br />
+                      Argentina (5600)
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Teléfonos */}
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#091b3f] mb-1">WhatsApp</h4>
+                    <p className="text-gray-600">
+                      <a 
+                        href="https://wa.me/5492604404500" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-[#FF4757] transition-colors duration-200 font-medium"
+                      >
+                        2604 404500
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Email */}
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#091b3f] mb-1">Emails</h4>
+                    <p className="text-gray-600">
+                      <a href="mailto:info@camarasanrafael.com.ar" className="hover:text-[#091b3f] transition-colors">
+                        contacto@camarasanrafael.com.ar<br />
+                        prensa@camarasanrafael.com.ar<br />
+                        administracion@camarasanrafael.com.ar
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            
+            {/* Google Maps */}
+            <div className="h-96 lg:h-full min-h-[400px] w-full max-w-7xl mx-auto px-4 sm:px-8">
+              <div className="bg-gray-100 rounded-2xl h-full flex items-center justify-center overflow-hidden w-full max-w-7xl mx-auto">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.8855442891597!2d-68.3375!3d-34.6175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9679a81b9f8b5c6d%3A0x4c8f5c5f8b5c5c5c!2sAv.%20El%20Libertador%2078%2C%20M5600%20San%20Rafael%2C%20Mendoza!5e0!3m2!1ses!2sar!4v1693852800000!5m2!1ses!2sar"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-2xl w-full h-full"
+                  title="Ubicación de la Cámara de Comercio de San Rafael"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
-    </>
+    </div>
   );
 }
