@@ -1,8 +1,9 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { Beneficio } from "@/types/beneficio";
 import { urlForImage } from "@/lib/sanity.client";
+import gsap from "gsap";
 
 interface BeneficiosGridProps {
   selectedRubro: string;
@@ -13,8 +14,49 @@ interface BeneficioCardProps {
   beneficio: Beneficio;
 }
 
+function useInView(ref: React.RefObject<HTMLDivElement | null>, options = { threshold: 0.2 }) {
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      options
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options]);
+  return inView;
+}
+
 function BeneficioCard({ beneficio }: BeneficioCardProps) {
   const logoUrl = beneficio.logo ? urlForImage(beneficio.logo).url() : null;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef);
+
+  useEffect(() => {
+    if (inView && cardRef.current && !cardRef.current.classList.contains('beneficio-animado')) {
+      gsap.fromTo(
+        cardRef.current,
+        { x: -60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          onComplete: () => cardRef.current?.classList.add('beneficio-animado')
+        }
+      );
+    }
+    // Si ya animó, aseguramos que quede visible
+    if (cardRef.current?.classList.contains('beneficio-animado')) {
+      gsap.set(cardRef.current, { x: 0, opacity: 1 });
+    }
+  }, [inView]);
 
   // Función para verificar si el beneficio es redundante con el rubro
   const shouldShowBeneficio = () => {
@@ -37,7 +79,11 @@ function BeneficioCard({ beneficio }: BeneficioCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
+    <div
+      ref={cardRef}
+      className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200${inView || cardRef.current?.classList.contains('beneficio-animado') ? '' : ' opacity-0'}`}
+      style={inView || cardRef.current?.classList.contains('beneficio-animado') ? {} : { visibility: 'hidden' }}
+    >
       {/* Logo */}
       <div className="h-48 bg-gray-50 flex items-center justify-center p-6">
         {logoUrl ? (

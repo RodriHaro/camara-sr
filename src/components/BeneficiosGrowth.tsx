@@ -1,6 +1,22 @@
+"use client";
+
 import Image from 'next/image';
+import { useEffect } from "react";
+import gsap from "gsap";
+import { useScrollReveal } from './useScrollReveal';
 
 export default function BeneficiosGrowth() {
+  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  useEffect(() => {
+    if (titleRef.current && titleVisible) {
+      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
+    }
+    if (subtitleRef.current && subtitleVisible) {
+      gsap.fromTo(subtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' });
+    }
+  }, [titleVisible, subtitleVisible]);
+
   return (
     <section className="py-10 sm:py-16">
       <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8" style={{ maxWidth: '100rem' }}>
@@ -13,10 +29,10 @@ export default function BeneficiosGrowth() {
           <div className="relative z-10">
             {/* Título y subtítulo */}
             <div className="text-center mb-8 sm:mb-12 md:mb-16 pt-6 sm:pt-10">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white">
+              <h3 ref={titleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white">
                 Impulsando el crecimiento empresarial
               </h3>
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full md:max-w-4xl mx-auto text-white text-opacity-90">
+              <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full md:max-w-4xl mx-auto text-white text-opacity-90">
                 <strong>+650 empresas</strong> de San Rafael confían en nosotros para crecer, innovar y 
                 liderar el desarrollo económico regional. Somos la voz del sector empresarial ante 
                 instituciones y gobiernos.

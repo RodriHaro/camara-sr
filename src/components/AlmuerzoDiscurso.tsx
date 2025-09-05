@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { useScrollReveal } from "./useScrollReveal";
 import Image from "next/image";
 
 export default function AlmuerzoDiscurso() {
@@ -67,17 +69,88 @@ export default function AlmuerzoDiscurso() {
     }
   ];
 
+  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  const [imgRef, imgVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
+  const accordionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [accordionVisible, setAccordionVisible] = useState<boolean[]>(Array(discursoSecciones.length).fill(false));
+
+  useEffect(() => {
+    if (titleRef.current && titleVisible) {
+      gsap.fromTo(
+        titleRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+      );
+    }
+    if (subtitleRef.current && subtitleVisible) {
+      gsap.fromTo(
+        subtitleRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
+      );
+    }
+    if (imgRef.current && imgVisible) {
+      gsap.fromTo(
+        imgRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
+      );
+    }
+  }, [titleVisible, subtitleVisible, imgVisible]);
+
+  // Accordion animation on scroll
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    discursoSecciones.forEach((_, idx) => {
+      if (!accordionRefs.current[idx]) return;
+      const node = accordionRefs.current[idx];
+      const observer = new window.IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setAccordionVisible((prev) => {
+              const updated = [...prev];
+              updated[idx] = true;
+              return updated;
+            });
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(node!);
+      observers.push(observer);
+    });
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
   return (
     <section className="py-16 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado con imagen */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h2 className="text-3xl md:text-4xl text-[#091b3f] mb-6">
+            <h2
+              ref={titleRef}
+              className="text-3xl md:text-4xl text-[#091b3f] mb-6"
+              style={{
+                opacity: titleVisible ? 1 : 0,
+                visibility: titleVisible ? 'visible' : 'hidden',
+                transition: 'opacity 0.2s, visibility 0.2s',
+              }}
+            >
               <span className="font-normal">Discurso </span>
               <span className="font-bold">Presidencial</span>
             </h2>
-            <p className="text-xl text-gray-600 mb-6">
+            <p
+              ref={subtitleRef}
+              className="text-xl text-gray-600 mb-6"
+              style={{
+                opacity: subtitleVisible ? 1 : 0,
+                visibility: subtitleVisible ? 'visible' : 'hidden',
+                transition: 'opacity 0.2s, visibility 0.2s',
+              }}
+            >
               Gabriel Brega pronunció su primer discurso anual como presidente de la CCIA, 
               abordando los principales desafíos y proyectos para el desarrollo de San Rafael.
             </p>
@@ -87,7 +160,15 @@ export default function AlmuerzoDiscurso() {
             </div>
           </div>
           
-          <div className="relative h-80 rounded-3xl overflow-hidden shadow-lg">
+          <div
+            ref={imgRef}
+            className="relative h-80 rounded-3xl overflow-hidden shadow-lg"
+            style={{
+              opacity: imgVisible ? 1 : 0,
+              visibility: imgVisible ? 'visible' : 'hidden',
+              transition: 'opacity 0.2s, visibility 0.2s',
+            }}
+          >
             <Image
               src="/images/afv/gabriel-brega-discurso.webp"
               alt="Gabriel Brega durante su discurso presidencial"
@@ -99,10 +180,17 @@ export default function AlmuerzoDiscurso() {
 
         {/* Acordeón del discurso */}
         <div className="space-y-4">
-          {discursoSecciones.map((seccion) => (
+          {discursoSecciones.map((seccion, idx) => (
             <div
               key={seccion.id}
+              ref={el => { accordionRefs.current[idx] = el; }}
               className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+              style={{
+                opacity: accordionVisible[idx] ? 1 : 0,
+                visibility: accordionVisible[idx] ? 'visible' : 'hidden',
+                transition: 'opacity 0.2s, visibility 0.2s',
+                transform: accordionVisible[idx] ? 'none' : 'translateY(40px)',
+              }}
             >
               {/* Header del acordeón */}
               <button

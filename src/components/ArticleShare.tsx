@@ -1,15 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ArticleShareProps {
   title: string;
-  url: string;
+  url?: string;
 }
 
 // Componente para compartir artículos en redes sociales
 export const ArticleShare: React.FC<ArticleShareProps> = ({ title, url }) => {
+  const [shareUrl, setShareUrl] = useState(url || "");
+
+  useEffect(() => {
+    if (!url && typeof window !== "undefined") {
+      setShareUrl(window.location.href);
+    }
+  }, [url]);
+
   const encodedTitle = encodeURIComponent(title);
-  const encodedUrl = encodeURIComponent(url);
+  const encodedUrl = encodeURIComponent(shareUrl);
 
   const iconSize = 29;
   const xIconSize = 24;

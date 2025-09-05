@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
+import gsap from "gsap";
+import { useScrollReveal } from "./useScrollReveal";
+import { AnimatedCardImage } from "./AnimatedCardImage";
 
 export default function EmpresasAsociadas() {
   // Logos de empresas socias con sus enlaces
@@ -71,29 +74,63 @@ export default function EmpresasAsociadas() {
     setCurrentSlide(index);
   };
 
+  // Animaciones para header
+  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+
+  useEffect(() => {
+    if (titleRef.current && titleVisible) {
+      gsap.fromTo(
+        titleRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }
+      );
+    }
+    if (subtitleRef.current && subtitleVisible) {
+      gsap.fromTo(
+        subtitleRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' }
+      );
+    }
+  }, [titleVisible, subtitleVisible]);
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4">
+          <h2
+            ref={titleRef}
+            className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4"
+            style={{
+              opacity: titleVisible ? 1 : 0,
+              visibility: titleVisible ? 'visible' : 'hidden',
+              transition: 'opacity 0.2s, visibility 0.2s',
+            }}
+          >
             Únete a más de 650 empresas que ya confían en nosotros
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p
+            ref={subtitleRef}
+            className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            style={{
+              opacity: subtitleVisible ? 1 : 0,
+              visibility: subtitleVisible ? 'visible' : 'hidden',
+              transition: 'opacity 0.2s, visibility 0.2s',
+            }}
+          >
             Forma parte de la comunidad empresarial más importante de San Rafael
           </p>
         </div>
 
         {/* Empresas destacadas - Carrusel interactivo */}
         <div className="mb-12">
-          
           {/* Carrusel container */}
           <div className="relative bg-gray-50 rounded-2xl p-8">
-            
             {/* Slides container */}
             <div className="overflow-hidden rounded-xl">
-              <div 
+              <div
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
@@ -101,7 +138,8 @@ export default function EmpresasAsociadas() {
                   <div key={slideIndex} className="w-full flex-shrink-0">
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
                       {getSlideItems(slideIndex).map((company, index) => (
-                          <div key={index} className="group">
+                        <AnimatedCardImage key={index} direction="up" delay={0.05 * index}>
+                          <div className="group">
                             <Link href={company.url} target="_blank" rel="noopener noreferrer">
                               <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-[#091b3f]/20 h-32 flex items-center justify-center">
                                 <Image
@@ -115,8 +153,8 @@ export default function EmpresasAsociadas() {
                               </div>
                             </Link>
                           </div>
-                        ))
-                      }
+                        </AnimatedCardImage>
+                      ))}
                     </div>
                   </div>
                 ))}

@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { use, useEffect, useState } from 'react';
+import { use, useEffect, useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useScrollReveal } from './useScrollReveal';
 
 interface SectionHeroProps {
   title: string;
@@ -49,6 +51,18 @@ export default function SectionHero({
 
   const objectPosition = windowWidth !== null && windowWidth <= 640 ? '64% center' : '60% center';
 
+  // Animación GSAP
+  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  useEffect(() => {
+    if (titleRef.current && titleVisible) {
+      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out' });
+    }
+    if (subtitleRef.current && subtitleVisible) {
+      gsap.fromTo(subtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: 'power3.out' });
+    }
+  }, [title, subtitle, titleVisible, subtitleVisible]);
+
   return (
     <section 
       className="relative h-[90vh] w-full flex items-center overflow-hidden"
@@ -64,7 +78,6 @@ export default function SectionHero({
         priority
         unoptimized
       />
-      
       {/* Overlay */}
       <div
         className={`absolute inset-0 pointer-events-none`}
@@ -85,7 +98,6 @@ export default function SectionHero({
             />
         ) : null}
       </div>
-      
       {/* Content */}
       <div className="relative z-10 w-full pl-6 md:pl-46">
         <div className="max-w-7xl">
@@ -104,16 +116,15 @@ export default function SectionHero({
                 </span>
               </div>
             )}
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 ref={titleRef} className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               {renderTitle(title, highlightWord)}
             </h1>
-            <p className="text-xl text-white/90 leading-relaxed">
+            <p ref={subtitleRef} className="text-xl text-white/90 leading-relaxed">
               {subtitle}
             </p>
           </div>
         </div>
       </div>
-      
       {/* Flecha animada hacia abajo */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
         <div className="animate-bounce">

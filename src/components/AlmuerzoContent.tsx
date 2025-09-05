@@ -1,7 +1,30 @@
 "use client";
 import Image from "next/image";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { useScrollReveal } from "./useScrollReveal";
 
 export default function AlmuerzoContent() {
+  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
+
+  useEffect(() => {
+    if (titleRef.current && titleVisible) {
+      gsap.fromTo(
+        titleRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+      );
+    }
+    if (textRef.current && textVisible) {
+      gsap.fromTo(
+        textRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
+      );
+    }
+  }, [titleVisible, textVisible]);
+
   return (
     <section className="py-12">
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '100rem' }}>
@@ -15,7 +38,15 @@ export default function AlmuerzoContent() {
           <div className="relative z-10">
             {/* Título centrado */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
+              <h2
+                ref={titleRef}
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white"
+                style={{
+                  opacity: titleVisible ? 1 : 0,
+                  visibility: titleVisible ? 'visible' : 'hidden',
+                  transition: 'opacity 0.2s, visibility 0.2s',
+                }}
+              >
                 <span className="font-normal">Tradicional </span>
                 <span className="font-bold">Almuerzo de las Fuerzas Vivas</span>
               </h2>
@@ -25,7 +56,15 @@ export default function AlmuerzoContent() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Texto */}
               <div className="order-2 lg:order-1">
-                <div className="prose prose-lg text-white">
+                <div
+                  ref={textRef}
+                  className="prose prose-lg text-white"
+                  style={{
+                    opacity: textVisible ? 1 : 0,
+                    visibility: textVisible ? 'visible' : 'hidden',
+                    transition: 'opacity 0.2s, visibility 0.2s',
+                  }}
+                >
                   <p className="text-xl leading-relaxed mb-6 text-white text-opacity-90">
                     Cada año, en octubre, desarrollamos el ya tradicional <strong className="text-white">Almuerzo de las Fuerzas Vivas</strong>, 
                     evento que nuclea a cerca de <strong className="text-white">700 invitados</strong>, entre ellos destacados empresarios 

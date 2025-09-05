@@ -1,7 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
+import gsap from "gsap";
+import { useScrollReveal } from './useScrollReveal';
+import { client } from "@/lib/sanity.client";
 
 export default function WhyJoinSection() {
+  // Animaciones GSAP
+  const [sectionTitleRef, sectionTitleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [sectionSubtitleRef, sectionSubtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  const [ctaTitleRef, ctaTitleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
+  const [ctaSubtitleRef, ctaSubtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
+  useEffect(() => {
+    if (sectionTitleRef.current && sectionTitleVisible) {
+      gsap.fromTo(sectionTitleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
+    }
+    if (sectionSubtitleRef.current && sectionSubtitleVisible) {
+      gsap.fromTo(sectionSubtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' });
+    }
+    if (ctaTitleRef.current && ctaTitleVisible) {
+      gsap.fromTo(ctaTitleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: 'power3.out' });
+    }
+    if (ctaSubtitleRef.current && ctaSubtitleVisible) {
+      gsap.fromTo(ctaSubtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.8, ease: 'power3.out' });
+    }
+  }, [sectionTitleVisible, sectionSubtitleVisible, ctaTitleVisible, ctaSubtitleVisible]);
   // Logos de empresas socias con sus enlaces
   const memberLogos = [
     { name: "Hexámetro", logo: "/images/socios/hexametro.webp", url: "https://hexametro.com.ar/" },
@@ -78,10 +103,10 @@ export default function WhyJoinSection() {
         
         {/* Header */}
         <div className="text-center mb-16 px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#091b3f] mb-6">
+          <h2 ref={sectionTitleRef} className="text-4xl md:text-5xl font-bold text-[#091b3f] mb-6">
             Empresas Asociadas
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p ref={sectionSubtitleRef} className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Únete a más de <strong>650 empresas</strong> que confían en nosotros para crecer, 
             innovar y liderar el desarrollo económico de San Rafael
           </p>
@@ -238,10 +263,10 @@ export default function WhyJoinSection() {
           </div>
           {/* Rectángulos decorativos reposicionados */}
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+            <h3 ref={ctaTitleRef} className="text-2xl md:text-3xl font-bold text-white mb-6">
               ¿Listo para formar parte?
             </h3>
-            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            <p ref={ctaSubtitleRef} className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
               Únete a la comunidad empresarial más importante de San Rafael y potencia el crecimiento de tu empresa
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
