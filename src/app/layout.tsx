@@ -26,6 +26,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico" />
+        <link rel="manifest" href="/images/favicon/site.webmanifest" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
