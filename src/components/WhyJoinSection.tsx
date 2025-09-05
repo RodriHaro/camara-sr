@@ -228,10 +228,10 @@ export default function WhyJoinSection() {
           {/* Imagen de fondo */}
           <div className="absolute inset-0">
             <img 
-              src="/images/institucional/hero-historia2.jpg"
+              src="/images/heros/cta.avif"
               alt="Imagen histórica representativa de la Cámara de Comercio de San Rafael"
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 70%' }}
+              style={{ objectPosition: 'center 60%' }}
             />
             {/* Overlay para legibilidad */}
             <div className="absolute inset-0 bg-[#091b3f]/80"></div>
