@@ -1,21 +1,12 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from './useScrollReveal';
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
+import { AnimatedImage } from './AnimatedImage';
 
 export default function BeneficiosGrowth() {
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(subtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' });
-    }
-  }, [titleVisible, subtitleVisible]);
 
   return (
     <section className="py-10 sm:py-16">
@@ -29,20 +20,35 @@ export default function BeneficiosGrowth() {
           <div className="relative z-10">
             {/* Título y subtítulo */}
             <div className="text-center mb-8 sm:mb-12 md:mb-16 pt-6 sm:pt-10">
-              <h3 ref={titleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white">
-                Impulsando el crecimiento empresarial
-              </h3>
-              <p ref={subtitleRef} className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full md:max-w-4xl mx-auto text-white text-opacity-90">
+              <AnimatedTitle
+                as="h3"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white"
+                animation="fadeInUp"
+                duration={0.8}
+              >
+                Impulsando el <span style={{ color: '#FF4757' }}>crecimiento empresarial</span>
+              </AnimatedTitle>
+              <AnimatedText
+                className="text-base sm:text-lg md:text-xl leading-relaxed max-w-full md:max-w-4xl mx-auto text-white text-opacity-90"
+                animation="fadeInUp"
+                delay={200}
+                duration={0.6}
+              >
                 <strong>+650 empresas</strong> de San Rafael confían en nosotros para crecer, innovar y 
                 liderar el desarrollo económico regional. Somos la voz del sector empresarial ante 
                 instituciones y gobiernos.
-              </p>
+              </AnimatedText>
             </div>
 
             {/* Primera fila: Foto arriba, 4 items abajo en mobile; lado a lado en desktop */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-3xl md:max-w-6xl mx-auto mb-12 md:mb-24">
               {/* Foto */}
-              <div className="flex items-center justify-center mb-4 md:mb-0">
+              <AnimatedImage
+                className="flex items-center justify-center mb-4 md:mb-0"
+                animation="fadeInLeft"
+                delay={400}
+                duration={0.8}
+              >
                 <div className="w-full h-48 sm:h-64 md:w-[40rem] md:h-[24rem] bg-white bg-opacity-10 rounded-xl md:rounded-2xl flex items-center justify-center overflow-hidden">
                   <Image
                     src="/beneficios/info/beneficios-info.jpg"
@@ -52,10 +58,15 @@ export default function BeneficiosGrowth() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </AnimatedImage>
 
               {/* 4 items */}
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <AnimatedSection
+                className="space-y-4 sm:space-y-6 md:space-y-8"
+                animation="fadeInRight"
+                delay={500}
+                duration={0.8}
+              >
                 <div className="flex items-start space-x-4 group">
                   <div className="flex-shrink-0">
                     <div className="w-8 h-8 bg-orange-300 border-2 border-orange-300 rounded-full flex items-center justify-center">
@@ -119,13 +130,18 @@ export default function BeneficiosGrowth() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             </div>
 
             {/* Segunda fila: 4 items abajo, foto arriba en mobile; lado a lado en desktop */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-3xl md:max-w-6xl mx-auto">
               {/* Mobile: imagen arriba de los items, Desktop: imagen a la derecha */}
-              <div className="block md:hidden mb-4">
+              <AnimatedImage
+                className="block md:hidden mb-4"
+                animation="fadeInUp"
+                delay={600}
+                duration={0.8}
+              >
                 <div className="w-full h-48 sm:h-64 bg-white bg-opacity-10 rounded-xl flex items-center justify-center overflow-hidden">
                   <Image
                     src="/beneficios/info/beneficios-info-2.jpg"
@@ -135,9 +151,14 @@ export default function BeneficiosGrowth() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </AnimatedImage>
               {/* 4 items */}
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <AnimatedSection
+                className="space-y-4 sm:space-y-6 md:space-y-8"
+                animation="fadeInLeft"
+                delay={700}
+                duration={0.8}
+              >
                 <div className="flex items-start space-x-4 group">
                   <div className="flex-shrink-0">
                     <div className="w-8 h-8 bg-orange-300 border-2 border-orange-300 rounded-full flex items-center justify-center">
@@ -201,9 +222,14 @@ export default function BeneficiosGrowth() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
               {/* Desktop: imagen a la derecha */}
-              <div className="hidden md:flex items-center justify-center mt-4 md:mt-0">
+              <AnimatedImage
+                className="hidden md:flex items-center justify-center mt-4 md:mt-0"
+                animation="fadeInRight"
+                delay={800}
+                duration={0.8}
+              >
                 <div className="w-full h-48 sm:h-64 md:w-[40rem] md:h-[24rem] bg-white bg-opacity-10 rounded-xl md:rounded-2xl flex items-center justify-center overflow-hidden">
                   <Image
                     src="/beneficios/info/beneficios-info-2.jpg"
@@ -213,7 +239,7 @@ export default function BeneficiosGrowth() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
+              </AnimatedImage>
             </div>
           </div>
         </div>

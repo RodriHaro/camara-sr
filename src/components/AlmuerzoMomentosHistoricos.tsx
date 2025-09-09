@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
-import { AnimatedCardImage } from "./AnimatedCardImage";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
+import { AnimatedImage } from './AnimatedImage';
 
 export default function AlmuerzoMomentosHistoricos() {
   const momentos = [
@@ -33,78 +33,51 @@ export default function AlmuerzoMomentosHistoricos() {
     }
   ];
 
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, subtitleVisible]);
-
   return (
     <section className="py-16 lg:py-20 bg-gradient-to-br from-[#091b3f] to-blue-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título de la sección */}
         <div className="text-center mb-16">
-          <h2
-            ref={titleRef}
+          <AnimatedTitle
+            as="h2"
             className="text-3xl md:text-4xl font-bold text-white mb-6"
-            style={{
-              opacity: titleVisible ? 1 : 0,
-              visibility: titleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
+            animation="fadeInUp"
+            duration={0.8}
           >
-            Momentos Históricos del Evento
-          </h2>
-          <p
-            ref={subtitleRef}
+            Momentos <span style={{ color: '#FF4757' }}>Históricos</span>
+          </AnimatedTitle>
+          <AnimatedText
             className="text-xl text-white/90 max-w-3xl mx-auto"
-            style={{
-              opacity: subtitleVisible ? 1 : 0,
-              visibility: subtitleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
+            animation="fadeInUp"
+            delay={200}
+            duration={0.6}
           >
-            Hitos que marcarán el futuro del desarrollo empresarial y institucional de la región sur de Mendoza.
-          </p>
+            Repasamos los hitos más importantes del último año para la Cámara y la región.
+          </AnimatedText>
         </div>
-
-        {/* Momentos históricos */}
         <div className="space-y-16">
           {momentos.map((momento, index) => (
-            <AnimatedCardImage key={momento.id} direction={index % 2 === 1 ? "left" : "right"} delay={0.1 * index}>
-              <div
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
-              >
-                {/* Imagen */}
-                <div className={`relative h-80 rounded-3xl overflow-hidden shadow-2xl ${
-                  index % 2 === 1 ? 'lg:col-start-2' : ''
-                }`}>
-                  <Image
-                    src={momento.imagen}
-                    alt={momento.titulo}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Contenido */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+            <AnimatedSection
+              key={momento.id}
+              className={`grid lg:grid-cols-2 gap-12 items-center ${
+                index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
+              }`}
+              animation="fadeInUp"
+              delay={300 + (index * 150)}
+              duration={0.7}
+            >
+              <div className={`relative h-80 rounded-3xl overflow-hidden shadow-2xl ${
+                index % 2 === 1 ? 'lg:col-start-2' : ''
+              }`}>
+                <Image
+                  src={momento.imagen}
+                  alt={momento.titulo}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Contenido */}
+              <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
                   <div className="mb-4">
                     <span className="inline-block px-4 py-2 bg-[#FF4757] text-white text-sm font-medium rounded-full mb-4">
                       Momento Histórico
@@ -139,11 +112,10 @@ export default function AlmuerzoMomentosHistoricos() {
                       ))}
                     </div>
                   </div>
-                </div>
               </div>
-            </AnimatedCardImage>
-          ))}
-        </div>
+            </AnimatedSection>
+            ))}
+          </div>
       </div>
     </section>
   );

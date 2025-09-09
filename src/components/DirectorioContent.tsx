@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedSection } from './AnimatedSection';
 
 interface DirectorMember {
   nombre: string;
@@ -71,9 +73,14 @@ const directorio: {
   ]
 };
 
-function DirectorCard({ member }: { member: DirectorMember }) {
+function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: number }) {
   return (
-    <div className="rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <AnimatedSection
+      className="rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+      animation="fadeInUp"
+      delay={delay}
+      duration={0.7}
+    >
       <div className="aspect-[3/4] relative overflow-hidden">
         {member.noFoto ? (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300 relative">
@@ -148,23 +155,34 @@ function DirectorCard({ member }: { member: DirectorMember }) {
           </>
         )}
       </div>
-    </div>
+    </AnimatedSection>
   );
 }
 
-function Section({ title, members, columns = "md:grid-cols-3 lg:grid-cols-4" }: { 
+function Section({ title, members, columns = "md:grid-cols-3 lg:grid-cols-4", baseDelay = 0 }: { 
   title: string; 
   members: DirectorMember[];
   columns?: string;
+  baseDelay?: number;
 }) {
   return (
     <section className="mb-16">
-      <h2 className="text-4xl font-bold text-white mb-8 text-center pb-4">
+      <AnimatedTitle
+        as="h2"
+        className="text-4xl font-bold text-white mb-8 text-center pb-4"
+        animation="fadeInUp"
+        delay={baseDelay}
+        duration={0.8}
+      >
         {title}
-      </h2>
+      </AnimatedTitle>
       <div className={`grid grid-cols-1 ${columns} gap-8`}>
         {members.map((member, index) => (
-          <DirectorCard key={index} member={member} />
+          <DirectorCard 
+            key={index} 
+            member={member} 
+            delay={baseDelay + 200 + (index * 100)}
+          />
         ))}
       </div>
     </section>
@@ -181,9 +199,15 @@ export default function DirectorioContent() {
       <div className="container mx-auto px-4 py-42 relative z-10">
         {/* Título principal */}
         <div className="text-center mb-32">
-          <h1 className="text-5xl font-bold text-white mb-4">
+          <AnimatedTitle
+            as="h1"
+            className="text-5xl font-bold text-white mb-4"
+            animation="fadeInUp"
+            delay={0}
+            duration={0.8}
+          >
             Directorio <span className="text-[#FF4757]">2025/2026</span>
-          </h1>
+          </AnimatedTitle>
         </div>
 
       {/* Autoridades */}
@@ -191,43 +215,68 @@ export default function DirectorioContent() {
         title="Autoridades" 
         members={directorio.autoridades}
         columns="md:grid-cols-3"
+        baseDelay={200}
       />
 
       {/* Línea divisoria */}
-      <div className="w-100 h-0.5 bg-[#FF4757] my-16 mx-auto"></div>
+      <AnimatedSection
+        className="w-100 h-0.5 bg-[#FF4757] my-16 mx-auto"
+        animation="fadeInUp"
+        delay={800}
+        duration={0.6}
+      />
 
       {/* Directores Titulares */}
       <Section 
         title="Directores Titulares" 
         members={directorio.directoresTitulares}
+        baseDelay={1000}
       />
 
       {/* Línea divisoria */}
-      <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"></div>
+      <AnimatedSection
+        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
+        animation="fadeInUp"
+        delay={2200}
+        duration={0.6}
+      />
 
       {/* Directores Suplentes */}
       <Section 
         title="Directores Suplentes" 
         members={directorio.directoresSuplentes}
+        baseDelay={2400}
       />
 
       {/* Línea divisoria */}
-      <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"></div>
+      <AnimatedSection
+        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
+        animation="fadeInUp"
+        delay={3600}
+        duration={0.6}
+      />
 
       {/* Comisiones Específicas */}
       <Section 
         title="Comisiones Específicas" 
         members={directorio.comisionesEspecificas}
+        baseDelay={3800}
       />
 
       {/* Línea divisoria */}
-      <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"></div>
+      <AnimatedSection
+        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
+        animation="fadeInUp"
+        delay={4600}
+        duration={0.6}
+      />
 
         {/* Staff */}
         <Section 
           title="Staff" 
           members={directorio.staff}
           columns="md:grid-cols-3"
+          baseDelay={4800}
         />
       </div>
     </div>

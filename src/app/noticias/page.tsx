@@ -32,6 +32,8 @@ import Footer from "../../components/Footer";
 import { NewsListClient } from "../../components/NewsListClient";
 import { getNewsList, getCategoriesWithCount } from "../../lib/sanity.service";
 import { CATEGORY_FILTERS } from "../../lib/sanity.mapper";
+import { AnimatedTitle } from "../../components/AnimatedTitle";
+import { AnimatedText } from "../../components/AnimatedText";
 
 export default async function NewsPage() {
   // Fetch news and categories from Sanity
@@ -51,18 +53,26 @@ export default async function NewsPage() {
         {/* Header de la página */}
         <div className="bg-gray-50 py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 
+            <AnimatedTitle
+              as="h1"
               className="text-4xl md:text-5xl font-extrabold text-[#091b3f] mb-4"
               style={{ 
                 fontFamily: 'system-ui, -apple-system, sans-serif',
                 letterSpacing: '-0.02em'
               }}
+              animation="fadeInUp"
+              duration={0.8}
             >
               Noticias
-            </h1>
-            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto"
+              animation="fadeInUp"
+              delay={200}
+              duration={0.6}
+            >
               Mantente al día con las últimas novedades de la Cámara de Comercio de San Rafael
-            </p>
+            </AnimatedText>
           </div>
         </div>
 

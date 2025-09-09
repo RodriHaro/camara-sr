@@ -1,4 +1,8 @@
 import Image from 'next/image';
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
+import { AnimatedImage } from './AnimatedImage';
 
 interface VisionCard {
   icon: string;
@@ -31,17 +35,30 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
           <div className="relative z-10">
             {/* Sección de Visión */}
             <div className="mb-10 sm:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-4 sm:mb-8 pt-4">
-                Nuestra Visión
-              </h2>
-              <p className="text-base sm:text-lg text-white/80 text-center mb-8 sm:mb-16 max-w-2xl sm:max-w-4xl mx-auto">
+              <AnimatedTitle
+                as="h2"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-4 sm:mb-8 pt-4"
+                animation="fadeInUp"
+                duration={0.8}
+              >
+                Nuestra <span style={{ color: '#FF4757' }}>Visión</span>
+              </AnimatedTitle>
+              <AnimatedText
+                className="text-base sm:text-lg text-white/80 text-center mb-8 sm:mb-16 max-w-2xl sm:max-w-4xl mx-auto"
+                animation="fadeInUp"
+                delay={200}
+                duration={0.6}
+              >
                 Nuestra Visión Compartida al Centenario de nuestra Institución es:
-              </p>
+              </AnimatedText>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                 {visionCards.map((card, index) => (
-                  <div 
+                  <AnimatedSection
                     key={index}
                     className="bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:bg-white/15 transition-all duration-300 border border-white/20"
+                    animation="fadeInUp"
+                    delay={400 + (index * 150)}
+                    duration={0.7}
                   >
                     <div className="mb-3 sm:mb-4 lg:mb-6 text-center">
                       {card.title === "Ser Referentes" ? (
@@ -84,22 +101,38 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                     <p className="text-sm lg:text-base text-white/80 leading-relaxed text-center">
                       {card.description}
                     </p>
-                  </div>
+                  </AnimatedSection>
                 ))}
               </div>
             </div>
 
             {/* Separador decorativo */}
-            <div className="flex justify-center mb-10 sm:mb-20">
+            <AnimatedSection
+              className="flex justify-center mb-10 sm:mb-20"
+              animation="fadeInUp"
+              delay={1000}
+              duration={0.6}
+            >
               <div className="w-16 sm:w-24 h-px bg-[#FF4757]"></div>
-            </div>
+            </AnimatedSection>
 
             {/* Sección de Valores */}
             <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-16">
-                Nuestros Valores
-              </h2>
-              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
+              <AnimatedTitle
+                as="h2"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-16"
+                animation="fadeInUp"
+                delay={1100}
+                duration={0.8}
+              >
+                Nuestros <span style={{ color: '#FF4757' }}>Valores</span>
+              </AnimatedTitle>
+              <AnimatedSection
+                className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 items-center"
+                animation="fadeInUp"
+                delay={1200}
+                duration={0.8}
+              >
                 {/* Lista de Valores */}
                 <div className="space-y-4 sm:space-y-6 relative w-full">
                   {valores.map((valor, index) => {
@@ -136,7 +169,7 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </div>

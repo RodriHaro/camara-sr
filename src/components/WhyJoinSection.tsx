@@ -2,31 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from './useScrollReveal';
 import { client } from "@/lib/sanity.client";
+import { AnimatedSection } from "./AnimatedSection";
+import { AnimatedTitle } from "./AnimatedTitle";
+import { AnimatedText } from "./AnimatedText";
+import { AnimatedImage } from "./AnimatedImage";
 
 export default function WhyJoinSection() {
-  // Animaciones GSAP
-  const [sectionTitleRef, sectionTitleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [sectionSubtitleRef, sectionSubtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-  const [ctaTitleRef, ctaTitleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [ctaSubtitleRef, ctaSubtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-  useEffect(() => {
-    if (sectionTitleRef.current && sectionTitleVisible) {
-      gsap.fromTo(sectionTitleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
-    }
-    if (sectionSubtitleRef.current && sectionSubtitleVisible) {
-      gsap.fromTo(sectionSubtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' });
-    }
-    if (ctaTitleRef.current && ctaTitleVisible) {
-      gsap.fromTo(ctaTitleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: 'power3.out' });
-    }
-    if (ctaSubtitleRef.current && ctaSubtitleVisible) {
-      gsap.fromTo(ctaSubtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.8, ease: 'power3.out' });
-    }
-  }, [sectionTitleVisible, sectionSubtitleVisible, ctaTitleVisible, ctaSubtitleVisible]);
   // Logos de empresas socias con sus enlaces
   const memberLogos = [
     { name: "Hexámetro", logo: "/images/socios/hexametro.webp", url: "https://hexametro.com.ar/" },
@@ -103,17 +85,30 @@ export default function WhyJoinSection() {
         
         {/* Header */}
         <div className="text-center mb-16 px-8">
-          <h2 ref={sectionTitleRef} className="text-4xl md:text-5xl font-bold text-[#091b3f] mb-6">
+          <AnimatedTitle
+            className="text-4xl md:text-5xl font-bold text-[#091b3f] mb-6"
+            animation="fadeInUp"
+            duration={0.8}
+          >
             Empresas Asociadas
-          </h2>
-          <p ref={sectionSubtitleRef} className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          </AnimatedTitle>
+          <AnimatedText
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            animation="fadeInUp"
+            delay={200}
+            duration={0.6}
+          >
             Únete a más de <strong>650 empresas</strong> que confían en nosotros para crecer, 
             innovar y liderar el desarrollo económico de San Rafael
-          </p>
+          </AnimatedText>
         </div>
 
         {/* Empresas Socias */}
-        <div className="mb-16">
+        <AnimatedSection
+          className="mb-16"
+          animation="fadeInUp"
+          delay={300}
+        >
           {/* Marquees infinitos - 3 filas */}
           <div className="space-y-4 overflow-hidden max-w-full px-2">
             {/* Fila 1 - Marquee */}
@@ -244,7 +239,7 @@ export default function WhyJoinSection() {
               Y muchas empresas más que forman parte de nuestra comunidad empresarial
             </p>
           </div>
-        </div>
+        </AnimatedSection>
 
 
 
@@ -263,13 +258,26 @@ export default function WhyJoinSection() {
           </div>
           {/* Rectángulos decorativos reposicionados */}
           <div className="relative z-10">
-            <h3 ref={ctaTitleRef} className="text-2xl md:text-3xl font-bold text-white mb-6">
+            <AnimatedTitle
+              as="h3"
+              className="text-2xl md:text-3xl font-bold text-white mb-6"
+              animation="fadeInUp"
+              delay={0}
+            >
               ¿Listo para formar parte?
-            </h3>
-            <p ref={ctaSubtitleRef} className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-lg text-white/80 mb-8 max-w-2xl mx-auto"
+              animation="fadeInUp"
+              delay={200}
+            >
               Únete a la comunidad empresarial más importante de San Rafael y potencia el crecimiento de tu empresa
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            </AnimatedText>
+            <AnimatedSection
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              animation="fadeInUp"
+              delay={400}
+            >
               <Link 
                 href="/contacto"
                 className="bg-[#FF4757] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#e13c4a] transition-colors duration-200 inline-flex items-center justify-center"
@@ -283,7 +291,7 @@ export default function WhyJoinSection() {
               >
                 Ver todos los beneficios
               </Link>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
 
 export function AnimatedSectionTitle({
   title,
@@ -19,53 +18,26 @@ export function AnimatedSectionTitle({
   subtitleClass?: string;
   color?: string;
 }) {
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, subtitleVisible]);
-
   return (
     <div className={`text-center mb-12 relative z-10 ${className}`}>
-      <h2
-        ref={titleRef}
+      <AnimatedTitle
         className={`text-4xl md:text-5xl mb-4 font-bold leading-tight ${titleClass}`}
-        style={{
-          color,
-          opacity: titleVisible ? 1 : 0,
-          visibility: titleVisible ? 'visible' : 'hidden',
-          transition: 'opacity 0.2s, visibility 0.2s',
-        }}
+        style={{ color }}
+        animation="fadeInUp"
+        duration={0.8}
       >
         {title}
-      </h2>
+      </AnimatedTitle>
       {subtitle && (
-        <p
-          ref={subtitleRef}
+        <AnimatedText
           className={`text-lg max-w-2xl mx-auto ${subtitleClass}`}
-          style={{
-            color: color === "white" ? "#fff" : color,
-            opacity: subtitleVisible ? 1 : 0,
-            visibility: subtitleVisible ? 'visible' : 'hidden',
-            transition: 'opacity 0.2s, visibility 0.2s',
-          }}
+          style={{ color: color === "white" ? "#fff" : color }}
+          animation="fadeInUp"
+          delay={200}
+          duration={0.6}
         >
           {subtitle}
-        </p>
+        </AnimatedText>
       )}
     </div>
   );

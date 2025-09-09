@@ -1,19 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
 
 export default function BeneficiosHero() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  useEffect(() => {
-    if (titleRef.current) {
-      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out' });
-    }
-    if (subtitleRef.current) {
-      gsap.fromTo(subtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: 'power3.out' });
-    }
-  }, []);
   return (
     <section className="relative h-[90vh] w-full flex items-center overflow-hidden">
       {/* Imagen de fondo */}
@@ -41,12 +31,23 @@ export default function BeneficiosHero() {
         <div className="max-w-7xl">
           <div className="text-left max-w-2xl">
             <span className="text-xs uppercase tracking-widest font-semibold opacity-80 text-white">Cámara de Comercio</span>
-            <h1 ref={titleRef} className="text-4xl md:text-6xl font-extrabold leading-tight mb-2 drop-shadow-lg text-white mt-4">
-              Empresas que nos acompañan al almuerzo de las fuerzas vivas
-            </h1>
-            <p ref={subtitleRef} className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md text-white">
+            <AnimatedTitle
+              as="h1"
+              className="text-4xl md:text-6xl leading-tight mb-2 drop-shadow-lg text-white mt-4"
+              animation="fadeInUp"
+              duration={0.8}
+            >
+              <span className="font-normal">Empresas que nos acompañan al </span>
+              <span className="font-bold">Almuerzo de las Fuerzas Vivas</span>
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md text-white"
+              animation="fadeInUp"
+              delay={200}
+              duration={0.6}
+            >
               Conectamos empresas, impulsamos el crecimiento y fortalecemos el tejido empresarial de San Rafael. Juntos, transformamos desafíos en oportunidades de desarrollo.
-            </p>
+            </AnimatedText>
           </div>
         </div>
       </div>

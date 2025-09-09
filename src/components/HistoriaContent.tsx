@@ -1,8 +1,13 @@
 import Image from 'next/image';
+import { ReactNode } from 'react';
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
+import { AnimatedImage } from './AnimatedImage';
 
 interface HistoriaContentProps {
   historyBlocks: Array<{
-    title: string;
+    title: string | ReactNode;
     description: string;
     imageSrc: string;
     imageAlt: string;
@@ -33,25 +38,40 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                   {index === 0 ? (
                     <>
                       {/* Primer bloque: Solo texto - Título centrado */}
-                      <div className="col-span-1 md:col-span-2 text-center mb-2 px-2 pt-6 md:pt-10">
+                      <AnimatedSection
+                        className="col-span-1 md:col-span-2 text-center mb-2 px-2 pt-6 md:pt-10"
+                        animation="fadeInUp"
+                        delay={0}
+                        duration={0.8}
+                      >
                         <h4 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
                           {block.title}
                         </h4>
-                      </div>
+                      </AnimatedSection>
                       {/* Primer bloque: Solo texto - Descripción centrada debajo del título */}
-                      <div className="col-span-1 md:col-span-2 text-center px-2">
+                      <AnimatedSection
+                        className="col-span-1 md:col-span-2 text-center px-2"
+                        animation="fadeInUp"
+                        delay={200}
+                        duration={0.7}
+                      >
                         <div className="text-white text-opacity-90 leading-relaxed max-w-full md:max-w-4xl mx-auto">
                           <div 
                             className="text-base sm:text-lg"
                             dangerouslySetInnerHTML={{ __html: block.description }}
                           />
                         </div>
-                      </div>
+                      </AnimatedSection>
                     </>
                   ) : index === 1 ? (
                     <>
                       {/* Segundo bloque: Título sobre imagen vertical izquierda */}
-                      <div className="relative flex flex-col items-center justify-start md:order-1 self-start px-2">
+                      <AnimatedSection
+                        className="relative flex flex-col items-center justify-start md:order-1 self-start px-2"
+                        animation="fadeInLeft"
+                        delay={400}
+                        duration={0.8}
+                      >
                         <h4 className="text-2xl sm:text-3xl md:text-5xl text-white text-center mb-4">
                           <span className="font-bold">Fundación</span> <span className="font-normal">y</span> <span className="font-bold">Origen</span>
                         </h4>
@@ -67,10 +87,15 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                             />
                           </div>
                         </div>
-                      </div>
+                      </AnimatedSection>
                       
                       {/* Imagen horizontal derecha con descripción debajo */}
-                      <div className="md:order-2">
+                      <AnimatedSection
+                        className="md:order-2"
+                        animation="fadeInRight"
+                        delay={600}
+                        duration={0.8}
+                      >
                         <div className="w-full max-w-full md:max-w-2xl mb-6">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
@@ -89,12 +114,17 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                             dangerouslySetInnerHTML={{ __html: block.description }}
                           />
                         </div>
-                      </div>
+                      </AnimatedSection>
                     </>
                   ) : index === 2 ? (
                     <>
                       {/* Flecha animada hacia abajo */}
-                      <div className="col-span-2 flex justify-center mb-8">
+                      <AnimatedSection
+                        className="col-span-2 flex justify-center mb-8"
+                        animation="fadeInUp"
+                        delay={1000}
+                        duration={0.6}
+                      >
                         <div className="animate-bounce">
                           <svg 
                             className="w-12 h-12 text-white opacity-60" 
@@ -110,53 +140,71 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                             />
                           </svg>
                         </div>
-                      </div>
+                      </AnimatedSection>
                       
-                      {/* Tercer bloque: Imagen y texto */}
-                      <div className={`flex flex-col items-center justify-center ${
-                        block.imageFirst ? 'md:order-1' : 'md:order-2'
-                      } px-2`}>
-                        <div className="w-full max-w-full md:max-w-4xl">
-                          <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
-                            <Image
-                              src={block.imageSrc}
-                              alt={block.imageAlt}
-                              width={1000}
-                              height={500}
-                              className="w-full h-full object-cover"
-                              unoptimized
-                            />
+                      {/* Tercer bloque: Imagen y texto unificados */}
+                      <AnimatedSection
+                        className="col-span-2"
+                        animation="fadeInUp"
+                        delay={1100}
+                        duration={0.8}
+                      >
+                        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+                          {/* Imagen */}
+                          <div className={`flex flex-col items-center justify-center ${
+                            block.imageFirst ? 'md:order-1' : 'md:order-2'
+                          } px-2`}>
+                            <div className="w-full max-w-full md:max-w-4xl">
+                              <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
+                                <Image
+                                  src={block.imageSrc}
+                                  alt={block.imageAlt}
+                                  width={1000}
+                                  height={500}
+                                  className="w-full h-full object-cover"
+                                  unoptimized
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Contenido */}
+                          <div className={`${
+                            block.imageFirst ? 'md:order-2' : 'md:order-1'
+                          }`}>
+                            <h4 className="text-4xl md:text-5xl text-white mb-6 leading-tight">
+                              <span className="font-normal">Evolución</span> <span className="font-bold">Institucional</span>
+                            </h4>
+                            <div className="text-white text-opacity-90 leading-relaxed">
+                              <div 
+                                className="text-lg font-normal"
+                                dangerouslySetInnerHTML={{ __html: block.description }}
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Contenido */}
-                      <div className={`${
-                        block.imageFirst ? 'md:order-2' : 'md:order-1'
-                      }`}>
-                        <h4 className="text-4xl md:text-5xl text-white mb-6 leading-tight">
-                          <span className="font-normal">Evolución</span> <span className="font-bold">Institucional</span>
-                        </h4>
-                        <div className="text-white text-opacity-90 leading-relaxed">
-                          <div 
-                            className="text-lg font-normal"
-                            dangerouslySetInnerHTML={{ __html: block.description }}
-                          />
-                        </div>
-                      </div>
+                      </AnimatedSection>
                     </>
                   ) : index === 3 ? (
                     <>
-                      {/* Cuarto bloque: Solo texto - Título y descripción arriba */}
-                      <div className="text-left row-span-1 col-start-1 self-start" style={{ width: '800px', maxWidth: '800px' }}>
-                        <h4 className="text-4xl md:text-5xl text-white leading-tight" style={{ marginBottom: '-10px' }}>
-                          <span className="font-bold">Acción</span> <span className="font-normal">y</span> <span className="font-bold">Compromiso</span> <span className="font-normal">Diario</span>
-                        </h4>
-                      </div>
-                      
-                      {/* Cuarto bloque: Imagen grande debajo del título */}
-                      <div className="col-span-2">
-                        <div className="w-full max-w-6xl mx-auto">
+                      {/* Cuarto bloque: Todo unificado */}
+                      <AnimatedSection
+                        className="col-span-2"
+                        animation="fadeInUp"
+                        delay={1500}
+                        duration={0.8}
+                      >
+                        {/* Título */}
+                        <div className="text-left mb-8">
+                          <div style={{ width: '800px', maxWidth: '800px' }}>
+                            <h4 className="text-4xl md:text-5xl text-white leading-tight">
+                              <span className="font-bold">Acción</span> <span className="font-normal">y</span> <span className="font-bold">Compromiso</span> <span className="font-normal">Diario</span>
+                            </h4>
+                          </div>
+                        </div>
+                        
+                        {/* Imagen grande */}
+                        <div className="w-full max-w-6xl mx-auto mb-8">
                           <div className="bg-white bg-opacity-10 rounded-2xl overflow-hidden">
                             <Image
                               src="/images/heros/asamblea.avif"
@@ -168,17 +216,17 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                             />
                           </div>
                         </div>
-                      </div>
-                      
-                      {/* Cuarto bloque: Descripción debajo de la imagen */}
-                      <div className="col-span-2 text-center pb-8 md:pb-12">
-                        <div className="text-white text-opacity-90 leading-relaxed max-w-4xl mx-auto">
-                          <div 
-                            className="text-lg"
-                            dangerouslySetInnerHTML={{ __html: block.description }}
-                          />
+                        
+                        {/* Descripción debajo de la imagen */}
+                        <div className="text-center pb-8 md:pb-12">
+                          <div className="text-white text-opacity-90 leading-relaxed max-w-4xl mx-auto">
+                            <div 
+                              className="text-lg"
+                              dangerouslySetInnerHTML={{ __html: block.description }}
+                            />
+                          </div>
                         </div>
-                      </div>
+                      </AnimatedSection>
                     </>
                   ) : (
                     <>

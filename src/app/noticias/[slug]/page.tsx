@@ -44,6 +44,9 @@ import { ArticleShare } from "../../../components/ArticleShare";
 import { getNewsBySlug, getAllNewsSlugs } from "../../../lib/sanity.service";
 import { PortableText } from '@portabletext/react';
 import { NewsCard } from "../../../components/NewsCard";
+import { AnimatedSection } from "../../../components/AnimatedSection";
+import { AnimatedTitle } from "../../../components/AnimatedTitle";
+import { AnimatedText } from "../../../components/AnimatedText";
 
 type PageProps = {
   params: Promise<{
@@ -156,79 +159,133 @@ export default async function NewsDetailPage({ params }: PageProps) {
       <main className="min-h-screen bg-white">
         <article className="max-w-4xl mx-auto px-4 py-12">
           {/* Breadcrumb */}
-          <nav className="mb-8 text-sm text-gray-600">
-            <a href="/" className="hover:text-[#091b3f] transition-colors">
-              Inicio
-            </a>
-            <span className="mx-2">›</span>
-            <a href="/noticias" className="hover:text-[#091b3f] transition-colors">
-              Noticias
-            </a>
-            <span className="mx-2">›</span>
-            <span className="text-gray-900">{news.title}</span>
-          </nav>
+          <AnimatedSection
+            className="mb-8 text-sm text-gray-600"
+            animation="fadeInUp"
+            delay={0}
+            duration={0.5}
+          >
+            <nav>
+              <a href="/" className="hover:text-[#091b3f] transition-colors">
+                Inicio
+              </a>
+              <span className="mx-2">›</span>
+              <a href="/noticias" className="hover:text-[#091b3f] transition-colors">
+                Noticias
+              </a>
+              <span className="mx-2">›</span>
+              <span className="text-gray-900">{news.title}</span>
+            </nav>
+          </AnimatedSection>
 
           {/* Article header */}
           <header className="mb-8">
-            <div className="mb-4">
+            <AnimatedSection
+              className="mb-4"
+              animation="fadeInUp"
+              delay={100}
+              duration={0.6}
+            >
               <span className="inline-block bg-[#091b3f] text-white px-3 py-1 rounded-full text-sm font-medium">
                 {news.category}
               </span>
-            </div>
+            </AnimatedSection>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091b3f] mb-6 leading-tight">
+            <AnimatedTitle
+              as="h1"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#091b3f] mb-6 leading-tight"
+              animation="fadeInUp"
+              delay={200}
+              duration={0.8}
+            >
               {news.title}
-            </h1>
+            </AnimatedTitle>
             
-            <div className="flex items-center gap-4 text-gray-600 mb-6">
+            <AnimatedSection
+              className="flex items-center gap-4 text-gray-600 mb-6"
+              animation="fadeInUp"
+              delay={300}
+              duration={0.6}
+            >
               <time dateTime={news.date}>{news.date}</time>
-            </div>
+            </AnimatedSection>
             
-            <p className="text-xl text-gray-700 leading-relaxed font-medium">
+            <AnimatedText
+              className="text-xl text-gray-700 leading-relaxed font-medium"
+              animation="fadeInUp"
+              delay={400}
+              duration={0.7}
+            >
               {news.excerpt}
-            </p>
+            </AnimatedText>
           </header>
 
           {/* Share buttons */}
-          <div className="mb-8 pb-8 border-b border-gray-200">
+          <AnimatedSection
+            className="mb-8 pb-8 border-b border-gray-200"
+            animation="fadeInUp"
+            delay={500}
+            duration={0.6}
+          >
             <ArticleShare 
               title={news.title}
               url={typeof window !== 'undefined' ? window.location.href : ''}
             />
-          </div>
+          </AnimatedSection>
 
           {/* Featured image */}
-          <div className="mb-8">
+          <AnimatedSection
+            className="mb-8"
+            animation="fadeInUp"
+            delay={600}
+            duration={0.8}
+          >
             <img
               src={news.image}
               alt={news.title}
               className="w-full rounded-lg shadow-lg"
             />
-          </div>
+          </AnimatedSection>
 
           {/* Article content */}
-          <div className="prose prose-lg max-w-none">
+          <AnimatedSection
+            className="prose prose-lg max-w-none"
+            animation="fadeInUp"
+            delay={700}
+            duration={0.8}
+          >
             {news.content && (
               <PortableText 
                 value={news.content} 
                 components={portableTextComponents}
               />
             )}
-          </div>
+          </AnimatedSection>
         </article>
 
         {/* Related news */}
         {relatedNews && relatedNews.length > 0 && (
           <section className="bg-gray-50 py-16">
             <div className="max-w-7xl mx-auto px-4">
-              <h2 className="text-3xl font-bold text-[#091b3f] mb-8 text-center">
+              <AnimatedTitle
+                as="h2"
+                className="text-3xl font-bold text-[#091b3f] mb-8 text-center"
+                animation="fadeInUp"
+                delay={800}
+                duration={0.8}
+              >
                 Noticias Relacionadas
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              </AnimatedTitle>
+              <AnimatedSection
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                animation="fadeInUp"
+                delay={900}
+                duration={0.8}
+              >
                 {relatedNews.slice(0, 3).map((relatedItem) => (
                   <NewsCard key={relatedItem.id} news={relatedItem} />
                 ))}
-              </div>
+              </AnimatedSection>
             </div>
           </section>
         )}

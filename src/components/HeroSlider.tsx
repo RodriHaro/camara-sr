@@ -1,7 +1,8 @@
 "use client";
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { useScrollReveal } from './useScrollReveal';
-import gsap from "gsap";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
 
 // Slide type definition
 export type HeroSlide = {
@@ -24,8 +25,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [excerptRef, excerptVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Autoplay logic
@@ -98,14 +97,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
 
   // Animación de entrada para el slide activo
   // refs para animación por scroll (useScrollReveal)
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out' });
-    }
-    if (excerptRef.current && excerptVisible) {
-      gsap.fromTo(excerptRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: 'power3.out' });
-    }
-  }, [current, slides[current]?.title, slides[current]?.excerpt, titleVisible, excerptVisible]);
 
   return (
     <div
@@ -140,19 +131,45 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none" />
               {/* Slide content */}
               <div className="relative z-10 max-w-2xl px-6 py-12 md:ml-16 text-white flex flex-col gap-4">
-                <span className="text-sm uppercase tracking-wide opacity-80">{slide.date}</span>
-                <span className="text-xs uppercase tracking-widest font-semibold opacity-80">{slide.category}</span>
-                <h2 ref={idx === current ? titleRef : undefined} className="text-4xl md:text-6xl font-extrabold leading-tight mb-2">{slide.title}</h2>
-                <p ref={idx === current ? excerptRef : undefined} className="text-base md:text-lg opacity-90 mb-4 max-w-lg">{slide.excerpt}</p>
-                <a
-                  href={slide.href}
-                  className="inline-flex items-center border border-white rounded-full px-6 py-2 text-base font-semibold hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white self-start"
-                  aria-label={`Ver más sobre ${slide.title}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <AnimatedSection 
+                  className="flex flex-col gap-1" 
+                  animation="fadeInUp" 
+                  delay={idx === current ? 0 : 0}
                 >
-                  Ver más <span className="ml-2">→</span>
-                </a>
+                  <span className="text-sm uppercase tracking-wide opacity-80">{slide.date}</span>
+                  <span className="text-xs uppercase tracking-widest font-semibold opacity-80">{slide.category}</span>
+                </AnimatedSection>
+                <AnimatedTitle
+                  as="h2"
+                  className="text-4xl md:text-6xl font-extrabold leading-tight mb-2"
+                  animation="fadeInUp"
+                  delay={idx === current ? 200 : 0}
+                  duration={0.8}
+                >
+                  {slide.title}
+                </AnimatedTitle>
+                <AnimatedText
+                  className="text-base md:text-lg opacity-90 mb-4 max-w-lg"
+                  animation="fadeInUp"
+                  delay={idx === current ? 400 : 0}
+                  duration={0.6}
+                >
+                  {slide.excerpt}
+                </AnimatedText>
+                <AnimatedSection 
+                  animation="fadeInUp" 
+                  delay={idx === current ? 600 : 0}
+                >
+                  <a
+                    href={slide.href}
+                    className="inline-flex items-center border border-white rounded-full px-6 py-2 text-base font-semibold hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white self-start"
+                    aria-label={`Ver más sobre ${slide.title}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ver más <span className="ml-2">→</span>
+                  </a>
+                </AnimatedSection>
               </div>
             </div>
           </div>
@@ -187,7 +204,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
       </button>
     </div>
   );
-};
+}
 
 // Ejemplo de uso
 export const exampleSlides: HeroSlide[] = [
@@ -223,4 +240,5 @@ export const exampleSlides: HeroSlide[] = [
     excerpt: "Nuevos cursos y talleres para fortalecer las competencias de nuestros empresarios asociados.",
     href: "#",
   },
+
 ];

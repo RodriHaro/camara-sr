@@ -4,6 +4,7 @@ import { NewsCard } from "./NewsCard";
 import { NewsChips } from "./NewsChips";
 import { NewsSearch } from "./NewsSearch";
 import { NewsItem } from "./NewsCardLarge";
+import { AnimatedSection } from "./AnimatedSection";
 
 interface NewsListClientProps {
   initialNews: NewsItem[];
@@ -59,7 +60,12 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
   return (
     <>
       {/* Filtros y búsqueda */}
-      <div className="mb-12">
+      <AnimatedSection
+        className="mb-12"
+        animation="fadeInUp"
+        delay={400}
+        duration={0.8}
+      >
         <NewsChips 
           categories={categories.map(cat => cat.label)}
           activeCategory={activeCategory}
@@ -71,14 +77,17 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
           onSearchChange={handleSearchChange}
           onSearchSubmit={handleSearchSubmit}
         />
-      </div>
+      </AnimatedSection>
 
       {/* Grilla de noticias */}
-      <div 
+      <AnimatedSection
         id="news-grid"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         role="region"
         aria-label="Lista de noticias"
+        animation="fadeInUp"
+        delay={600}
+        duration={0.8}
       >
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => (
@@ -100,11 +109,16 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
             </button>
           </div>
         )}
-      </div>
+      </AnimatedSection>
 
       {/* Paginación simple (placeholder) */}
       {filteredNews.length > 0 && (
-        <div className="mt-16 text-center">
+        <AnimatedSection
+          className="mt-16 text-center"
+          animation="fadeInUp"
+          delay={800}
+          duration={0.6}
+        >
           <div className="inline-flex gap-2">
             <button 
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
@@ -120,7 +134,7 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
               Siguiente →
             </button>
           </div>
-        </div>
+        </AnimatedSection>
       )}
     </>
   );

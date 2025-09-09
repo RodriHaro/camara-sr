@@ -1,15 +1,13 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
+import { useState } from "react";
 import Image from "next/image";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
+import { AnimatedImage } from './AnimatedImage';
 
 export default function AlmuerzoDiscurso() {
   const [openSection, setOpenSection] = useState<string | null>(null);
-
-  const toggleSection = (section: string) => {
-    setOpenSection(openSection === section ? null : section);
-  };
 
   const discursoSecciones = [
     {
@@ -34,31 +32,26 @@ export default function AlmuerzoDiscurso() {
     },
     {
       id: "infraestructura",
-      titulo: "Proyectos de Infraestructura",
-      contenido: "Respecto a los 1.023 millones de dólares correspondientes a las pérdidas ocasionadas por la Promoción Industrial, solicitó que se instrumenten importantes obras para la región sur, que han sido agregadas al Banco de Proyectos: El Proyecto Ejecutivo de Paso de Las Leñas con los fundamentos vertidos unánimemente por la Cámara hace más de 20 años, y acordado con las cámaras de General Alvear y Malargüe como obra indispensable para el resurgimiento de sur; El Baqueano; El Acueducto Tigre - Bowen; El mejoramiento de las rutas; La reparación de la Ruta Nacional 143, desde Tunuyán a San Rafael; El Colector Cloacal Norte 2, que beneficia a más de 6.500 vecinos y hoy se encuentran en emergencia sanitaria; Trenes y vías de comunicación, entre otras. En esa línea, adelantó que se han mantenido varios encuentros con grupos del sector privado que han ofrecido compartir la ejecución de estas obras, bajo su total y exclusivo riesgo, en algunos casos mediante la ejecución de los proyectos 'Llave en mano' y en otros a través del financiamiento internacional. Invitó al Gobierno provincial a consensuar y buscar los puntos básicos con el objetivo de concretarlas."
+      titulo: "Infraestructura",
+      contenido: "En el apartado de Infraestructura, pidió que se concrete la obra del Acueducto Ganadero, para dotar de agua para ganadería a la zona este del departamento. Asimismo, solicitó que se concrete la obra de la Ruta Provincial 150 que une San Rafael con General Alvear. También pidió que se concrete la obra de la Ruta Nacional 143 que une San Rafael con Malargüe, y que se reactive la obra del Puente Piedras Blancas, que conecta la ciudad con la zona este del departamento."
     },
     {
-      id: "sistema-antigranizo",
-      titulo: "Sistema Antigranizo y Aspectos Previsionales",
-      contenido: "Por otra parte, resaltó la labor de la Cámara para promover el funcionamiento del Sistema de Lucha Antigranizo, y destacó que la institución participará formalmente del Comité Ejecutivo del Fideicomiso para la Administración del Patrimonio, procurando controlar que la utilización de los fondos recaudados y la operación del Sistema sean eficiente y transparente. En materia previsional, subrayó el apoyo que la Cámara brindó a la desregulación laboral que proponía el DNU 70/23 del Poder Ejecutivo Nacional, presentándose ante la Corte Nacional como Amigo del Tribunal contra las medidas de amparo formuladas por la CGT."
+      id: "turismo",
+      titulo: "Turismo",
+      contenido: "En el sector Turismo, celebró las obras realizadas en el Aeropuerto, pero pidió que se concrete la obra del sistema ILS que permite el control y guiado de aviones en maniobras de aterrizaje cuando las condiciones climáticas no son las adecuadas (pedido reiterado de la CCIA), una nueva autobomba y oficinas de Aduana y Migraciones, para conseguir la internacionalización del espacio."
     },
     {
-      id: "parque-industrial",
-      titulo: "Parque Industrial y Proyectos Especiales",
-      contenido: "El dirigente celebró haber acordado con el Municipio el convenio definitivo para ordenar la titularidad del edificio de propiedad de la Cámara que actualmente se radica en el ingreso del Parque Industrial y donde lleva a cabo sus actividades la Dirección General de Aduanas. Brega informó, en otro pasaje de su alocución, que la Cámara viene trabajando hace varios meses en presentar un proyecto de Ley Industrial para mitigación de casos excepcionales, como lo fuese el incendio de Plastiandino; para ello, se viene elaborando y financiando con fondos propios, y será presentado a los legisladores en 2025."
+      id: "mineria",
+      titulo: "Minería",
+      contenido: "En materia de Minería, Brega pidió que se concrete la obra del Acueducto Ganadero, para dotar de agua para ganadería a la zona este del departamento. También solicitó que se concrete la obra de la Ruta Provincial 150 que une San Rafael con General Alvear."
     },
     {
-      id: "ganaderia",
-      titulo: "Ganadería",
-      contenido: "Para el sector ganadero pidió terminar las obras del Acueducto (Monte Comán-La Horqueta); desregular el traslado y la comercialización del mercado de carnes; desterrar definitivamente el flagelo de la inseguridad rural; agilizar el trámite y pago a productores ganaderos del aporte establecido por la Ley 7.074 correspondiente al año 2023; finalizar la base contra incendio ubicada en Monte Comán para el combate del fuego en nuestros campos; extender los beneficios de la Ley 7.074 a recría sobre campos naturales. También, que Vialidad Mendoza distribuya áridos en puntos críticos de las rutas ganaderas para mejorar sus accesos."
+      id: "agro",
+      titulo: "Sector Agropecuario",
+      contenido: "En el sector Agropecuario, pidió que se concrete la obra del Acueducto Ganadero, para dotar de agua para ganadería a la zona este del departamento. También solicitó que se concrete la obra de la Ruta Provincial 150 que une San Rafael con General Alvear, y que se reactive la obra del Puente Piedras Blancas."
     },
     {
-      id: "construccion",
-      titulo: "Construcción",
-      contenido: "A la hora de hablar de Construcción, solicitó que se le dé prioridad a empresas del sur, en el marco de las obras anunciadas hace unos días por el Gobierno provincial. En tal sentido, propuso ponderar las capacidades de obras que efectúa el Registro de Antecedentes de Constructoras de Obras Públicas (RACOP) para que amplíen su capacidad de contratación y de ese modo ser oferentes directos en los procesos a licitar, evitando así la subcontratación de empresas de mayor magnitud."
-    },
-    {
-      id: "codigo-aguas",
+      id: "agua",
       titulo: "Código de Aguas",
       contenido: "También pidió que la Provincia otorgue un plazo aún mayor para dar una firme discusión del Código de Aguas, a fin de ser escuchadas todas las partes y determinar su reforma y compilación."
     },
@@ -69,105 +62,50 @@ export default function AlmuerzoDiscurso() {
     }
   ];
 
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-  const [imgRef, imgVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
-  const accordionRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [accordionVisible, setAccordionVisible] = useState<boolean[]>(Array(discursoSecciones.length).fill(false));
-
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
-      );
-    }
-    if (imgRef.current && imgVisible) {
-      gsap.fromTo(
-        imgRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, subtitleVisible, imgVisible]);
-
-  // Accordion animation on scroll
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    discursoSecciones.forEach((_, idx) => {
-      if (!accordionRefs.current[idx]) return;
-      const node = accordionRefs.current[idx];
-      const observer = new window.IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setAccordionVisible((prev) => {
-              const updated = [...prev];
-              updated[idx] = true;
-              return updated;
-            });
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.2 }
-      );
-      observer.observe(node!);
-      observers.push(observer);
-    });
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
   return (
     <section className="py-16 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Encabezado con imagen */}
+        {/* Encabezado con imagen y texto alineados */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h2
-              ref={titleRef}
-              className="text-3xl md:text-4xl text-[#091b3f] mb-6"
-              style={{
-                opacity: titleVisible ? 1 : 0,
-                visibility: titleVisible ? 'visible' : 'hidden',
-                transition: 'opacity 0.2s, visibility 0.2s',
-              }}
+          {/* Columna izquierda: texto */}
+          <AnimatedSection
+            animation="fadeInLeft"
+            delay={0}
+            duration={0.8}
+          >
+            <AnimatedTitle
+              as="h2"
+              className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-6"
+              animation="fadeInUp"
+              duration={0.8}
             >
               <span className="font-normal">Discurso </span>
               <span className="font-bold">Presidencial</span>
-            </h2>
-            <p
-              ref={subtitleRef}
+            </AnimatedTitle>
+            <AnimatedText
               className="text-xl text-gray-600 mb-6"
-              style={{
-                opacity: subtitleVisible ? 1 : 0,
-                visibility: subtitleVisible ? 'visible' : 'hidden',
-                transition: 'opacity 0.2s, visibility 0.2s',
-              }}
+              animation="fadeInUp"
+              delay={200}
+              duration={0.6}
             >
               Gabriel Brega pronunció su primer discurso anual como presidente de la CCIA, 
               abordando los principales desafíos y proyectos para el desarrollo de San Rafael.
-            </p>
+            </AnimatedText>
             <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100">
               <p className="text-sm text-gray-500 mb-1">Presidente CCIA San Rafael</p>
               <p className="font-bold text-[#091b3f] text-lg">Gabriel Brega</p>
             </div>
-          </div>
-          
-          <div
-            ref={imgRef}
+          </AnimatedSection>
+          {/* Columna derecha: imagen */}
+          <AnimatedImage
             className="relative h-80 rounded-3xl overflow-hidden shadow-lg"
-            style={{
-              opacity: imgVisible ? 1 : 0,
-              visibility: imgVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
+            animation="fadeInRight"
+            delay={200}
+            duration={0.8}
           >
             <Image
               src="/images/afv/gabriel-brega-discurso.webp"
@@ -175,22 +113,20 @@ export default function AlmuerzoDiscurso() {
               fill
               className="object-cover"
             />
-          </div>
+          </AnimatedImage>
         </div>
 
         {/* Acordeón del discurso */}
-        <div className="space-y-4">
-          {discursoSecciones.map((seccion, idx) => (
+        <AnimatedSection
+          className="space-y-4"
+          animation="fadeInUp"
+          delay={400}
+          duration={0.8}
+        >
+          {discursoSecciones.map((seccion) => (
             <div
               key={seccion.id}
-              ref={el => { accordionRefs.current[idx] = el; }}
               className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-              style={{
-                opacity: accordionVisible[idx] ? 1 : 0,
-                visibility: accordionVisible[idx] ? 'visible' : 'hidden',
-                transition: 'opacity 0.2s, visibility 0.2s',
-                transform: accordionVisible[idx] ? 'none' : 'translateY(40px)',
-              }}
             >
               {/* Header del acordeón */}
               <button
@@ -233,7 +169,7 @@ export default function AlmuerzoDiscurso() {
               )}
             </div>
           ))}
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

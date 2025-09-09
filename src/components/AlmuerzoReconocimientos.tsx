@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
 import { AnimatedCardImage } from "./AnimatedCardImage";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
 
 export default function AlmuerzoReconocimientos() {
   const reconocimientos = [
@@ -37,59 +37,41 @@ export default function AlmuerzoReconocimientos() {
     }
   ];
 
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
 
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, subtitleVisible]);
+  // Animaciones eliminadas. Título y subtítulo siempre visibles.
 
   return (
     <section className="py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título de la sección */}
         <div className="text-center mb-16">
-          <h2
-            ref={titleRef}
+          <AnimatedTitle
+            as="h2"
             className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-6"
-            style={{
-              opacity: titleVisible ? 1 : 0,
-              visibility: titleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
+            animation="fadeInUp"
+            duration={0.8}
           >
             Reconocimientos y Distinciones 2024
-          </h2>
-          <p
-            ref={subtitleRef}
+          </AnimatedTitle>
+          <AnimatedText
             className="text-xl text-gray-600 max-w-3xl mx-auto"
-            style={{
-              opacity: subtitleVisible ? 1 : 0,
-              visibility: subtitleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
+            animation="fadeInUp"
+            delay={200}
+            duration={0.6}
           >
             Empresas y personalidades destacadas por su contribución al desarrollo empresarial y económico de San Rafael.
-          </p>
+          </AnimatedText>
         </div>
 
         {/* Grid de reconocimientos */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {reconocimientos.map((reconocimiento, idx) => (
-            <AnimatedCardImage key={reconocimiento.id} direction="up" delay={0.1 * idx}>
+        <AnimatedSection
+          className="grid md:grid-cols-2 gap-8"
+          animation="fadeInUp"
+          delay={400}
+          duration={0.8}
+        >
+          {reconocimientos.map((reconocimiento) => (
+            <AnimatedCardImage key={reconocimiento.id}>
               <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 {/* Imagen sin badge */}
                 <div className="relative h-64 mx-6 mt-6 mb-4">
@@ -122,16 +104,21 @@ export default function AlmuerzoReconocimientos() {
               </div>
             </AnimatedCardImage>
           ))}
-        </div>
+        </AnimatedSection>
 
         {/* Texto adicional */}
-        <div className="mt-12 text-center">
+        <AnimatedSection
+          className="mt-12 text-center"
+          animation="fadeInUp"
+          delay={600}
+          duration={0.6}
+        >
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
             Luego de que los presentes compartieran un brindis, y mientras degustaban el plato servido por 
             <strong> Graciela Hisa Catering</strong>, llegó el momento de las distinciones a empresas y personalidades, 
             ya clásicas en cada Almuerzo.
           </p>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

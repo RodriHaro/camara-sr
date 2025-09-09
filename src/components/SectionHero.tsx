@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { use, useEffect, useState, useRef } from 'react';
-import gsap from 'gsap';
-import { useScrollReveal } from './useScrollReveal';
+import { useEffect, useState, ReactNode } from 'react';
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedSection } from './AnimatedSection';
 
 interface SectionHeroProps {
-  title: string;
+  title: string | ReactNode;
   subtitle: string;
   backgroundImage: string;
   backgroundImageAlt?: string;
@@ -27,7 +28,8 @@ export default function SectionHero({
   customGradient
 }: SectionHeroProps) {
   // Función para dividir el título y resaltar la palabra específica
-  const renderTitle = (title: string, highlightWord: string) => {
+  const renderTitle = (title: string | ReactNode, highlightWord?: string) => {
+    if (typeof title !== 'string') return title;
     if (!highlightWord) return title;
     
     const parts = title.split(highlightWord);
@@ -51,17 +53,6 @@ export default function SectionHero({
 
   const objectPosition = windowWidth !== null && windowWidth <= 640 ? '64% center' : '60% center';
 
-  // Animación GSAP
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: 'power3.out' });
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(subtitleRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: 'power3.out' });
-    }
-  }, [title, subtitle, titleVisible, subtitleVisible]);
 
   return (
     <section 
@@ -103,25 +94,36 @@ export default function SectionHero({
         <div className="max-w-7xl">
           <div className="text-left max-w-2xl">
             {showInstitucionalBadge && (
-              <div className="mb-6">
+              <AnimatedSection className="mb-6" animation="fadeInUp" delay={0}>
                 <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
                   Institucional
                 </span>
-              </div>
+              </AnimatedSection>
             )}
             {showSociosBadge && (
-              <div className="mb-6">
+              <AnimatedSection className="mb-6" animation="fadeInUp" delay={0}>
                 <span className="inline-block px-4 py-2 bg-[#091b3f]/90 backdrop-blur-sm text-white text-sm font-medium tracking-wide uppercase rounded-lg border border-white/20">
                   Socios
                 </span>
-              </div>
+              </AnimatedSection>
             )}
-            <h1 ref={titleRef} className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <AnimatedTitle
+              as="h1"
+              className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+              animation="fadeInUp"
+              delay={200}
+              duration={0.8}
+            >
               {renderTitle(title, highlightWord)}
-            </h1>
-            <p ref={subtitleRef} className="text-xl text-white/90 leading-relaxed">
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-xl text-white/90 leading-relaxed"
+              animation="fadeInUp"
+              delay={400}
+              duration={0.6}
+            >
               {subtitle}
-            </p>
+            </AnimatedText>
           </div>
         </div>
       </div>

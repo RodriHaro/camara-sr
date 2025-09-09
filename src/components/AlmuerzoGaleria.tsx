@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
+import { useState } from "react";
 import { AnimatedCardImage } from "./AnimatedCardImage";
 
 export default function AlmuerzoGaleria() {
@@ -43,25 +41,8 @@ export default function AlmuerzoGaleria() {
     }
   ];
 
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [subtitleRef, subtitleVisible] = useScrollReveal<HTMLParagraphElement>({ threshold: 0.3 });
 
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (subtitleRef.current && subtitleVisible) {
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, subtitleVisible]);
+  // Animaciones eliminadas. Título y subtítulo siempre visibles.
 
   return (
     <section className="py-12 bg-white">
@@ -69,25 +50,13 @@ export default function AlmuerzoGaleria() {
         {/* Título */}
         <div className="text-center mb-12">
           <h2
-            ref={titleRef}
             className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4"
-            style={{
-              opacity: titleVisible ? 1 : 0,
-              visibility: titleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
           >
             <span className="font-normal">Galería de </span>
             <span className="font-bold">Momentos</span>
           </h2>
           <p
-            ref={subtitleRef}
             className="text-lg text-gray-600 max-w-2xl mx-auto"
-            style={{
-              opacity: subtitleVisible ? 1 : 0,
-              visibility: subtitleVisible ? 'visible' : 'hidden',
-              transition: 'opacity 0.2s, visibility 0.2s',
-            }}
           >
             Revive los mejores momentos de nuestros eventos institucionales y 
             descubre el ambiente de camaradería que caracteriza estos encuentros.
@@ -97,7 +66,7 @@ export default function AlmuerzoGaleria() {
         {/* Grid de fotos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {galleryImages.map((image, index) => (
-            <AnimatedCardImage key={index} direction="up" delay={0.1 * index}>
+            <AnimatedCardImage key={index}>
               <div
                 className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
                 onClick={() => setSelectedImage(image.src)}

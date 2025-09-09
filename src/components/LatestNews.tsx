@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { NewsCardLarge, NewsItem } from "./NewsCardLarge";
-import gsap from "gsap";
-import { useScrollReveal } from './useScrollReveal';
+import { AnimatedSection } from "./AnimatedSection";
+import { AnimatedTitle } from "./AnimatedTitle";
+import { AnimatedText } from "./AnimatedText";
 
 // Datos de ejemplo para las últimas noticias
 const latestNewsData: NewsItem[] = [
@@ -53,42 +54,44 @@ interface LatestNewsProps {
 
 export const LatestNews: React.FC<LatestNewsProps> = ({ featuredNews }) => {
 	const newsToShow = featuredNews && featuredNews.length > 0 ? featuredNews : latestNewsData;
-	const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
 
-	useEffect(() => {
-		if (titleRef.current && titleVisible) {
-			gsap.fromTo(titleRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
-		}
-	}, [titleVisible]);
 
 	return (
 		<section className="py-16 bg-gray-50" aria-labelledby="latest-news-title">
 			<div className="mx-auto px-4" style={{ maxWidth: '100rem' }}>
 				{/* Título principal */}
 				<div className="text-center mb-12">
-					<h2
-						ref={titleRef}
+					<AnimatedTitle
 						id="latest-news-title"
 						className="text-4xl md:text-5xl text-[#091b3f] mb-4"
 						style={{
 							fontFamily: 'system-ui, -apple-system, sans-serif',
 							letterSpacing: '-0.02em'
 						}}
+						animation="fadeIn"
+						duration={0.8}
 					>
-						<span className="font-normal">Últimas </span>
-						<span className="font-extrabold">Noticias</span>
-					</h2>
+						<span className="font-normal">Últimas </span><span className="font-extrabold">Noticias</span>
+					</AnimatedTitle>	
 				</div>
 
 				{/* Grid de cards grandes */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+				<AnimatedSection
+					className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+					animation="fadeIn"
+					delay={200}
+				>
 					{newsToShow.slice(0, 4).map((news) => (
 						<NewsCardLarge key={news.id} news={news} />
 					))}
-				</div>
+				</AnimatedSection>
 
 				{/* Botón Ver todas */}
-				<div className="text-center">
+				<AnimatedSection
+					className="text-center"
+					animation="fadeIn"
+					delay={400}
+				>
 					<Link
 						href="/noticias"
 						className="inline-flex items-center gap-2 bg-[#091b3f] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#091b3f]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#091b3f]/20 shadow-lg hover:shadow-xl"
@@ -97,7 +100,7 @@ export const LatestNews: React.FC<LatestNewsProps> = ({ featuredNews }) => {
 						Ver todas las noticias
 						<span aria-hidden="true">→</span>
 					</Link>
-				</div>
+				</AnimatedSection>
 			</div>
 		</section>
 	);

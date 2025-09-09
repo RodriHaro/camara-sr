@@ -37,6 +37,10 @@ import WhyJoinSection from "../components/WhyJoinSection";
 import Link from "next/link";
 import { AnimatedSectionTitle } from "../components/AnimatedSectionTitle";
 import { AnimatedCardImage } from "../components/AnimatedCardImage";
+import { AnimatedSection } from "../components/AnimatedSection";
+import { AnimatedTitle } from "../components/AnimatedTitle";
+import { AnimatedText } from "../components/AnimatedText";
+import { AnimatedImage } from "../components/AnimatedImage";
 import { getHomeSelections, getFallbackHomeData } from "../lib/sanity.service";
 
 export default async function Home() {
@@ -52,32 +56,28 @@ export default async function Home() {
   const featuredNews = homeData?.featuredNews || [];
 
   return (
-    <div className="overflow-x-hidden w-full">
+    <div className="overflow-x-hidden w-full antialiased transform-gpu">
       <Header />
       <div className="overflow-x-hidden w-full">
         <HeroSlider slides={heroSlides} />
       </div>
-      <LatestNews featuredNews={featuredNews} />s
+      <LatestNews featuredNews={featuredNews} />
       {/* Sección de Navegación Rápida Institucional */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="mx-auto px-4" style={{ maxWidth: "100rem" }}>
-          <div className="bg-[#091b3f] rounded-3xl py-12 px-6 md:px-16 relative overflow-hidden">
+          <div className="bg-[#091b3f] rounded-3xl py-12 px-6 md:px-16 relative overflow-hidden transform-gpu will-change-transform will-change-opacity">
             {/* Rectángulos decorativos estilo CAC */}
             <div
-              className="absolute top-8 left-8 w-64 h-32 bg-white/10 rounded-2xl"
-              style={{ backdropFilter: "blur(2px)" }}
+              className="absolute top-8 left-8 w-64 h-32 rounded-2xl bg-gradient-to-tr from-white/10 to-white/0"
             ></div>
             <div
-              className="absolute top-24 right-16 w-96 h-40 bg-white/10 rounded-3xl"
-              style={{ backdropFilter: "blur(2px)" }}
+              className="absolute top-24 right-16 w-96 h-40 rounded-3xl bg-gradient-to-tr from-white/10 to-white/0"
             ></div>
             <div
-              className="absolute bottom-8 left-32 w-40 h-24 bg-white/10 rounded-2xl"
-              style={{ backdropFilter: "blur(2px)" }}
+              className="absolute bottom-8 left-32 w-40 h-24 rounded-2xl bg-gradient-to-tr from-white/10 to-white/0"
             ></div>
             <div
-              className="absolute bottom-16 right-32 w-56 h-32 bg-white/10 rounded-3xl"
-              style={{ backdropFilter: "blur(2px)" }}
+              className="absolute bottom-16 right-32 w-56 h-32 rounded-3xl bg-gradient-to-tr from-white/10 to-white/0"
             ></div>
             <AnimatedSectionTitle
               title={
@@ -89,10 +89,10 @@ export default async function Home() {
               subtitle="Descubre los principios que nos guían y la historia que nos define como Cámara de Comercio de San Rafael"
               color="white"
             />
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto relative z-10">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto relative z-10 transform-gpu will-change-transform will-change-opacity">
               {/* Botón Visión, Misión y Valores */}
-              <AnimatedCardImage direction="up" duration={1.1}>
-                <div className="relative rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden h-80">
+              <AnimatedCardImage>
+                <div className="relative rounded-2xl shadow-lg hover:shadow-xl overflow-hidden h-80">
                   <Link
                     href="/institucional/vision-mision-valores"
                     className="block h-full relative"
@@ -140,8 +140,8 @@ export default async function Home() {
               </AnimatedCardImage>
 
               {/* Botón Historia */}
-              <AnimatedCardImage direction="up" duration={1.1} delay={0.15}>
-                <div className="relative rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden h-80">
+              <AnimatedCardImage>
+                <div className="relative rounded-2xl shadow-lg hover:shadow-xl overflow-hidden h-80">
                   <Link
                     href="/institucional/historia"
                     className="block h-full relative"
@@ -199,17 +199,30 @@ export default async function Home() {
             <div className="lg:col-span-2 space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left">
               <div className="w-full">
                 <div className="mb-6 w-full text-center lg:text-left lg:items-start">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 w-full lg:text-left pb-4">
+                  <AnimatedTitle
+                    className="text-4xl md:text-5xl font-bold text-white mb-4 w-full lg:text-left pb-4"
+                    animation="fadeInLeft"
+                    duration={0.8}
+                  >
                     Almuerzo de las Fuerzas Vivas
-                  </h2>
-                  <p className="text-white/90 text-lg leading-relaxed w-full lg:text-left">
+                  </AnimatedTitle>
+                  <AnimatedText
+                    className="text-white/90 text-lg leading-relaxed w-full lg:text-left"
+                    animation="fadeInLeft"
+                    delay={200}
+                    duration={0.6}
+                  >
                     Nuestro encuentro anual más importante, donde reunimos a los
                     principales líderes empresariales, políticos e
                     institucionales de San Rafael para fortalecer los lazos y
                     promover el desarrollo de nuestra región.
-                  </p>
+                  </AnimatedText>
                 </div>
-                <div className="space-y-6 w-full">
+                <AnimatedSection
+                  className="space-y-6 w-full"
+                  animation="fadeInLeft"
+                  delay={400}
+                >
                   <Link
                     href="/almuerzo-fuerzas-vivas"
                     className="inline-flex items-center bg-white text-[#091b3f] px-8 py-4 rounded-lg font-semibold hover:bg-[#FF4757] hover:text-white transition-colors text-lg mx-auto lg:mx-0"
@@ -229,20 +242,25 @@ export default async function Home() {
                       />
                     </svg>
                   </Link>
-                </div>
+                </AnimatedSection>
               </div>
             </div>
 
             {/* Imagen más grande a la derecha */}
             <div className="lg:col-span-3 relative">
-              <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <AnimatedImage
+                className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
+                animation="fadeInRight"
+                delay={300}
+                duration={0.8}
+              >
                 <img
                   src="/images/afv/afv-hero.jpg"
                   alt="Almuerzo de las Fuerzas Vivas"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              </div>
+              </AnimatedImage>
             </div>
           </div>
         </div>
@@ -253,13 +271,22 @@ export default async function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4">
+            <AnimatedTitle
+              className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4"
+              animation="fadeInUp"
+              duration={0.8}
+            >
               Contactanos
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              animation="fadeInUp"
+              delay={200}
+              duration={0.6}
+            >
               Estamos aquí para ayudarte. Encuentra toda nuestra información de
               contacto y ubicación
-            </p>
+            </AnimatedText>
           </div>
 
           {/* Cambié lg:grid-cols-2 → md:grid-cols-2 */}
@@ -267,12 +294,21 @@ export default async function Home() {
             {/* Columna izquierda: Información de Contacto */}
             <div className="space-y-8">
               <div className="bg-gray-50 rounded-2xl p-8 text-[15px] sm:text-base">
-                <h3 className="text-2xl font-bold text-[#091b3f] mb-6">
+                <AnimatedTitle
+                  as="h3"
+                  className="text-2xl font-bold text-[#091b3f] mb-6"
+                  animation="fadeInUp"
+                  delay={300}
+                >
                   Información de Contacto
-                </h3>
+                </AnimatedTitle>
 
                 {/* Dirección */}
-                <div className="flex items-start space-x-4 mb-6">
+                <AnimatedSection
+                  className="flex items-start space-x-4 mb-6"
+                  animation="fadeInUp"
+                  delay={400}
+                >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-6 h-6 text-white"
@@ -306,10 +342,14 @@ export default async function Home() {
                       Argentina (5600)
                     </p>
                   </div>
-                </div>
+                </AnimatedSection>
 
                 {/* WhatsApp */}
-                <div className="flex items-start space-x-4 mb-6">
+                <AnimatedSection
+                  className="flex items-start space-x-4 mb-6"
+                  animation="fadeInUp"
+                  delay={500}
+                >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-6 h-6 text-white"
@@ -340,10 +380,14 @@ export default async function Home() {
                       </a>
                     </p>
                   </div>
-                </div>
+                </AnimatedSection>
 
                 {/* Emails */}
-                <div className="flex items-start space-x-4">
+                <AnimatedSection
+                  className="flex items-start space-x-4"
+                  animation="fadeInUp"
+                  delay={600}
+                >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
                       className="w-6 h-6 text-white"
@@ -376,13 +420,17 @@ export default async function Home() {
                       </a>
                     </p>
                   </div>
-                </div>
+                </AnimatedSection>
               </div>
             </div>
 
             {/* Columna derecha: Google Maps */}
             <div className="w-full">
-              <div className="aspect-[16/9] md:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow">
+              <AnimatedSection
+                className="aspect-[16/9] md:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow"
+                animation="fadeInRight"
+                delay={700}
+              >
                 <iframe
                   title="Ubicación de la Cámara de Comercio de San Rafael"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.8855442891597!2d-68.3375!3d-34.6175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9679a81b9f8b5c6d%3A0x4c8f5c5f8b5c5c5c!2sAv.%20El%20Libertador%2078%2C%20M5600%20San%20Rafael%2C%20Mendoza!5e0!3m2!1ses!2sar!4v1693852800000!5m2!1ses!2sar"
@@ -392,7 +440,7 @@ export default async function Home() {
                   className="w-full h-full"
                   allowFullScreen
                 />
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </div>

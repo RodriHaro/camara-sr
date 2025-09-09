@@ -79,13 +79,17 @@ export default function VisionMisionValoresPage() {
     <>
       {/* Hero Section */}
       <SectionHero
-        title="Nuestra misión, visión y valores"
+        title={
+          <>
+            <span className="font-normal">Nuestra </span>
+            <span className="font-bold">misión, visión y valores</span>
+          </>
+        }
         subtitle="Representar a las empresas de la región, impulsar y defender sus actividades, promoviendo el desarrollo sustentable de la comunidad"
         backgroundImage="/images/heros/rotonda-vision.png"
         backgroundImageAlt="Imagen representativa de la visión institucional de la Cámara de Comercio"
         showInstitucionalBadge={true}
-        highlightWord="misión"
-  customGradient="bg-gradient-to-r from-slate-950/80 via-blue-900/40 via-40% to-transparent"
+        customGradient="bg-gradient-to-r from-slate-950/80 via-blue-900/40 via-40% to-transparent"
       />
 
       {/* Sección de Visión y Valores Combinadas */}

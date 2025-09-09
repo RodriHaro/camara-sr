@@ -1,29 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useScrollReveal } from "./useScrollReveal";
+import { AnimatedTitle } from './AnimatedTitle';
+import { AnimatedText } from './AnimatedText';
+import { AnimatedImage } from './AnimatedImage';
+import { AnimatedSection } from './AnimatedSection';
 
 export default function AlmuerzoContent() {
-  const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
-  const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
 
-  useEffect(() => {
-    if (titleRef.current && titleVisible) {
-      gsap.fromTo(
-        titleRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-      );
-    }
-    if (textRef.current && textVisible) {
-      gsap.fromTo(
-        textRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: "power3.out" }
-      );
-    }
-  }, [titleVisible, textVisible]);
 
   return (
     <section className="py-12">
@@ -38,32 +21,28 @@ export default function AlmuerzoContent() {
           <div className="relative z-10">
             {/* Título centrado */}
             <div className="text-center mb-16">
-              <h2
-                ref={titleRef}
+              <AnimatedTitle
+                as="h2"
                 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white"
-                style={{
-                  opacity: titleVisible ? 1 : 0,
-                  visibility: titleVisible ? 'visible' : 'hidden',
-                  transition: 'opacity 0.2s, visibility 0.2s',
-                }}
+                animation="fadeInUp"
+                duration={0.8}
               >
                 <span className="font-normal">Tradicional </span>
-                <span className="font-bold">Almuerzo de las Fuerzas Vivas</span>
-              </h2>
+                <span className="font-bold" style={{ color: '#FF4757' }}>Almuerzo de las Fuerzas Vivas</span>
+              </AnimatedTitle>
             </div>
 
             {/* Contenido principal en grid */}
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Texto */}
-              <div className="order-2 lg:order-1">
+              <AnimatedSection
+                className="order-2 lg:order-1"
+                animation="fadeInLeft"
+                delay={200}
+                duration={0.8}
+              >
                 <div
-                  ref={textRef}
                   className="prose prose-lg text-white"
-                  style={{
-                    opacity: textVisible ? 1 : 0,
-                    visibility: textVisible ? 'visible' : 'hidden',
-                    transition: 'opacity 0.2s, visibility 0.2s',
-                  }}
                 >
                   <p className="text-xl leading-relaxed mb-6 text-white text-opacity-90">
                     Cada año, en octubre, desarrollamos el ya tradicional <strong className="text-white">Almuerzo de las Fuerzas Vivas</strong>, 
@@ -95,10 +74,15 @@ export default function AlmuerzoContent() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
               
               {/* Imagen */}
-              <div className="order-1 lg:order-2">
+              <AnimatedImage
+                className="order-1 lg:order-2"
+                animation="fadeInRight"
+                delay={400}
+                duration={0.8}
+              >
                 <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-xl bg-white bg-opacity-10">
                   <Image
                     src="/images/galeria/afv-content.jpg"
@@ -109,7 +93,7 @@ export default function AlmuerzoContent() {
                   {/* Overlay sutil */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
-              </div>
+              </AnimatedImage>
             </div>
           </div>
         </div>

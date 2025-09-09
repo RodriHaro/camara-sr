@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import gsap from "gsap";
 import { AnimatedCardImage } from "./AnimatedCardImage";
 
 export interface NewsItem {
@@ -21,7 +20,7 @@ interface NewsCardLargeProps {
 export const NewsCardLarge: React.FC<NewsCardLargeProps> = ({ news }) => {
   return (
     <Link href={news.href} className="group block">
-      <AnimatedCardImage direction="up" duration={0.9}>
+      <AnimatedCardImage>
         <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-96 md:h-[28rem]">
           {/* Imagen de fondo */}
           <div

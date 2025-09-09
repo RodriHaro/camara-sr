@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { NewsItem } from "./NewsCardLarge";
+import { AnimatedSection } from "./AnimatedSection";
 
 interface NewsCardProps {
   news: NewsItem;
@@ -9,8 +10,13 @@ interface NewsCardProps {
 // Card estándar para la grilla de noticias
 export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
   return (
-    <Link href={news.href} className="group block">
-      <article className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-full">
+    <AnimatedSection
+      animation="fadeInUp"
+      delay={Math.random() * 200 + 100} // Delay aleatorio entre 100-300ms
+      duration={0.6}
+    >
+      <Link href={news.href} className="group block">
+        <article className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-full">
         {/* Imagen */}
         <div className="relative overflow-hidden h-48">
           <img
@@ -55,5 +61,6 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
         </div>
       </article>
     </Link>
+    </AnimatedSection>
   );
 };

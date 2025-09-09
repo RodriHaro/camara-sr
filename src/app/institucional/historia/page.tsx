@@ -32,7 +32,11 @@ export default function HistoriaPage() {
   // Datos reales de la historia de la Cámara de Comercio de San Rafael
   const historyBlocks = [
     {
-      title: "Impulsando el desarrollo de San Rafael",
+      title: (
+        <>
+          Impulsando el <span style={{ color: '#FF4757' }}>desarrollo de San Rafael</span>
+        </>
+      ),
       description: "A lo largo de más de un siglo, hemos sido el motor del crecimiento empresarial en San Rafael, facilitando la integración y el desarrollo de nuevos emprendimientos, promoviendo la innovación tecnológica la capacitación profesional.",
       imageSrc: "/img/historia-desarrollo.jpg",
       imageAlt: "Imagen representativa del desarrollo empresarial y económico de San Rafael",
@@ -67,12 +71,16 @@ export default function HistoriaPage() {
     <>
       {/* Hero Section */}
       <SectionHero
-        title="Nuestra Historia"
+        title={
+          <>
+            <span className="font-normal">Nuestra </span>
+            <span className="font-bold">Historia</span>
+          </>
+        }
         subtitle="Más de un siglo de trayectoria impulsando el crecimiento económico de San Rafael, fortaleciendo el tejido empresarial y promoviendo la excelencia profesional para el desarrollo sostenible de nuestra región."
         backgroundImage="/images/institucional/hero-historia2.jpg"
         backgroundImageAlt="Imagen histórica representativa de la Cámara de Comercio de San Rafael"
         showInstitucionalBadge={true}
-        highlightWord="Historia"
       />
 
       {/* Contenido de Historia en contenedor azul único */}
