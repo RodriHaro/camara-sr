@@ -220,11 +220,12 @@ export default function DirectorioContent() {
 
       {/* Línea divisoria */}
       <AnimatedSection
-        className="w-100 h-0.5 bg-[#FF4757] my-16 mx-auto"
         animation="fadeInUp"
         delay={800}
         duration={0.6}
-      />
+      >
+        <div className="w-100 h-0.5 bg-[#FF4757] my-16 mx-auto" />
+      </AnimatedSection>
 
       {/* Directores Titulares */}
       <Section 
@@ -235,11 +236,12 @@ export default function DirectorioContent() {
 
       {/* Línea divisoria */}
       <AnimatedSection
-        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
         animation="fadeInUp"
         delay={2200}
         duration={0.6}
-      />
+      >
+        <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto" />
+      </AnimatedSection>
 
       {/* Directores Suplentes */}
       <Section 
@@ -250,11 +252,12 @@ export default function DirectorioContent() {
 
       {/* Línea divisoria */}
       <AnimatedSection
-        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
         animation="fadeInUp"
         delay={3600}
         duration={0.6}
-      />
+      >
+        <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto" />
+      </AnimatedSection>
 
       {/* Comisiones Específicas */}
       <Section 
@@ -265,11 +268,12 @@ export default function DirectorioContent() {
 
       {/* Línea divisoria */}
       <AnimatedSection
-        className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto"
         animation="fadeInUp"
         delay={4600}
         duration={0.6}
-      />
+      >
+        <div className="w-100 h-0.5 bg-[#FF4757] my-12 mx-auto" />
+      </AnimatedSection>
 
         {/* Staff */}
         <Section 
