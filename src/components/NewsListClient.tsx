@@ -81,14 +81,16 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
 
       {/* Grilla de noticias */}
       <AnimatedSection
-        id="news-grid"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        role="region"
-        aria-label="Lista de noticias"
         animation="fadeInUp"
         delay={600}
         duration={0.8}
       >
+        <div
+          id="news-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          role="region"
+          aria-label="Lista de noticias"
+        >
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => (
             <NewsCard key={news.id} news={news} />
@@ -109,17 +111,18 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
             </button>
           </div>
         )}
+        </div>
       </AnimatedSection>
 
       {/* Paginación simple (placeholder) */}
       {filteredNews.length > 0 && (
         <AnimatedSection
-          className="mt-16 text-center"
           animation="fadeInUp"
           delay={800}
           duration={0.6}
         >
-          <div className="inline-flex gap-2">
+          <div className="mt-16 text-center">
+            <div className="inline-flex gap-2">
             <button 
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
               disabled
@@ -133,6 +136,7 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
             >
               Siguiente →
             </button>
+            </div>
           </div>
         </AnimatedSection>
       )}
