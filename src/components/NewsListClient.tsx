@@ -63,7 +63,7 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
       <AnimatedSection
         className="mb-12"
         animation="fadeInUp"
-        delay={400}
+        delay={0}
         duration={0.8}
       >
         <NewsChips 
@@ -82,7 +82,7 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
       {/* Grilla de noticias */}
       <AnimatedSection
         animation="fadeInUp"
-        delay={600}
+        delay={0}
         duration={0.8}
       >
         <div
@@ -118,7 +118,7 @@ export const NewsListClient: React.FC<NewsListClientProps> = ({
       {filteredNews.length > 0 && (
         <AnimatedSection
           animation="fadeInUp"
-          delay={800}
+          delay={0}
           duration={0.6}
         >
           <div className="mt-16 text-center">

@@ -12,7 +12,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
   return (
     <AnimatedSection
       animation="fadeInUp"
-      delay={Math.random() * 200 + 100} // Delay aleatorio entre 100-300ms
+      delay={0} // Delay fijo para evitar errores de hidratación
       duration={0.6}
     >
       <Link href={news.href} className="group block">

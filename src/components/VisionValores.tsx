@@ -122,7 +122,7 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                 as="h2"
                 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-16"
                 animation="fadeInUp"
-                delay={1100}
+                delay={0}
                 duration={0.8}
               >
                 Nuestros <span style={{ color: '#FF4757' }}>Valores</span>
@@ -130,7 +130,7 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
               <AnimatedSection
                 className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 items-center"
                 animation="fadeInUp"
-                delay={1200}
+                delay={0}
                 duration={0.8}
               >
                 {/* Lista de Valores */}

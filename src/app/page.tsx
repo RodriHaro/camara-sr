@@ -281,7 +281,7 @@ export default async function Home() {
             <AnimatedText
               className="text-xl text-gray-600 max-w-3xl mx-auto"
               animation="fadeInUp"
-              delay={200}
+              delay={0}
               duration={0.6}
             >
               Estamos aquí para ayudarte. Encuentra toda nuestra información de
@@ -298,7 +298,7 @@ export default async function Home() {
                   as="h3"
                   className="text-2xl font-bold text-[#091b3f] mb-6"
                   animation="fadeInUp"
-                  delay={300}
+                  delay={0}
                 >
                   Información de Contacto
                 </AnimatedTitle>
@@ -307,7 +307,7 @@ export default async function Home() {
                 <AnimatedSection
                   className="flex items-start space-x-4 mb-6"
                   animation="fadeInUp"
-                  delay={400}
+                  delay={0}
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
@@ -348,7 +348,7 @@ export default async function Home() {
                 <AnimatedSection
                   className="flex items-start space-x-4 mb-6"
                   animation="fadeInUp"
-                  delay={500}
+                  delay={0}
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
@@ -386,7 +386,7 @@ export default async function Home() {
                 <AnimatedSection
                   className="flex items-start space-x-4"
                   animation="fadeInUp"
-                  delay={600}
+                  delay={0}
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-[#091b3f] rounded-lg flex items-center justify-center">
                     <svg
@@ -429,7 +429,7 @@ export default async function Home() {
               <AnimatedSection
                 className="aspect-[16/9] md:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow"
                 animation="fadeInRight"
-                delay={700}
+                delay={0}
               >
                 <iframe
                   title="Ubicación de la Cámara de Comercio de San Rafael"

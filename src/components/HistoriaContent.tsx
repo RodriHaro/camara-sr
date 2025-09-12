@@ -52,7 +52,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="col-span-1 md:col-span-2 text-center px-2"
                         animation="fadeInUp"
-                        delay={200}
+                        delay={0}
                         duration={0.7}
                       >
                         <div className="text-white text-opacity-90 leading-relaxed max-w-full md:max-w-4xl mx-auto">
@@ -69,7 +69,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="relative flex flex-col items-center justify-start md:order-1 self-start px-2"
                         animation="fadeInLeft"
-                        delay={400}
+                        delay={0}
                         duration={0.8}
                       >
                         <h4 className="text-2xl sm:text-3xl md:text-5xl text-white text-center mb-4">
@@ -93,7 +93,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="md:order-2"
                         animation="fadeInRight"
-                        delay={600}
+                        delay={0}
                         duration={0.8}
                       >
                         <div className="w-full max-w-full md:max-w-2xl mb-6">
@@ -122,7 +122,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="col-span-2 flex justify-center mb-8"
                         animation="fadeInUp"
-                        delay={1000}
+                        delay={0}
                         duration={0.6}
                       >
                         <div className="animate-bounce">
@@ -146,7 +146,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="col-span-2"
                         animation="fadeInUp"
-                        delay={1100}
+                        delay={0}
                         duration={0.8}
                       >
                         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
@@ -191,7 +191,7 @@ export default function HistoriaContent({ historyBlocks }: HistoriaContentProps)
                       <AnimatedSection
                         className="col-span-2"
                         animation="fadeInUp"
-                        delay={1500}
+                        delay={0}
                         duration={0.8}
                       >
                         {/* Título */}
