@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { client } from "@/lib/sanity.client";
 import { AnimatedSection } from "./AnimatedSection";
 import { AnimatedTitle } from "./AnimatedTitle";
@@ -18,26 +18,102 @@ export default function WhyJoinSection() {
   const containerRef3 = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
+  const startY = useRef(0);
   const currentContainer = useRef<HTMLDivElement | null>(null);
   const currentSetScroll = useRef<React.Dispatch<React.SetStateAction<number>> | null>(null);
+  const lastMoveTime = useRef(0);
+  const velocity = useRef(0);
+  const isHorizontalDrag = useRef(false);
+
+  // Función para aplicar momentum scrolling
+  const applyMomentum = useCallback(() => {
+    if (!currentContainer.current || !currentSetScroll.current) return;
+    
+    const container = currentContainer.current;
+    const setScroll = currentSetScroll.current;
+    let currentVelocity = velocity.current * 80; // Punto medio más responsivo
+    
+    const animate = () => {
+      if (Math.abs(currentVelocity) < 0.2) return; // Parar cuando la velocidad es muy baja
+      
+      setScroll(prev => {
+        const newPosition = prev + currentVelocity;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
+        
+        // Si llegamos a los límites, parar el momentum
+        if (clampedPosition === 0 || clampedPosition === maxScroll) {
+          currentVelocity = 0;
+        }
+        
+        return clampedPosition;
+      });
+      
+      currentVelocity *= 0.88; // Deceleración más suave
+      requestAnimationFrame(animate);
+    };
+    
+    requestAnimationFrame(animate);
+  }, []);
 
   // Función mejorada para manejar el inicio del drag
-  const handleStart = (clientX: number, container: HTMLDivElement, setScroll: React.Dispatch<React.SetStateAction<number>>) => {
-    isDragging.current = true;
+  const handleStart = useCallback((clientX: number, clientY: number, container: HTMLDivElement, setScroll: React.Dispatch<React.SetStateAction<number>>) => {
+    isDragging.current = false; // Inicialmente false hasta determinar dirección
     startX.current = clientX;
+    startY.current = clientY;
     currentContainer.current = container;
     currentSetScroll.current = setScroll;
+    lastMoveTime.current = Date.now();
+    velocity.current = 0;
+    isHorizontalDrag.current = false;
     document.body.style.userSelect = 'none';
-  };
+  }, []);
+
+  // Función para terminar el drag con momentum
+  const handleEnd = useCallback(() => {
+    if (isDragging.current && isHorizontalDrag.current && Math.abs(velocity.current) > 0.3) {
+      // Aplicar momentum scrolling solo si la velocidad es significativa
+      applyMomentum();
+    }
+    
+    isDragging.current = false;
+    currentContainer.current = null;
+    currentSetScroll.current = null;
+    isHorizontalDrag.current = false;
+    document.body.style.userSelect = '';
+  }, [applyMomentum]);
 
   // Función mejorada para manejar el movimiento
-  const handleMove = (clientX: number) => {
-    if (!isDragging.current || !currentContainer.current || !currentSetScroll.current) return;
+  const handleMove = useCallback((clientX: number, clientY: number) => {
+    if (!currentContainer.current || !currentSetScroll.current) return;
 
+    const deltaX = Math.abs(clientX - startX.current);
+    const deltaY = Math.abs(clientY - startY.current);
+    
+    // Determinar si es un drag horizontal con umbral balanceado
+    if (!isDragging.current && (deltaX > 12 || deltaY > 12)) {
+      if (deltaX > deltaY && deltaX > 12) {
+        isDragging.current = true;
+        isHorizontalDrag.current = true;
+      } else if (deltaY > deltaX) {
+        // Es scroll vertical, cancelar drag
+        handleEnd();
+        return;
+      }
+    }
+
+    if (!isDragging.current || !isHorizontalDrag.current) return;
+
+    const now = Date.now();
     const diff = startX.current - clientX;
+    const timeDiff = now - lastMoveTime.current;
+    
+    if (timeDiff > 0) {
+      velocity.current = diff / timeDiff;
+    }
     
     currentSetScroll.current(prev => {
-      const newPosition = prev + diff * 0.8; // Factor de suavidad
+      const newPosition = prev + diff * 0.5; // Punto medio balanceado
       // Verificación adicional para evitar null
       if (!currentContainer.current) return prev;
       const maxScroll = currentContainer.current.scrollWidth - currentContainer.current.clientWidth;
@@ -45,53 +121,14 @@ export default function WhyJoinSection() {
     });
     
     startX.current = clientX;
-  };
-
-  // Función para terminar el drag
-  const handleEnd = () => {
-    isDragging.current = false;
-    currentContainer.current = null;
-    currentSetScroll.current = null;
-    document.body.style.userSelect = '';
-  };
-
-  // Event handlers para touch
-  const createTouchHandlers = (container: HTMLDivElement | null, setScroll: React.Dispatch<React.SetStateAction<number>>) => {
-    if (!container) return {};
-    return {
-      onTouchStart: (e: React.TouchEvent) => {
-        e.preventDefault();
-        handleStart(e.touches[0].clientX, container, setScroll);
-      },
-      onTouchMove: (e: React.TouchEvent) => {
-        e.preventDefault();
-        handleMove(e.touches[0].clientX);
-      },
-      onTouchEnd: handleEnd
-    };
-  };
-
-  // Event handlers para mouse
-  const createMouseHandlers = (container: HTMLDivElement | null, setScroll: React.Dispatch<React.SetStateAction<number>>) => {
-    if (!container) return {};
-    return {
-      onMouseDown: (e: React.MouseEvent) => {
-        e.preventDefault();
-        if (container) handleStart(e.clientX, container, setScroll);
-      },
-      onMouseMove: (e: React.MouseEvent) => {
-        handleMove(e.clientX);
-      },
-      onMouseUp: handleEnd,
-      onMouseLeave: handleEnd
-    };
-  };
+    lastMoveTime.current = now;
+  }, [handleEnd]);
 
   // Agregar event listeners globales para el drag
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
       if (isDragging.current) {
-        handleMove(e.clientX);
+        handleMove(e.clientX, e.clientY);
       }
     };
 
@@ -101,14 +138,31 @@ export default function WhyJoinSection() {
       }
     };
 
+    const handleGlobalTouchMove = (e: TouchEvent) => {
+      if (isDragging.current && isHorizontalDrag.current) {
+        e.preventDefault();
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleGlobalTouchEnd = () => {
+      if (isDragging.current) {
+        handleEnd();
+      }
+    };
+
     document.addEventListener('mousemove', handleGlobalMouseMove);
     document.addEventListener('mouseup', handleGlobalMouseUp);
+    document.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
+    document.addEventListener('touchend', handleGlobalTouchEnd);
 
     return () => {
       document.removeEventListener('mousemove', handleGlobalMouseMove);
       document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('touchmove', handleGlobalTouchMove);
+      document.removeEventListener('touchend', handleGlobalTouchEnd);
     };
-  }, []);
+  }, [handleMove, handleEnd]);
 
   // Logos de empresas socias con sus enlaces
   const memberLogos = [
@@ -214,13 +268,33 @@ export default function WhyJoinSection() {
           <div className="space-y-8">
             {/* Fila 1 */}
             <div 
-              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing"
-              {...createTouchHandlers(containerRef1.current, setScrollPosition1)}
-              {...createMouseHandlers(containerRef1.current, setScrollPosition1)}
+              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing touch-pan-y"
+              style={{ touchAction: 'pan-y' }}
+              onTouchStart={(e) => {
+                if (containerRef1.current) {
+                  handleStart(e.touches[0].clientX, e.touches[0].clientY, containerRef1.current, setScrollPosition1);
+                }
+              }}
+              onTouchMove={(e) => {
+                if (isDragging.current && isHorizontalDrag.current) {
+                  e.preventDefault();
+                }
+                handleMove(e.touches[0].clientX, e.touches[0].clientY);
+              }}
+              onTouchEnd={handleEnd}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                if (containerRef1.current) {
+                  handleStart(e.clientX, e.clientY, containerRef1.current, setScrollPosition1);
+                }
+              }}
+              onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
             >
               <div 
                 ref={containerRef1}
-                className="flex transition-transform duration-200 ease-out select-none"
+                className="flex transition-transform duration-150 ease-out select-none"
                 style={{ transform: `translateX(-${scrollPosition1}px)` }}
               >
                 {memberLogos.slice(0, 11).map((company, index) => (
@@ -252,13 +326,33 @@ export default function WhyJoinSection() {
 
             {/* Fila 2 */}
             <div 
-              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing"
-              {...createTouchHandlers(containerRef2.current, setScrollPosition2)}
-              {...createMouseHandlers(containerRef2.current, setScrollPosition2)}
+              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing touch-pan-y"
+              style={{ touchAction: 'pan-y' }}
+              onTouchStart={(e) => {
+                if (containerRef2.current) {
+                  handleStart(e.touches[0].clientX, e.touches[0].clientY, containerRef2.current, setScrollPosition2);
+                }
+              }}
+              onTouchMove={(e) => {
+                if (isDragging.current && isHorizontalDrag.current) {
+                  e.preventDefault();
+                }
+                handleMove(e.touches[0].clientX, e.touches[0].clientY);
+              }}
+              onTouchEnd={handleEnd}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                if (containerRef2.current) {
+                  handleStart(e.clientX, e.clientY, containerRef2.current, setScrollPosition2);
+                }
+              }}
+              onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
             >
               <div 
                 ref={containerRef2}
-                className="flex transition-transform duration-200 ease-out select-none"
+                className="flex transition-transform duration-150 ease-out select-none"
                 style={{ transform: `translateX(-${scrollPosition2}px)` }}
               >
                 {memberLogos.slice(11, 22).map((company, index) => (
@@ -289,13 +383,33 @@ export default function WhyJoinSection() {
 
             {/* Fila 3 */}
             <div 
-              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing"
-              {...createTouchHandlers(containerRef3.current, setScrollPosition3)}
-              {...createMouseHandlers(containerRef3.current, setScrollPosition3)}
+              className="overflow-hidden max-w-full px-4 py-4 cursor-grab active:cursor-grabbing touch-pan-y"
+              style={{ touchAction: 'pan-y' }}
+              onTouchStart={(e) => {
+                if (containerRef3.current) {
+                  handleStart(e.touches[0].clientX, e.touches[0].clientY, containerRef3.current, setScrollPosition3);
+                }
+              }}
+              onTouchMove={(e) => {
+                if (isDragging.current && isHorizontalDrag.current) {
+                  e.preventDefault();
+                }
+                handleMove(e.touches[0].clientX, e.touches[0].clientY);
+              }}
+              onTouchEnd={handleEnd}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                if (containerRef3.current) {
+                  handleStart(e.clientX, e.clientY, containerRef3.current, setScrollPosition3);
+                }
+              }}
+              onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
             >
               <div 
                 ref={containerRef3}
-                className="flex transition-transform duration-200 ease-out select-none"
+                className="flex transition-transform duration-150 ease-out select-none"
                 style={{ transform: `translateX(-${scrollPosition3}px)` }}
               >
                 {memberLogos.slice(22).map((company, index) => (

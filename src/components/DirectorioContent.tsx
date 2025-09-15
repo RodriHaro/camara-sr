@@ -68,8 +68,8 @@ const directorio: {
   ],
   staff: [
     { nombre: "Alejandro Flores", cargo: "Gerente", noFoto: true },
-    { nombre: "Silvina Di Stefano", cargo: "Secretaria", foto: "/images/directorio/silvina-di-stefano.png" },
-    { nombre: "Roberto Bravo", cargo: "Área de Comunicación", foto: "/images/directorio/roberto-bravo.png" }
+    { nombre: "Silvina Di Stefano", cargo: "Secretaria", foto: "/images/directorio/silvina-di-stefano.avif" },
+    { nombre: "Roberto Bravo", cargo: "Área de Comunicación", foto: "/images/directorio/roberto-bravo.avif" }
   ]
 };
 
@@ -132,13 +132,13 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Federico Greco" ? '40% center' :
                   member.nombre === "Nicolás Schmid" ? '85% center' :
                   member.nombre === "Enrique Richard" ? '60% center' :
-                  member.nombre === "Sofía Romano" ? '90% center' :
+                  member.nombre === "Sofía Romano" ? '55% center' :
                   member.nombre === "Fernando Bonomo" ? '38% center' :
                   member.nombre === "Eduardo López" ? '30% center' :
                   member.nombre === "Gerardo Garino" ? '55% center' :
-                  member.nombre === "Fernando Sombra" ? '60% center' :
+                  member.nombre === "Fernando Sombra" ? '52% center' :
                   member.nombre === "Roberto Bravo" ? '30% center' :
-                  member.nombre === "Silvina Di Stefano" ? '46% center' :
+                  member.nombre === "Silvina Di Stefano" ? '63% center' :
                   member.nombre === "Juan Pablo Ríos" ? '40% center' :
                   (member.nombre === "Sergio Navarrete" || member.nombre === "Pablo Guillén") ? '80% center' : 
                   'center center'

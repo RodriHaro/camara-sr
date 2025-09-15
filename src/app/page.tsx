@@ -269,7 +269,7 @@ export default async function Home() {
       <WhyJoinSection />
       {/* Sección de Contacto */}
       <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <AnimatedTitle
               className="text-3xl md:text-4xl font-bold text-[#091b3f] mb-4"
@@ -425,7 +425,7 @@ export default async function Home() {
             </div>
 
             {/* Columna derecha: Google Maps */}
-            <div className="w-full">
+            <div className="w-full px-2 sm:px-0">
               <AnimatedSection
                 className="aspect-[16/9] md:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow"
                 animation="fadeInRight"
