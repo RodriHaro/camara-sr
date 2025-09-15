@@ -84,7 +84,7 @@ export default function SectionHero({
               style={{
                 width: '100%',
                 height: '100%',
-                  background: 'linear-gradient(to right, rgba(15,23,42,1) 0%, rgba(30,41,59,0.88) 50%, rgba(30,41,59,0.32) 75%, rgba(0,0,0,0.10) 100%)'
+                background: customGradient ? undefined : 'linear-gradient(to right, rgba(15,23,42,1) 0%, rgba(30,41,59,0.88) 50%, rgba(30,41,59,0.32) 75%, rgba(0,0,0,0.10) 100%)'
               }}
             />
         ) : null}

@@ -61,7 +61,7 @@ export default function SociosPage() {
         subtitle="Sumate a nuestra comunidad empresarial y accede a beneficios únicos para hacer crecer tu negocio"
         backgroundImage="/images/institucional/asamblea.avif"
         backgroundImageAlt="Empresarios de San Rafael en asamblea de la Cámara de Comercio"
-        customGradient="bg-gradient-to-r from-slate-900/90 via-blue-900/40 to-black/10"
+        customGradient="bg-gradient-to-r from-slate-900/60 via-blue-900/25 to-black/5"
         showSociosBadge={true}
       />
 

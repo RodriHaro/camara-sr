@@ -37,9 +37,9 @@ const directorio: {
   directoresTitulares: [
     { nombre: "Naim Yapur", cargo: "Director Titular", foto: "/images/directorio/naim-yapur.avif" },
     { nombre: "Susana Lomoro", cargo: "Director Titular", foto: "/images/directorio/susana-lomoro.avif" },
-    { nombre: "Darío Fokszek", cargo: "Director Titular", foto: "/images/directorio/dario-fokszek.avif" },
+    { nombre: "Darío Fokszek", cargo: "Director Titular", foto: "/images/directorio/dario-fokszek.png" },
     { nombre: "José Vázquez", cargo: "Director Titular", foto: "/images/directorio/jose-vazquez.avif" },
-    { nombre: "Gustavo Lombard", cargo: "Director Titular", foto: "/images/directorio/gustavo-lombard.avif" },
+    { nombre: "Gustavo Lombard", cargo: "Director Titular", foto: "/images/directorio/gustavo-lombard.png" },
     { nombre: "Sergio Navarrete", cargo: "Director Titular", foto: "/images/directorio/sergio-navarrete.avif" },
     { nombre: "Andrés Cardiel", cargo: "Director Titular", foto: "/images/directorio/andres-cardiel.avif" },
     { nombre: "Bernardo Mercado", cargo: "Director Titular", foto: "/images/directorio/bernardo-mercado.avif" },
@@ -50,7 +50,7 @@ const directorio: {
   ],
   directoresSuplentes: [
     { nombre: "Alejandra Oteo", cargo: "Director Suplente", foto: "/images/directorio/alejandra-oteo.avif" },
-    { nombre: "José Díaz", cargo: "Director Suplente", foto: "/images/directorio/jose-diaz.avif" },
+    { nombre: "José Díaz", cargo: "Director Suplente", foto: "/images/directorio/jose-diaz.png" },
     { nombre: "Federico Greco", cargo: "Director Suplente", foto: "/images/directorio/federico-greco.avif" },
     { nombre: "Emiliano Andión", cargo: "Director Suplente", noFoto: true }
   ],
@@ -68,8 +68,8 @@ const directorio: {
   ],
   staff: [
     { nombre: "Alejandro Flores", cargo: "Gerente", noFoto: true },
-    { nombre: "Silvina Di Stefano", cargo: "Secretaria", foto: "/images/directorio/silvina-di-stefano.avif" },
-    { nombre: "Roberto Bravo", cargo: "Área de Comunicación", foto: "/images/directorio/roberto-bravo.avif" }
+    { nombre: "Silvina Di Stefano", cargo: "Secretaria", foto: "/images/directorio/silvina-di-stefano.png" },
+    { nombre: "Roberto Bravo", cargo: "Área de Comunicación", foto: "/images/directorio/roberto-bravo.png" }
   ]
 };
 
@@ -110,13 +110,15 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
               alt={`Foto de ${member.nombre}`}
               fill
               quality={95}
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-300 image-render-crisp"
+              className={`object-cover grayscale hover:grayscale-0 transition-all duration-300 image-render-crisp ${
+                member.nombre === "Marcos Gianoncelli" ? 'object-top' : ''
+              }`}
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               priority={member.cargo === "Presidente" || member.cargo === "Vicepresidente I" || member.cargo === "Vicepresidente II"}
               style={{
                 imageRendering: 'crisp-edges',
                 objectPosition: 
-                  member.nombre === "Marcos Gianoncelli" ? '75% center' :
+                  member.nombre === "Marcos Gianoncelli" ? '75% 50%' :
                   member.nombre === "Silvina Pietrelli" ? '40% center' :
                   member.nombre === "Gabriel Brega" ? '60% center' :
                   member.nombre === "Susana Lomoro" ? '70% center' :
@@ -137,6 +139,7 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Fernando Sombra" ? '60% center' :
                   member.nombre === "Roberto Bravo" ? '30% center' :
                   member.nombre === "Silvina Di Stefano" ? '46% center' :
+                  member.nombre === "Juan Pablo Ríos" ? '40% center' :
                   (member.nombre === "Sergio Navarrete" || member.nombre === "Pablo Guillén") ? '80% center' : 
                   'center center'
               }}

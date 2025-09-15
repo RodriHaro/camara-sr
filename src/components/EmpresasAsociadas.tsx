@@ -86,7 +86,7 @@ export default function EmpresasAsociadas() {
             animation="fadeInUp"
             duration={0.8}
           >
-            Únete a las empresas que nos acompañan en el Almuerzo de las Fuerzas Vivas
+            Únete a las empresas que confiaron en nosotros y fueron  parte del Almuerzo de las Fuerzas Vivas
           </AnimatedTitle>
           <AnimatedText
             className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
