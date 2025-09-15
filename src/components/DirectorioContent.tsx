@@ -195,16 +195,16 @@ function Section({ title, members, columns = "md:grid-cols-3 lg:grid-cols-4", ba
 export default function DirectorioContent() {
   return (
     <div className="bg-gradient-to-br from-[#0a1428] via-[#0f1e35] to-[#152842] min-h-screen relative overflow-hidden">
-      {/* Rectángulos decorativos */}
-      <div className="absolute top-8 left-8 w-64 h-32 bg-white/10 rounded-2xl" style={{backdropFilter: 'blur(2px)'}}></div>
-      <div className="absolute top-24 right-16 w-96 h-40 bg-white/10 rounded-3xl" style={{backdropFilter: 'blur(2px)'}}></div>
+      {/* Rectángulos decorativos más pequeños para mobile */}
+      <div className="absolute top-2 left-2 w-16 h-8 md:top-8 md:left-8 md:w-64 md:h-32 bg-white/10 rounded-lg md:rounded-2xl" style={{backdropFilter: 'blur(2px)'}}></div>
+      <div className="absolute top-32 right-2 w-20 h-10 md:top-24 md:right-16 md:w-96 md:h-40 bg-white/10 rounded-lg md:rounded-3xl" style={{backdropFilter: 'blur(2px)'}}></div>
       
       <div className="container mx-auto px-4 py-42 relative z-10">
         {/* Título principal */}
         <div className="text-center mb-32">
           <AnimatedTitle
             as="h1"
-            className="text-5xl font-bold text-white mb-4"
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
             animation="fadeInUp"
             delay={0}
             duration={0.8}
