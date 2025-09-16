@@ -132,5 +132,57 @@ body {
   animation: zoomIn 0.7s ease-out forwards;
 }
 
+/* Hero image optimization for high-resolution displays */
+.hero-image-responsive {
+  /* Base optimization */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  
+  /* Hardware acceleration */
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* Smooth transitions */
+  transition: opacity 0.7s ease-in-out;
+}
+
+/* Responsive background images using CSS custom properties */
+@media (max-width: 767px) {
+  .hero-image-responsive[data-mobile-bg] {
+    background-image: var(--mobile-bg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-image-responsive[data-tablet-bg] {
+    background-image: var(--tablet-bg);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .hero-image-responsive[data-desktop-bg] {
+    background-image: var(--desktop-bg);
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-image-responsive[data-large-bg] {
+    background-image: var(--large-bg);
+  }
+}
+
+/* High DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .hero-image-responsive {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+}
+
 /* Sanity Studio CSS */
 @import url('https://cdn.sanity.io/ui/v1.0.0/index.css');

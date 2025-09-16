@@ -24,16 +24,35 @@ export function imageUrl(source: SanityImageSource, width?: number, height?: num
   return url.format('webp').quality(85).url()
 }
 
-// Hero image optimized for full width display
+// Hero image optimized for full width display with high resolution support
 export function heroImageUrl(source: SanityImageSource) {
   return urlFor(source)
-    .width(1920)
-    .height(600)
+    .maxWidth(3840)  // Maximum width (won't upscale beyond original)
+    .maxHeight(1200) // Maximum height (won't upscale beyond original)
     .fit('crop')
     .crop('center')
-    .format('webp')
-    .quality(95)
-    .url()
+    .format('webp') // WebP for better compression with quality
+    .quality(95)    // High quality but not excessive
+    .auto('format') // Let Sanity choose the best format
+    .url();
+}
+
+// Hero image with responsive sizes for different screen sizes
+export function heroImageUrlResponsive(source: SanityImageSource) {
+  const baseUrl = urlFor(source).fit('crop').crop('center').format('webp').quality(95);
+  
+  return {
+    // Mobile (up to 768px)
+    mobile: baseUrl.width(768).height(400).dpr(2).url(),
+    // Tablet (768px to 1024px)
+    tablet: baseUrl.width(1024).height(500).dpr(2).url(),
+    // Desktop (1024px to 1920px)
+    desktop: baseUrl.width(1920).height(800).dpr(2).url(),
+    // Large screens (1920px+)
+    large: baseUrl.width(2560).height(800).dpr(2).url(),
+    // Default fallback (highest quality)
+    default: baseUrl.width(2560).height(800).dpr(2).url()
+  };
 }
 
 // Card image optimized for news cards

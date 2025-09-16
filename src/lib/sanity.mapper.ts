@@ -1,5 +1,5 @@
 import { NewsItem } from '../components/NewsCardLarge'
-import { heroImageUrl, cardImageUrl } from './sanity.image'
+import { heroImageUrl, heroImageUrlResponsive, cardImageUrl } from './sanity.image'
 
 // Type definitions for Sanity data
 export interface SanityNoticia {
@@ -48,7 +48,7 @@ export function mapSanityToHeroSlide(sanityNews: SanityNoticia) {
     id: sanityNews._id,
     title: sanityNews.titulo,
     excerpt: sanityNews.resumen,
-    image: heroImageUrl(sanityNews.imagen),
+    image: heroImageUrl(sanityNews.imagen), // Optimized high-quality image
     date: formatDate(sanityNews.fechaPublicacion),
     category: formatCategory(sanityNews.categoria),
     href: `/noticias/${sanityNews.slug.current}`

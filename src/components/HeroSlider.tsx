@@ -7,6 +7,13 @@ import { AnimatedSection } from './AnimatedSection';
 // Slide type definition
 export type HeroSlide = {
   image: string;
+  responsiveImages?: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+    large: string;
+    default: string;
+  };
   date: string;
   category: string;
   title: string;
@@ -119,12 +126,21 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === current ? "opacity-100 z-10" : "opacity-0 z-0"}`}
           aria-hidden={idx !== current}
         >
-          {/* Background image with overlay */}
+          {/* Background image with overlay - Ultra high quality */}
           <div
-            className="w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${slide.image})`,
-            }}
+              // High-quality rendering optimizations
+              imageRendering: 'crisp-edges' as any,
+              WebkitImageRendering: '-webkit-optimize-contrast' as any,
+              msInterpolationMode: 'bicubic' as any,
+              // Hardware acceleration
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            } as React.CSSProperties}
           >
             <div className="w-full h-full flex items-end justify-start md:justify-start">
               {/* Overlay gradient for legibility */}
