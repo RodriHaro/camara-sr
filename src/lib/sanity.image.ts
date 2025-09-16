@@ -55,15 +55,16 @@ export function heroImageUrlResponsive(source: SanityImageSource) {
   };
 }
 
-// Card image optimized for news cards
+// Card image optimized for news cards with high resolution support
 export function cardImageUrl(source: SanityImageSource) {
   return urlFor(source)
-    .width(400)
-    .height(250)
+    .maxWidth(800)  // Higher resolution for cards (won't upscale beyond original)
+    .maxHeight(500) // Proportional height (won't upscale beyond original)
     .fit('crop')
     .crop('center')
-    .format('webp')
-    .quality(85)
+    .format('webp') // WebP for better compression
+    .quality(98)    // Higher quality for crisp cards
+    .auto('format') // Let Sanity choose the best format
     .url()
 }
 

@@ -23,6 +23,12 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
             src={news.image}
             alt={news.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{
+              imageRendering: 'crisp-edges' as any,
+              WebkitImageRendering: '-webkit-optimize-contrast' as any,
+              msInterpolationMode: 'bicubic' as any,
+            } as React.CSSProperties}
+            loading="lazy"
           />
           {/* Overlay sutil */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />

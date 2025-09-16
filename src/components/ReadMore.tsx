@@ -23,8 +23,19 @@ export const ReadMore: React.FC<ReadMoreProps> = ({ articles }) => {
             <article className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-64">
               {/* Imagen de fondo */}
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                style={{ backgroundImage: `url(${article.image})` }}
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+                style={{
+                  backgroundImage: `url(${article.image})`,
+                  // High-quality rendering optimizations
+                  imageRendering: 'crisp-edges' as any,
+                  WebkitImageRendering: '-webkit-optimize-contrast' as any,
+                  msInterpolationMode: 'bicubic' as any,
+                  // Hardware acceleration
+                  willChange: 'transform',
+                  transform: 'translateZ(0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
+                } as React.CSSProperties}
                 role="img"
                 aria-label={article.title}
               />

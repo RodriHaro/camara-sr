@@ -24,8 +24,19 @@ export const NewsCardLarge: React.FC<NewsCardLargeProps> = ({ news }) => {
         <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-96 md:h-[28rem]">
           {/* Imagen de fondo */}
           <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            style={{ backgroundImage: `url(${news.image})` }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+            style={{
+              backgroundImage: `url(${news.image})`,
+              // High-quality rendering optimizations
+              imageRendering: 'crisp-edges' as any,
+              WebkitImageRendering: '-webkit-optimize-contrast' as any,
+              msInterpolationMode: 'bicubic' as any,
+              // Hardware acceleration
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            } as React.CSSProperties}
             role="img"
             aria-label={news.title}
           />
