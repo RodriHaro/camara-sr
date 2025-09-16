@@ -49,7 +49,7 @@ export default async function NewsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white pt-[88px]">
         {/* Header de la página */}
         <div className="bg-gray-50 py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">

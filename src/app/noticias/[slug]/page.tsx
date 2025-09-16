@@ -156,7 +156,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white pt-[88px]">
         <article className="max-w-4xl mx-auto px-4 py-12">
           {/* Breadcrumb */}
           <AnimatedSection

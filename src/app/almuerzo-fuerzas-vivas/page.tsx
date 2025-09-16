@@ -14,7 +14,8 @@ export default function AlmuerzoFuerzasVivasPage() {
   return (
     <>
       <Header />
-      <AlmuerzoHero />
+      <div className="pt-[88px]">
+        <AlmuerzoHero />
       
       {/* Tradicional almuerzo de las fuerzas vivas */}
       <AlmuerzoContent />
@@ -33,6 +34,7 @@ export default function AlmuerzoFuerzasVivasPage() {
       
       {/* Transmisión en vivo */}
       <AlmuerzoTransmision />
+      </div>
       
       <Footer />
     </>

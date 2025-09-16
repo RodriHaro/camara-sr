@@ -50,7 +50,8 @@ export default function SociosPage() {
     <>
       <Header />
       <main className="min-h-screen">
-      {/* Hero Section */}
+        <div className="pt-[88px]">
+          {/* Hero Section */}
       <SectionHero
         title={
           <>
@@ -196,6 +197,7 @@ export default function SociosPage() {
           </AnimatedSection>
         </div>
       </section>
+        </div>
     </main>
     <Footer />
   </>

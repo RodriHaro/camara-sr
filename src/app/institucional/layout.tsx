@@ -15,7 +15,7 @@ export default function InstitucionalLayout({
   return (
     <div className="min-h-screen">
       <Header />
-      <main>
+      <main className="pt-[88px]">
         {children}
       </main>
       <Footer />

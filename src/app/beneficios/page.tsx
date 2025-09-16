@@ -53,7 +53,7 @@ export default async function BeneficiosPage() {
   return (
     <>
       <Header />
-      <main className="bg-white">
+      <main className="bg-white pt-[88px]">
         <BeneficiosHero />
         <BeneficiosInfo />
         
