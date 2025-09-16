@@ -32,7 +32,7 @@ export function heroImageUrl(source: SanityImageSource) {
     .fit('crop')
     .crop('center')
     .format('webp') // WebP for better compression with quality
-    .quality(95)    // High quality but not excessive
+    .quality(98)    // High quality but not excessive
     .auto('format') // Let Sanity choose the best format
     .url();
 }
