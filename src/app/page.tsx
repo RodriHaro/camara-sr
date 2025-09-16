@@ -56,9 +56,9 @@ export default async function Home() {
   const featuredNews = homeData?.featuredNews || [];
 
   return (
-    <div className="overflow-x-hidden w-full antialiased transform-gpu">
+    <div className="overflow-x-hidden w-full antialiased">
       <Header />
-      <div className="overflow-x-hidden w-full">
+      <div className="overflow-x-hidden w-full pt-[88px]">
         <HeroSlider slides={heroSlides} />
       </div>
       <LatestNews featuredNews={featuredNews} />

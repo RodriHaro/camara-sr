@@ -128,7 +128,7 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                 Nuestros <span style={{ color: '#FF4757' }}>Valores</span>
               </AnimatedTitle>
               <AnimatedSection
-                className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 items-center"
+                className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-4 xl:gap-2 2xl:gap-0 items-center"
                 animation="fadeInUp"
                 delay={0}
                 duration={0.8}
@@ -155,8 +155,8 @@ export default function VisionValores({ visionCards, valores, imageSrc, imageAlt
                   })}
                 </div>
                 {/* Imagen */}
-                <div className="flex justify-center lg:justify-end w-full mb-6 lg:mb-0">
-                  <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
+                <div className="flex justify-center lg:justify-start lg:pl-8 w-full mb-6 lg:mb-0">
+                  <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-1 sm:p-2">
                       <Image
                         src={imageSrc}

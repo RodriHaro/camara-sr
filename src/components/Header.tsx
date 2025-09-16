@@ -63,7 +63,7 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 bg-[#091b3f] shadow-md"
+      className="fixed top-0 left-0 right-0 z-[9999] bg-[#091b3f] shadow-md"
       role="banner"
       aria-label="Cámara de Comercio de San Rafael - Navegación principal"
     >
@@ -89,7 +89,7 @@ export default function Header() {
 
   {/* Desktop Menu */}
   <div className="hidden xl:flex xl:w-auto xl:order-1 items-center">
-          <ul className="flex flex-col font-medium md:flex-row md:space-x-8 rtl:space-x-reverse items-center m-0 p-0" role="menubar">
+          <ul className="flex flex-col font-medium md:flex-row md:space-x-[0.675rem] min-[1476px]:space-x-8 rtl:space-x-reverse items-center m-0 p-0" role="menubar">
             {NAV_ITEMS.map((item) => (
               <li key={item.name} role="none">
                 {item.hasDropdown ? (
@@ -99,12 +99,21 @@ export default function Header() {
                     onMouseLeave={() => setDropdownOpen(false)}
                   >
                     <span
-                      className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase cursor-pointer"
+                      className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase cursor-pointer flex items-center justify-center text-[15px] min-[1476px]:text-base min-[1800px]:text-lg"
                       role="menuitem"
                       aria-label={item.name}
                       tabIndex={0}
                     >
-                      {item.name}
+                      {item.name === "ALMUERZO DE LAS FUERZAS VIVAS" ? (
+                        <>
+                          <span className="hidden min-[1476px]:inline">ALMUERZO DE LAS FUERZAS VIVAS</span>
+                          <span className="min-[1476px]:hidden text-center leading-tight text-xs">
+                            ALMUERZO DE LAS<br />FUERZAS VIVAS
+                          </span>
+                        </>
+                      ) : (
+                        item.name
+                      )}
                     </span>
                     
                     {/* Mega Dropdown Menu */}
@@ -148,11 +157,27 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase"
+                    className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase flex items-center justify-center text-[15px] min-[1476px]:text-base min-[1800px]:text-lg"
                     role="menuitem"
                     aria-label={item.name}
                   >
-                    {item.name}
+                    {item.name === "HACETE SOCIO" ? (
+                      <>
+                        <span className="hidden min-[1476px]:inline">HACETE SOCIO</span>
+                        <span className="min-[1476px]:hidden text-center leading-tight text-xs">
+                          HACETE<br />SOCIO
+                        </span>
+                      </>
+                    ) : item.name === "ALMUERZO DE LAS FUERZAS VIVAS" ? (
+                      <>
+                        <span className="hidden min-[1476px]:inline">ALMUERZO DE LAS FUERZAS VIVAS</span>
+                        <span className="min-[1476px]:hidden text-center leading-tight text-xs">
+                          ALMUERZO DE LAS<br />FUERZAS VIVAS
+                        </span>
+                      </>
+                    ) : (
+                      item.name
+                    )}
                   </Link>
                 )}
               </li>
