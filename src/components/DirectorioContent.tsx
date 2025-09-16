@@ -127,7 +127,7 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Naim Yapur" ? '60% center' :
                   member.nombre === "Andrés Cardiel" ? '60% center' :
                   member.nombre === "Carlos Carbó" ? '30% center' :
-                  member.nombre === "Celina Gómez" ? '80% center' :
+                  member.nombre === "Celina Gómez" ? '50% center' :
                   member.nombre === "Alejandra Oteo" ? '75% center' :
                   member.nombre === "Federico Greco" ? '40% center' :
                   member.nombre === "Nicolás Schmid" ? '85% center' :
