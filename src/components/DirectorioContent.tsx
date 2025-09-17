@@ -21,25 +21,25 @@ const directorio: {
     {
       nombre: "Gabriel Brega",
       cargo: "Presidente",
-      foto: "/images/directorio/gabriel-brega.jpg"
+      foto: "/images/directorio/gabriel-brega.avif"
     },
     {
       nombre: "Silvina Pietrelli", 
       cargo: "Vicepresidente I",
-      foto: "/images/directorio/silvina-pietrelli.jpg"
+      foto: "/images/directorio/silvina-pietrelli.avif"
     },
     {
       nombre: "Marcos Gianoncelli",
       cargo: "Vicepresidente II", 
-      foto: "/images/directorio/marcos-gianoncelli.jpg"
+      foto: "/images/directorio/marcos-gianoncelli.avif"
     }
   ],
   directoresTitulares: [
     { nombre: "Naim Yapur", cargo: "Director Titular", foto: "/images/directorio/naim-yapur.avif" },
     { nombre: "Susana Lomoro", cargo: "Director Titular", foto: "/images/directorio/susana-lomoro.avif" },
-    { nombre: "Darío Fokszek", cargo: "Director Titular", foto: "/images/directorio/dario-fokszek.png" },
+    { nombre: "Darío Fokszek", cargo: "Director Titular", foto: "/images/directorio/dario-fokszek.avif" },
     { nombre: "José Vázquez", cargo: "Director Titular", foto: "/images/directorio/jose-vazquez.avif" },
-    { nombre: "Gustavo Lombard", cargo: "Director Titular", foto: "/images/directorio/gustavo-lombard.png" },
+    { nombre: "Gustavo Lombard", cargo: "Director Titular", foto: "/images/directorio/gustavo-lombard.avif" },
     { nombre: "Sergio Navarrete", cargo: "Director Titular", foto: "/images/directorio/sergio-navarrete.avif" },
     { nombre: "Andrés Cardiel", cargo: "Director Titular", foto: "/images/directorio/andres-cardiel.avif" },
     { nombre: "Bernardo Mercado", cargo: "Director Titular", foto: "/images/directorio/bernardo-mercado.avif" },
@@ -50,7 +50,7 @@ const directorio: {
   ],
   directoresSuplentes: [
     { nombre: "Alejandra Oteo", cargo: "Director Suplente", foto: "/images/directorio/alejandra-oteo.avif" },
-    { nombre: "José Díaz", cargo: "Director Suplente", foto: "/images/directorio/jose-diaz.png" },
+    { nombre: "José Díaz", cargo: "Director Suplente", foto: "/images/directorio/jose-diaz.avif" },
     { nombre: "Federico Greco", cargo: "Director Suplente", foto: "/images/directorio/federico-greco.avif" },
     { nombre: "Emiliano Andión", cargo: "Director Suplente", noFoto: true }
   ],
@@ -123,7 +123,7 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Gabriel Brega" ? '60% center' :
                   member.nombre === "Susana Lomoro" ? '70% center' :
                   member.nombre === "José Vázquez" ? '55% center' :
-                  member.nombre === "Gustavo Lombard" ? '90% center' :
+                  member.nombre === "Gustavo Lombard" ? '45% center' :
                   member.nombre === "Naim Yapur" ? '60% center' :
                   member.nombre === "Andrés Cardiel" ? '60% center' :
                   member.nombre === "Carlos Carbó" ? '30% center' :
@@ -140,7 +140,8 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Roberto Bravo" ? '30% center' :
                   member.nombre === "Silvina Di Stefano" ? '63% center' :
                   member.nombre === "Juan Pablo Ríos" ? '40% center' :
-                  (member.nombre === "Sergio Navarrete" || member.nombre === "Pablo Guillén") ? '80% center' : 
+                  member.nombre === "Pablo Guillén" ? '50% center' :
+                  member.nombre === "Sergio Navarrete" ? '80% center' :
                   'center center'
               }}
             />
