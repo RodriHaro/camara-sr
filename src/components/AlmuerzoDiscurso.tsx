@@ -170,6 +170,92 @@ export default function AlmuerzoDiscurso() {
             </div>
           ))}
         </AnimatedSection>
+
+        {/* Sección PDF del Discurso Completo */}
+        <AnimatedSection
+          className="mt-16 bg-gradient-to-br from-[#091b3f] to-blue-900 rounded-3xl p-8 text-white"
+          animation="fadeInUp"
+          delay={600}
+          duration={0.8}
+        >
+          <div className="text-center mb-8">
+            <AnimatedTitle
+              as="h3"
+              className="text-2xl md:text-3xl font-bold mb-4"
+              animation="fadeInUp"
+              delay={700}
+              duration={0.6}
+            >
+              Discurso Presidencial Completo
+            </AnimatedTitle>
+            <AnimatedText
+              className="text-lg text-white/90 max-w-2xl mx-auto"
+              animation="fadeInUp"
+              delay={800}
+              duration={0.6}
+            >
+              Accede al documento completo del discurso pronunciado por Gabriel Brega en el Almuerzo de las Fuerzas Vivas 2024
+            </AnimatedText>
+          </div>
+
+          {/* Controles del PDF */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="/images/discurso-afv2024.pdf"
+              download
+              className="inline-flex items-center px-6 py-3 bg-[#FF4757] hover:bg-[#ff3742] text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-4-4m4 4l4-4m6-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-2" />
+              </svg>
+              Descargar PDF
+            </a>
+            <a
+              href="/images/discurso-afv2024.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 border border-white/20"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M7 7h10v10M17 7l-10 10" />
+              </svg>
+              Abrir en nueva pestaña
+            </a>
+          </div>
+
+          {/* Visor PDF embebido */}
+          <div className="bg-white rounded-2xl p-2 shadow-2xl">
+            <div className="relative w-full" style={{ paddingBottom: '141.42%' /* A4 ratio */ }}>
+              <iframe
+                src="/images/discurso-afv2024.pdf#toolbar=1&navpanes=1&scrollbar=1"
+                className="absolute inset-0 w-full h-full rounded-xl border-0"
+                title="Discurso Presidencial Completo - Gabriel Brega 2024"
+                loading="lazy"
+              />
+            </div>
+            
+            {/* Mensaje de fallback para dispositivos que no soportan iframe */}
+            <noscript>
+              <div className="p-8 text-center text-gray-600">
+                <p className="mb-4">Su navegador no soporta la visualización de PDFs.</p>
+                <a
+                  href="/images/discurso-afv2024.pdf"
+                  download
+                  className="inline-flex items-center px-6 py-3 bg-[#FF4757] hover:bg-[#ff3742] text-white font-semibold rounded-xl transition-colors"
+                >
+                  Descargar PDF
+                </a>
+              </div>
+            </noscript>
+          </div>
+
+          {/* Información adicional */}
+          <div className="mt-6 text-center">
+            <p className="text-sm text-white/70">
+              Documento oficial • Almuerzo de las Fuerzas Vivas 2024 • CCIA San Rafael
+            </p>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
