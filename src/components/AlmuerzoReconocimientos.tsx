@@ -65,16 +65,16 @@ export default function AlmuerzoReconocimientos() {
 
         {/* Grid de reconocimientos */}
         <AnimatedSection
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-8 auto-rows-fr"
           animation="fadeInUp"
           delay={400}
           duration={0.8}
         >
           {reconocimientos.map((reconocimiento) => (
             <AnimatedCardImage key={reconocimiento.id}>
-              <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="bg-gray-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
                 {/* Imagen sin badge */}
-                <div className="relative h-64 mx-6 mt-6 mb-4">
+                <div className="relative h-64 mx-6 mt-6 mb-4 flex-shrink-0">
                   <Image
                     src={reconocimiento.imagen}
                     alt={`${reconocimiento.empresa} - ${reconocimiento.categoria}`}
@@ -88,36 +88,22 @@ export default function AlmuerzoReconocimientos() {
                 </div>
 
                 {/* Contenido */}
-                <div className="p-6 pt-2">
+                <div className="p-6 pt-2 flex-grow flex flex-col">
                   <div className="flex flex-col md:flex-row items-center md:items-center gap-3 mb-3">
                     <h3 className="text-xl font-bold text-[#091b3f] text-center md:text-left w-full md:w-auto">
                       {reconocimiento.empresa}
                     </h3>
-                    <span className="inline-block px-3 py-1 bg-[#091b3f] text-white text-xs font-medium rounded-full text-center w-full md:w-auto">
+                    <span className="inline-block px-3 py-1 bg-[#091b3f] text-white text-xs font-medium rounded-full text-center w-full md:w-auto flex-shrink-0">
                       {reconocimiento.categoria}
                     </span>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed flex-grow">
                     {reconocimiento.descripcion}
                   </p>
                 </div>
               </div>
             </AnimatedCardImage>
           ))}
-        </AnimatedSection>
-
-        {/* Texto adicional */}
-        <AnimatedSection
-          className="mt-12 text-center"
-          animation="fadeInUp"
-          delay={600}
-          duration={0.6}
-        >
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-            Luego de que los presentes compartieran un brindis, y mientras degustaban el plato servido por 
-            <strong> Graciela Hisa Catering</strong>, llegó el momento de las distinciones a empresas y personalidades, 
-            ya clásicas en cada Almuerzo.
-          </p>
         </AnimatedSection>
       </div>
     </section>
