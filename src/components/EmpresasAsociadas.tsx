@@ -106,35 +106,29 @@ export default function EmpresasAsociadas() {
           duration={0.8}
         >
           {/* Carrusel container */}
-          <div className="relative bg-gray-50 rounded-2xl p-8">
+          <div className="relative bg-gray-50 rounded-2xl p-8 transition-all duration-300 ease-in-out">
             {/* Slides container */}
             <div className="overflow-hidden rounded-xl">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                  <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                      {getSlideItems(slideIndex).map((company, index) => (
-                        <div key={index} className="group">
-                          <Link href={company.url} target="_blank" rel="noopener noreferrer">
-                            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-[#091b3f]/20 h-32 flex items-center justify-center">
-                              <Image
-                                src={company.logo}
-                                alt={`Logo de ${company.name}`}
-                                width={160}
-                                height={80}
-                                className="object-contain max-w-full max-h-20 filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                                unoptimized
-                              />
-                            </div>
-                          </Link>
+              {/* Renderizar solo el slide actual para evitar altura fija */}
+              <div className="w-full transition-all duration-300 ease-in-out">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 animate-fadeIn">
+                  {getSlideItems(currentSlide).map((company, index) => (
+                    <div key={`${currentSlide}-${index}`} className="group">
+                      <Link href={company.url} target="_blank" rel="noopener noreferrer">
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-[#091b3f]/20 h-32 flex items-center justify-center">
+                          <Image
+                            src={company.logo}
+                            alt={`Logo de ${company.name}`}
+                            width={160}
+                            height={80}
+                            className="object-contain max-w-full max-h-20 filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                            unoptimized
+                          />
                         </div>
-                      ))}
+                      </Link>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -162,7 +156,7 @@ export default function EmpresasAsociadas() {
             </button>
 
             {/* Indicadores */}
-            <div className="flex justify-center mt-6 space-x-2">
+            <div className="flex justify-center mt-2 space-x-2">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}

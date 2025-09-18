@@ -37,8 +37,8 @@ export default function BeneficiosHero() {
               animation="fadeInUp"
               duration={0.8}
             >
-              <span className="font-normal">Empresas que nos acompañan al </span>
-              <span className="font-bold">Almuerzo de las Fuerzas Vivas</span>
+              <span className="font-normal">Descubre todos </span>
+              <span className="font-bold">nuestros Beneficios</span>
             </AnimatedTitle>
             <AnimatedText
               className="text-base md:text-lg opacity-90 mb-4 max-w-lg drop-shadow-md text-white"
@@ -46,7 +46,7 @@ export default function BeneficiosHero() {
               delay={200}
               duration={0.6}
             >
-              Conectamos empresas, impulsamos el crecimiento y fortalecemos el tejido empresarial de San Rafael. Juntos, transformamos desafíos en oportunidades de desarrollo.
+              Accede a descuentos exclusivos, asesoramiento profesional y convenios especiales diseñados para potenciar el crecimiento de tu empresa en San Rafael.
             </AnimatedText>
           </div>
         </div>
