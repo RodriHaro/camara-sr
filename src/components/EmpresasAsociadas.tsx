@@ -53,11 +53,11 @@ export default function EmpresasAsociadas() {
   const getSlideItems = (slideIndex: number) => {
     switch (slideIndex) {
       case 0:
-        return memberLogos.slice(20);  // Primer slide: 12 logos
+        return memberLogos.slice(0, 11);  // Primer slide: 11 logos
       case 1:
-        return memberLogos.slice(10, 20); // Segundo slide: 10 logos
+        return memberLogos.slice(11, 22); // Segundo slide: 11 logos
       case 2:
-        return memberLogos.slice(0, 10); // Tercer slide: resto (10 logos)
+        return memberLogos.slice(22);     // Tercer slide: 11 logos restantes
       default:
         return [];
     }
