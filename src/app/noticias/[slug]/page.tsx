@@ -84,7 +84,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       image: ({ value }: any) => (
         <div className="my-8">
           <img
-            src={urlFor(value).width(600).height(400).fit('fillmax').format('webp').quality(95).url()}
+            src={urlFor(value).maxWidth(600).maxHeight(400).format('webp').quality(95).url()}
             alt={value.alt || 'imagen'}
             className="w-full rounded-lg shadow-lg"
             loading="lazy"
