@@ -57,14 +57,12 @@ export default defineType({
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
             { title: 'Cita', value: 'blockquote' },
-            { title: 'Lista', value: 'ul' },
-            { title: 'Lista Ordenada', value: 'ol' },
-            { title: 'Subrayado', value: 'underline' },
           ],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' }
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' }
             ],
             annotations: [
               {

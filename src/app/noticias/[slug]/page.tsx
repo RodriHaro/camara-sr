@@ -84,7 +84,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
       image: ({ value }: any) => (
         <div className="my-8">
           <img
-            src={urlFor(value).width(800).height(600).format('webp').quality(95).url()}
+            src={urlFor(value).maxWidth(600).maxHeight(400).format('webp').quality(95).url()}
             alt={value.alt || 'imagen'}
             className="w-full rounded-lg shadow-lg"
             loading="lazy"
@@ -125,6 +125,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
       ),
       em: ({ children }: any) => (
         <em className="italic">{children}</em>
+      ),
+      underline: ({ children }: any) => (
+        <span className="underline">{children}</span>
       ),
       link: ({ children, value }: any) => (
         <a 

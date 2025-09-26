@@ -60,8 +60,7 @@ export function cardImageUrl(source: SanityImageSource) {
   return urlFor(source)
     .maxWidth(800)  // Higher resolution for cards (won't upscale beyond original)
     .maxHeight(500) // Proportional height (won't upscale beyond original)
-    .fit('crop')
-    .crop('center')
+    .fit('max')     // Maintains aspect ratio, no cropping
     .format('webp') // WebP for better compression
     .quality(98)    // Higher quality for crisp cards
     .auto('format') // Let Sanity choose the best format
