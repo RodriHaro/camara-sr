@@ -56,7 +56,10 @@ export default defineType({
             { title: 'Normal', value: 'normal' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
-            { title: 'Cita', value: 'blockquote' }
+            { title: 'Cita', value: 'blockquote' },
+            { title: 'Lista', value: 'ul' },
+            { title: 'Lista Ordenada', value: 'ol' },
+            { title: 'Subrayado', value: 'underline' },
           ],
           marks: {
             decorators: [
