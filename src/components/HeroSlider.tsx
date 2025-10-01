@@ -34,12 +34,10 @@ const getOptimalImageSrc = (slide: HeroSlide, windowWidth: number | null) => {
   
   if (windowWidth <= 768) {
     return slide.responsiveImages.mobile;
-  } else if (windowWidth <= 1024) {
-    return slide.responsiveImages.tablet;
-  } else if (windowWidth <= 1920) {
-    return slide.responsiveImages.desktop;
+  } else if (windowWidth <= 1600) {
+    return slide.responsiveImages.tablet; // Use optimized tablet images for laptops/MacBooks
   } else {
-    return slide.responsiveImages.large;
+    return slide.responsiveImages.desktop;
   }
 };
 
@@ -50,10 +48,10 @@ const getObjectPosition = (windowWidth: number | null) => {
   
   if (windowWidth <= 768) {
     return '65% center'; // Mobile - keep original mobile positioning
-  } else if (windowWidth <= 1024) {
-    return '62% center'; // Tablet/Laptop - improved positioning for notebooks
+  } else if (windowWidth <= 1600) {
+    return '65% 35%'; // Laptops including MacBooks - better portrait positioning
   } else {
-    return '60% center'; // Desktop - original desktop positioning
+    return '60% center'; // Large Desktop - original desktop positioning
   }
 };
 

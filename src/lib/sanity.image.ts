@@ -44,9 +44,9 @@ export function heroImageUrlResponsive(source: SanityImageSource) {
   return {
     // Mobile (up to 768px) - Keep original mobile settings
     mobile: baseUrl.width(768).height(400).dpr(2).url(),
-    // Tablet (768px to 1024px) - Improved for laptops with better focal point
-    tablet: baseUrl.width(1024).height(600).crop('focalpoint').focalPoint(0.62, 0.5).dpr(2).url(),
-    // Desktop (1024px to 1920px) - Keep original desktop settings
+    // Tablet (768px to 1024px) - Better aspect ratio for laptops
+    tablet: baseUrl.width(1024).height(500).crop('center').dpr(2).url(),
+    // Desktop (1024px to 1920px) - Keep original desktop settings  
     desktop: baseUrl.width(1920).height(800).dpr(2).url(),
     // Large screens (1920px+) - Keep original large settings
     large: baseUrl.width(2560).height(800).dpr(2).url(),
