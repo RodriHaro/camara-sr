@@ -56,12 +56,13 @@ export default defineType({
             { title: 'Normal', value: 'normal' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
-            { title: 'Cita', value: 'blockquote' }
+            { title: 'Cita', value: 'blockquote' },
           ],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' }
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' }
             ],
             annotations: [
               {

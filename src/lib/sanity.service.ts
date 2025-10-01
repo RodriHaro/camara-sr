@@ -31,7 +31,7 @@ import {
 // Cache options for different types of content
 const CACHE_OPTIONS = {
   home: { next: { revalidate: 60 } }, // 1 minute for home page
-  news: { next: { revalidate: 300 } }, // 5 minutes for news
+  news: { next: { revalidate: 30 } }, // 1 minute for news (faster updates)
   static: { next: { revalidate: 3600 } } // 1 hour for mostly static content
 }
 
