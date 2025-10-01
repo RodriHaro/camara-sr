@@ -49,11 +49,11 @@ const latestNewsData: NewsItem[] = [
 
 // Sección de últimas noticias para la página principal
 interface LatestNewsProps {
-	featuredNews?: NewsItem[];
+	latestNews?: NewsItem[];
 }
 
-export const LatestNews: React.FC<LatestNewsProps> = ({ featuredNews }) => {
-	const newsToShow = featuredNews && featuredNews.length > 0 ? featuredNews : latestNewsData;
+export const LatestNews: React.FC<LatestNewsProps> = ({ latestNews }) => {
+	const newsToShow = latestNews && latestNews.length > 0 ? latestNews : latestNewsData;
 
 
 	return (

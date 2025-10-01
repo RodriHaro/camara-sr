@@ -99,7 +99,7 @@ export default function Header() {
                     onMouseLeave={() => setDropdownOpen(false)}
                   >
                     <span
-                      className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase cursor-pointer flex items-center justify-center text-[15px] min-[1476px]:text-base min-[1800px]:text-lg"
+                      className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase cursor-pointer flex items-center justify-center text-[15px] min-[1476px]:text-base"
                       role="menuitem"
                       aria-label={item.name}
                       tabIndex={0}
@@ -157,7 +157,7 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase flex items-center justify-center text-[15px] min-[1476px]:text-base min-[1800px]:text-lg"
+                    className="text-white hover:text-[#FF4757] font-medium transition-colors duration-200 px-1.5 min-[1476px]:px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-[#FF4757] uppercase flex items-center justify-center text-[15px] min-[1476px]:text-base"
                     role="menuitem"
                     aria-label={item.name}
                   >

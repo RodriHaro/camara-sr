@@ -41,7 +41,7 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { AnimatedTitle } from "../components/AnimatedTitle";
 import { AnimatedText } from "../components/AnimatedText";
 import { AnimatedImage } from "../components/AnimatedImage";
-import { getHomeSelections, getFallbackHomeData } from "../lib/sanity.service";
+import { getHomeSelections, getFallbackHomeData, getLatestNews } from "../lib/sanity.service";
 
 export default async function Home() {
   // Fetch home selections from Sanity
@@ -53,7 +53,8 @@ export default async function Home() {
       ? homeData.heroSlides
       : exampleSlides;
 
-  const featuredNews = homeData?.featuredNews || [];
+  // Get the latest 4 news articles automatically
+  const latestNews = await getLatestNews(4);
 
   return (
     <div className="overflow-x-hidden w-full antialiased">
@@ -61,7 +62,7 @@ export default async function Home() {
       <div className="overflow-x-hidden w-full pt-[88px]">
         <HeroSlider slides={heroSlides} />
       </div>
-      <LatestNews featuredNews={featuredNews} />
+      <LatestNews latestNews={latestNews} />
       {/* Sección de Navegación Rápida Institucional */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="mx-auto px-4" style={{ maxWidth: "100rem" }}>
