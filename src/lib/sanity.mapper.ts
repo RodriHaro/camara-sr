@@ -27,7 +27,6 @@ export interface SanityHomeSelections {
   nombre: string
   activa: boolean
   heroSlides: SanityNoticia[]
-  noticiasDestacadas: SanityNoticia[]
 }
 
 // Mapper functions
@@ -65,8 +64,7 @@ export function mapSanityHomeSelections(sanityData: SanityHomeSelections) {
     id: sanityData._id,
     name: sanityData.nombre,
     active: sanityData.activa,
-    heroSlides: sanityData.heroSlides?.map(mapSanityToHeroSlide) || [],
-    featuredNews: sanityData.noticiasDestacadas?.map(mapSanityToNewsItem) || []
+    heroSlides: sanityData.heroSlides?.map(mapSanityToHeroSlide) || []
   }
 }
 

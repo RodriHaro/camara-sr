@@ -255,8 +255,7 @@ export function getFallbackHomeData() {
     id: 'fallback',
     name: 'Datos de emergencia',
     active: true,
-    heroSlides: [],
-    featuredNews: []
+    heroSlides: []
   }
 }
 

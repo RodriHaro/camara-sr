@@ -36,22 +36,6 @@ export default defineType({
       description: 'Selecciona exactamente 4 noticias destacadas para el slider principal'
     }),
     defineField({
-      name: 'noticiasDestacadas',
-      title: 'Noticias Destacadas (4 cards)',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'noticia' }],
-          options: {
-            filter: 'publicada == true'
-          }
-        }
-      ],
-      validation: Rule => Rule.required().length(4).unique(),
-      description: 'Selecciona exactamente 4 noticias para las cards destacadas'
-    }),
-    defineField({
       name: 'fechaCreacion',
       title: 'Fecha de Creación',
       type: 'datetime',

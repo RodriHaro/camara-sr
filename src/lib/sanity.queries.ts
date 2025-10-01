@@ -21,22 +21,6 @@ export const HOME_SELECTIONS_QUERY = `
       categoria,
       fechaPublicacion,
       autor
-    },
-    noticiasDestacadas[]-> {
-      _id,
-      titulo,
-      slug,
-      resumen,
-      imagen {
-        asset-> {
-          _id,
-          url
-        },
-        alt
-      },
-      categoria,
-      fechaPublicacion,
-      autor
     }
   }
 `
