@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import { AnimatedTitle } from './AnimatedTitle';
 import { AnimatedText } from './AnimatedText';
 import { AnimatedSection } from './AnimatedSection';
+import Image from 'next/image';
 
 // Slide type definition
 export type HeroSlide = {
@@ -25,12 +26,62 @@ interface HeroSliderProps {
   slides: HeroSlide[];
 }
 
+// Helper function to get optimal image source based on screen size
+const getOptimalImageSrc = (slide: HeroSlide, windowWidth: number | null) => {
+  if (!slide.responsiveImages || windowWidth === null) {
+    return slide.image;
+  }
+  
+  if (windowWidth <= 768) {
+    return slide.responsiveImages.mobile;
+  } else if (windowWidth <= 1024) {
+    return slide.responsiveImages.tablet;
+  } else if (windowWidth <= 1920) {
+    return slide.responsiveImages.desktop;
+  } else {
+    return slide.responsiveImages.large;
+  }
+};
+
+// Helper function to get responsive object position
+const getObjectPosition = (windowWidth: number | null) => {
+  // Default fallback for SSR and first render
+  if (windowWidth === null) return '60% center';
+  
+  if (windowWidth <= 768) {
+    return '65% center'; // Mobile - keep original mobile positioning
+  } else if (windowWidth <= 1024) {
+    return '62% center'; // Tablet/Laptop - improved positioning for notebooks
+  } else {
+    return '60% center'; // Desktop - original desktop positioning
+  }
+};
+
+// Helper function to get responsive gradient
+const getResponsiveGradient = (windowWidth: number | null) => {
+  if (windowWidth === null) {
+    return 'linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)';
+  }
+  
+  if (windowWidth <= 768) {
+    // Mobile - keep original mobile gradient (vertical from bottom)
+    return 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.1) 100%)';
+  } else if (windowWidth <= 1024) {
+    // Tablet/Laptop - improved diagonal gradient for better balance on notebooks
+    return 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 80%, transparent 100%)';
+  } else {
+    // Desktop - original desktop gradient
+    return 'linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)';
+  }
+};
+
 // HeroSlider: Carousel replicating cac.com.ar hero
 const AUTOPLAY_INTERVAL = 6000;
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -44,6 +95,14 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
       if (autoplayRef.current) clearTimeout(autoplayRef.current);
     };
   }, [current, isPaused, slides.length]);
+
+  // Track window width for responsive positioning
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Pause on tab inactive
   useEffect(() => {
@@ -126,27 +185,33 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === current ? "opacity-100 z-10" : "opacity-0 z-0"}`}
           aria-hidden={idx !== current}
         >
-          {/* Background image with overlay - Ultra high quality */}
-          <div
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${slide.image})`,
-              // High-quality rendering optimizations
-              imageRendering: 'crisp-edges' as any,
-              WebkitImageRendering: '-webkit-optimize-contrast' as any,
-              msInterpolationMode: 'bicubic' as any,
-              // Hardware acceleration
-              willChange: 'transform',
-              transform: 'translateZ(0)',
-              WebkitBackfaceVisibility: 'hidden',
-              backfaceVisibility: 'hidden',
-            } as React.CSSProperties}
-          >
-            <div className="w-full h-full flex items-end justify-start md:justify-start">
-              {/* Overlay gradient for legibility */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none" />
+          {/* Background image with overlay - Optimized for mobile */}
+          <div className="relative w-full h-full overflow-hidden">
+            <Image
+              src={getOptimalImageSrc(slide, windowWidth)}
+              alt={slide.title}
+              fill
+              className="object-cover transition-transform duration-300 ease-out"
+              style={{
+                objectPosition: getObjectPosition(windowWidth),
+                transform: idx === current ? 'scale(1)' : 'scale(1.05)',
+                transition: 'transform 0.7s ease-out, object-position 0.3s ease-out'
+              }}
+              priority={idx === current}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+              quality={95}
+            />
+            {/* Overlay gradient for legibility */}
+            <div className="absolute inset-0 z-10">
+              <div className="w-full h-full pointer-events-none"
+                style={{
+                  background: getResponsiveGradient(windowWidth)
+                }}
+              />
+            </div>
+            <div className="relative z-20 w-full h-full flex items-end justify-start">
               {/* Slide content */}
-              <div className="relative z-10 max-w-2xl px-6 py-12 md:ml-16 text-white flex flex-col gap-4">
+              <div className="relative z-30 w-full max-w-2xl px-4 py-8 sm:px-6 md:py-12 lg:ml-16 text-white flex flex-col gap-3 md:gap-4">
                 <AnimatedSection 
                   className="flex flex-col gap-1" 
                   animation="fadeInUp" 
@@ -157,7 +222,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
                 </AnimatedSection>
                 <AnimatedTitle
                   as="h2"
-                  className="text-4xl md:text-6xl font-extrabold leading-tight mb-2"
+                  className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-2"
                   animation="fadeInUp"
                   delay={idx === current ? 200 : 0}
                   duration={0.8}
@@ -165,7 +230,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
                   {slide.title}
                 </AnimatedTitle>
                 <AnimatedText
-                  className="text-base md:text-lg opacity-90 mb-4 max-w-lg"
+                  className="text-sm sm:text-base md:text-lg opacity-90 mb-3 md:mb-4 max-w-lg"
                   animation="fadeInUp"
                   delay={idx === current ? 400 : 0}
                   duration={0.6}

@@ -44,11 +44,14 @@ export function mapSanityToNewsItem(sanityNews: SanityNoticia): NewsItem {
 }
 
 export function mapSanityToHeroSlide(sanityNews: SanityNoticia) {
+  const responsiveImages = heroImageUrlResponsive(sanityNews.imagen);
+  
   return {
     id: sanityNews._id,
     title: sanityNews.titulo,
     excerpt: sanityNews.resumen,
-    image: heroImageUrl(sanityNews.imagen), // Optimized high-quality image
+    image: heroImageUrl(sanityNews.imagen), // Main high-quality image
+    responsiveImages, // Include responsive images for better mobile optimization
     date: formatDate(sanityNews.fechaPublicacion),
     category: formatCategory(sanityNews.categoria),
     href: `/noticias/${sanityNews.slug.current}`
