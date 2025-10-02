@@ -27,31 +27,23 @@ interface HeroSliderProps {
 }
 
 // Helper function to get optimal image source based on screen size
-const getOptimalImageSrc = (slide: HeroSlide, windowWidth: number | null) => {
-  if (!slide.responsiveImages || windowWidth === null) {
-    return slide.image;
-  }
-  
-  if (windowWidth <= 768) {
-    return slide.responsiveImages.mobile;
-  } else if (windowWidth <= 1600) {
-    return slide.responsiveImages.tablet; // Use optimized tablet images for laptops/MacBooks
-  } else {
-    return slide.responsiveImages.desktop;
-  }
+// To avoid hydration and initial layout jumps, keep a single src across SSR/CSR
+const getOptimalImageSrc = (slide: HeroSlide, _windowWidth: number | null) => {
+  return slide.image;
 };
 
 // Helper function to get responsive object position
 const getObjectPosition = (windowWidth: number | null) => {
-  // Default fallback for SSR and first render
-  if (windowWidth === null) return '60% center';
+  // Default fallback for SSR and first render (must match client to avoid hydration diffs)
+  if (windowWidth === null) return '60% 30%';
   
   if (windowWidth <= 768) {
     return '65% center'; // Mobile - keep original mobile positioning
   } else if (windowWidth <= 1600) {
     return '65% 35%'; // Laptops including MacBooks - better portrait positioning
   } else {
-    return '60% center'; // Large Desktop - original desktop positioning
+    // Desktop - move focus slightly up, consistent with laptop treatment
+    return '60% 30%';
   }
 };
 
@@ -79,7 +71,7 @@ const AUTOPLAY_INTERVAL = 6000;
 export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [windowWidth, setWindowWidth] = useState<number | null>(typeof window !== 'undefined' ? window.innerWidth : null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -97,7 +89,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
   // Track window width for responsive positioning
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
-    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -189,11 +180,11 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
               src={getOptimalImageSrc(slide, windowWidth)}
               alt={slide.title}
               fill
-              className="object-cover transition-transform duration-300 ease-out"
+            className="object-cover"
               style={{
                 objectPosition: getObjectPosition(windowWidth),
-                transform: idx === current ? 'scale(1)' : 'scale(1.05)',
-                transition: 'transform 0.7s ease-out, object-position 0.3s ease-out'
+              transform: 'scale(1)',
+              transition: 'object-position 0.3s ease-out'
               }}
               priority={idx === current}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
