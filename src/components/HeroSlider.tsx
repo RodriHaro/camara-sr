@@ -71,7 +71,7 @@ const AUTOPLAY_INTERVAL = 6000;
 export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [windowWidth, setWindowWidth] = useState<number | null>(typeof window !== 'undefined' ? window.innerWidth : null);
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -88,6 +88,9 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
 
   // Track window width for responsive positioning
   useEffect(() => {
+    // Set initial width on mount
+    setWindowWidth(window.innerWidth);
+    
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
