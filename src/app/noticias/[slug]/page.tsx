@@ -266,6 +266,89 @@ export default async function NewsDetailPage({ params }: PageProps) {
               />
             )}
           </AnimatedSection>
+
+          {/* PDF Embedded Viewer Section */}
+          {news.pdfUrl && (
+            <AnimatedSection
+              className="mt-12"
+              animation="fadeInUp"
+              delay={750}
+              duration={0.8}
+            >
+              {/* Header with download options */}
+              <div className="mb-6 p-6 bg-gradient-to-br from-[#091b3f] to-[#0d2555] rounded-xl shadow-lg">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-4 text-white">
+                    <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold">Documento Relacionado</h3>
+                      <p className="text-sm text-white/80">
+                        {news.pdfFilename || 'Documento PDF'}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <a
+                      href={news.pdfUrl}
+                      download
+                      className="inline-flex items-center px-4 py-2 bg-[#E1AD01] hover:bg-[#d19e01] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-md text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-4-4m4 4l4-4" />
+                      </svg>
+                      Descargar PDF
+                    </a>
+                    <a
+                      href={news.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 border border-white/20 text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M7 7h10v10M17 7l-10 10" />
+                      </svg>
+                      Abrir en pestaña
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* PDF Viewer */}
+              <div className="relative w-full bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+                <div className="relative w-full" style={{ paddingBottom: '141.4%' }}>
+                  <iframe
+                    src={`${news.pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                    className="absolute inset-0 w-full h-full"
+                    title={news.pdfFilename || "Documento PDF"}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              {/* Info text */}
+              <div className="mt-4 text-center">
+                <p className="text-sm text-gray-600">
+                  Documento oficial • {news.pdfFilename || 'PDF'}
+                  {news.pdfSize && ` • ${(news.pdfSize / 1024 / 1024).toFixed(2)} MB`}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Si no puedes ver el documento, intenta{' '}
+                  <a href={news.pdfUrl} target="_blank" rel="noopener noreferrer" className="text-[#091b3f] hover:underline">
+                    abrirlo en una nueva pestaña
+                  </a>
+                  {' '}o{' '}
+                  <a href={news.pdfUrl} download className="text-[#091b3f] hover:underline">
+                    descargarlo
+                  </a>
+                  .
+                </p>
+              </div>
+            </AnimatedSection>
+          )}
         </article>
 
         {/* Related news */}

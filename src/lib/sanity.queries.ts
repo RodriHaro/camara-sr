@@ -90,6 +90,14 @@ export const NEWS_BY_SLUG_QUERY = `
       alt
     },
     contenido,
+    archivoPdf {
+      asset-> {
+        _id,
+        url,
+        originalFilename,
+        size
+      }
+    },
     categoria,
     fechaPublicacion,
     autor

@@ -95,6 +95,15 @@ export default defineType({
       validation: Rule => Rule.required().min(1)
     }),
     defineField({
+      name: 'archivoPdf',
+      title: 'Archivo PDF (Opcional)',
+      type: 'file',
+      options: {
+        accept: '.pdf'
+      },
+      description: 'Sube un PDF relacionado con la noticia. Aparecerá como un botón de descarga en la página de la noticia.'
+    }),
+    defineField({
       name: 'categoria',
       title: 'Categoría',
       type: 'string',
