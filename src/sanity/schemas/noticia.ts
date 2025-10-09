@@ -25,8 +25,8 @@ export default defineType({
       name: 'resumen',
       title: 'Resumen',
       type: 'text',
-      rows: 3,
-      validation: Rule => Rule.required().min(50).max(200)
+      rows: 4,
+      validation: Rule => Rule.required().min(50).max(400)
     }),
     defineField({
       name: 'imagen',
