@@ -90,18 +90,51 @@ export default defineType({
               title: 'Texto alternativo'
             }
           ]
+        },
+        {
+          type: 'object',
+          name: 'pdfEmbed',
+          title: 'PDF Embebido',
+          fields: [
+            {
+              name: 'archivo',
+              title: 'Archivo PDF',
+              type: 'file',
+              options: {
+                accept: '.pdf'
+              },
+              validation: (Rule) => Rule.required()
+            },
+            {
+              name: 'titulo',
+              title: 'Título del documento (opcional)',
+              type: 'string',
+              description: 'Nombre descriptivo del documento. Si se deja vacío, se usará el nombre del archivo.'
+            },
+            {
+              name: 'descripcion',
+              title: 'Descripción (opcional)',
+              type: 'text',
+              rows: 2,
+              description: 'Breve descripción del contenido del PDF'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'titulo',
+              filename: 'archivo.asset.originalFilename'
+            },
+            prepare({ title, filename }) {
+              return {
+                title: title || filename || 'Documento PDF',
+                subtitle: 'PDF embebido',
+                media: () => '📄'
+              }
+            }
+          }
         }
       ],
       validation: Rule => Rule.required().min(1)
-    }),
-    defineField({
-      name: 'archivoPdf',
-      title: 'Archivo PDF (Opcional)',
-      type: 'file',
-      options: {
-        accept: '.pdf'
-      },
-      description: 'Sube un PDF relacionado con la noticia. Aparecerá como un botón de descarga en la página de la noticia.'
     }),
     defineField({
       name: 'categoria',

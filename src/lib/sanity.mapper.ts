@@ -20,14 +20,6 @@ export interface SanityNoticia {
   fechaPublicacion: string
   autor: string
   contenido?: any[] // Portable Text array
-  archivoPdf?: {
-    asset: {
-      _id: string
-      url: string
-      originalFilename?: string
-      size?: number
-    }
-  }
 }
 
 export interface SanityHomeSelections {

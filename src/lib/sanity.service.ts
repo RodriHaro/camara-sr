@@ -135,10 +135,7 @@ export async function getNewsBySlug(slug: string) {
     return {
       news: {
         ...mapSanityToNewsItem(newsData),
-        content: newsData.contenido,
-        pdfUrl: newsData.archivoPdf?.asset?.url,
-        pdfFilename: newsData.archivoPdf?.asset?.originalFilename,
-        pdfSize: newsData.archivoPdf?.asset?.size
+        content: newsData.contenido
       },
       relatedNews: relatedNews.map(mapSanityToNewsItem)
     }
