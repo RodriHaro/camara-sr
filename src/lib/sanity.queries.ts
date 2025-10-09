@@ -89,7 +89,30 @@ export const NEWS_BY_SLUG_QUERY = `
       },
       alt
     },
-    contenido,
+    contenido[] {
+      ...,
+      _type == "pdfEmbed" => {
+        _type,
+        _key,
+        titulo,
+        descripcion,
+        archivo {
+          asset-> {
+            _id,
+            url,
+            originalFilename,
+            size
+          }
+        }
+      },
+      _type == "image" => {
+        ...,
+        asset-> {
+          _id,
+          url
+        }
+      }
+    },
     categoria,
     fechaPublicacion,
     autor
