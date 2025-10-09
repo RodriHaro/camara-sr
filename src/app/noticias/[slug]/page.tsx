@@ -129,7 +129,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                   <a
                     href={pdfUrl}
                     download
-                    className="inline-flex items-center px-4 py-2 bg-[#E1AD01] hover:bg-[#d19e01] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-md text-sm"
+                    className="inline-flex items-center px-4 py-2 bg-[#FF4757] hover:bg-[#ff3742] text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-md text-sm"
                   >
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-4-4m4 4l4-4" />
