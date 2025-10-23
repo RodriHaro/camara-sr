@@ -134,7 +134,7 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Juan Chaglasian" ? '50% 40%' :
                   member.nombre === "Nicolás Schmid" ? '85% center' :
                   member.nombre === "Bernardo Mercado" ? '57% center' :
-                  member.nombre === "Enrique Richard" ? '60% center' :
+                  member.nombre === "Enrique Richard" ? '50% center' :
                   member.nombre === "Sofía Romano" ? '55% center' :
                   member.nombre === "Fernando Bonomo" ? '38% center' :
                   member.nombre === "Eduardo López" ? '30% center' :
