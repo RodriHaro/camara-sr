@@ -246,7 +246,7 @@ export default function WhyJoinSection() {
             duration={0.8}
           >
             Unite a las más de 650 empresas que ya confían en nosotros<br />
-            y nos acompañaron en el almuerzo de las fuerzas vivas.
+            y nos acompañaron en el Almuerzo de las Fuerzas Vivas.
           </AnimatedTitle>
           <AnimatedText
             className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"

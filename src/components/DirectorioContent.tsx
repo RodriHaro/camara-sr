@@ -56,7 +56,7 @@ const directorio: {
   ],
   comisionesEspecificas: [
     { nombre: "Mauricio Marín", cargo: "Agricultura", foto: "/images/directorio/mauricio-marin.avif" },
-    { nombre: "Juan Chaglasian", cargo: "Bodegueros", noFoto: true },
+    { nombre: "Juan Chaglasian", cargo: "Bodegueros", foto: "/images/directorio/juan-chaglasian.avif" },
     { nombre: "Gabriela Fernández", cargo: "Cámara Joven", foto: "/images/directorio/gabriela-fernandez.avif" },
     { nombre: "Nicolás Schmid", cargo: "Comercio", foto: "/images/directorio/nicolas-schmid.avif" },
     { nombre: "Fernando Sombra", cargo: "Construcción", foto: "/images/directorio/fernando-sombra.avif" },
@@ -67,7 +67,7 @@ const directorio: {
     { nombre: "Fernando Bonomo", cargo: "Turismo", foto: "/images/directorio/fernando-bonomo.avif" }
   ],
   staff: [
-    { nombre: "Alejandro Flores", cargo: "Gerente", noFoto: true },
+    { nombre: "Alejandro Flores", cargo: "Gerente", foto: "/images/directorio/alejandro-flores.avif" },
     { nombre: "Silvina Di Stefano", cargo: "Secretaria", foto: "/images/directorio/silvina-di-stefano.avif" },
     { nombre: "Roberto Bravo", cargo: "Área de Comunicación", foto: "/images/directorio/roberto-bravo.avif" }
   ]
@@ -118,6 +118,7 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
               style={{
                 imageRendering: 'crisp-edges',
                 objectPosition: 
+                  member.nombre === "Alejandro Flores" ? 'center 65%' :
                   member.nombre === "Marcos Gianoncelli" ? '75% 50%' :
                   member.nombre === "Silvina Pietrelli" ? '40% center' :
                   member.nombre === "Gabriel Brega" ? '60% center' :
@@ -130,7 +131,9 @@ function DirectorCard({ member, delay = 0 }: { member: DirectorMember, delay?: n
                   member.nombre === "Celina Gómez" ? '50% center' :
                   member.nombre === "Alejandra Oteo" ? '75% center' :
                   member.nombre === "Federico Greco" ? '40% center' :
+                  member.nombre === "Juan Chaglasian" ? '50% 40%' :
                   member.nombre === "Nicolás Schmid" ? '85% center' :
+                  member.nombre === "Bernardo Mercado" ? '57% center' :
                   member.nombre === "Enrique Richard" ? '60% center' :
                   member.nombre === "Sofía Romano" ? '55% center' :
                   member.nombre === "Fernando Bonomo" ? '38% center' :
